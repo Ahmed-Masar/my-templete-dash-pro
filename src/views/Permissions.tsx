@@ -12,13 +12,32 @@ import { FormPanel, FormPanelContent, FormPanelHeader, FormPanelTitle, FormPanel
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import {
-  Shield, Search, RefreshCw, Plus, Trash2, Edit,
-  BarChart2, Home, ShoppingBag, Tags, Megaphone,
-  Bell, ShoppingCart, Gift, Store,
-  User as UserIcon, Briefcase, MessageSquare,
-  CheckCircle2, Loader2, Users, AlertTriangle,
-  LayoutDashboard, Check, Eye, EyeOff,
-} from "lucide-react";
+  SecuritySafe as Shield,
+  SearchNormal1 as Search,
+  Refresh2 as RefreshCw,
+  Add as Plus,
+  Trash,
+  Edit2 as Edit,
+  Chart1 as BarChart2,
+  Home2 as Home,
+  ShoppingBag,
+  Tag as Tags,
+  Speaker as Megaphone,
+  Notification as Bell,
+  ShoppingCart,
+  Gift,
+  Shop as Store,
+  User as UserIcon,
+  Briefcase,
+  Messages1 as MessageSquare,
+  TickCircle as CheckCircle2,
+  People as Users,
+  Element3 as LayoutDashboard,
+  TickCircle as Check,
+  Eye,
+  EyeSlash as EyeOff,
+  Refresh as Loader2,
+} from "iconsax-react";
 
 // ── Permission Matrix ─────────────────────────────────────────────────────────
 
@@ -270,7 +289,7 @@ export default function Permissions() {
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -283,10 +302,10 @@ export default function Permissions() {
             onClick={() => dispatch(fetchUsers({ limit: 200 }))}
             className={cn("transition-opacity", loading && "opacity-60 pointer-events-none")}
           >
-            <RefreshCw className={cn("w-4 h-4", loading && "animate-spin")} />
+            <RefreshCw color="currentColor" size="16" className={cn(loading && "animate-spin")} />
           </Button>
           <Button onClick={openAdd} className="bg-primary hover:bg-primary/90 gap-2">
-            <Plus className="w-4 h-4" />
+            <Plus color="currentColor" size="16" />
             Add Staff
           </Button>
         </div>
@@ -303,7 +322,7 @@ export default function Permissions() {
             <div key={s.label} className="rounded-xl border border-border/60 bg-card p-5 shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-muted/60 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4 h-4 text-muted-foreground" />
+                  <Icon color="currentColor" size="18" className="text-muted-foreground" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider truncate">{s.label}</p>
@@ -328,7 +347,7 @@ export default function Permissions() {
               <tr className="border-b border-border/60">
                 <th className="sticky left-0 z-20 bg-card backdrop-blur-sm border-r border-border/50 px-5 py-3.5 text-left" style={{ minWidth: 260 }}>
                   <div className="flex items-center gap-2">
-                    <Shield className="w-3.5 h-3.5 text-muted-foreground" />
+                    <Shield color="currentColor" size="14" className="text-muted-foreground" />
                     <span className="text-[10px] font-medium text-muted-foreground/70 uppercase tracking-widest">Staff Member</span>
                   </div>
                 </th>
@@ -374,7 +393,7 @@ export default function Permissions() {
                             "w-6 h-6 rounded-md flex items-center justify-center shadow-sm transition-colors duration-100",
                             isHov ? "bg-primary/10" : "bg-background/80"
                           )}>
-                            <Icon className={cn("w-3 h-3 transition-colors", isHov ? "text-primary" : "text-muted-foreground")} />
+                            <Icon color="currentColor" size="14" className={cn("transition-colors", isHov ? "text-primary" : "text-muted-foreground")} />
                           </div>
                           <span className={cn(
                             "text-[10px] font-medium leading-none whitespace-nowrap transition-colors",
@@ -396,7 +415,7 @@ export default function Permissions() {
               {loading && filtered.length === 0 ? (
                 <tr>
                   <td colSpan={ALL_KEYS.length + 2} className="py-16 text-center text-sm text-muted-foreground">
-                    <Loader2 className="w-5 h-5 animate-spin mx-auto mb-2 opacity-40" />
+                    <Loader2 color="currentColor" size="20" className="animate-spin mx-auto mb-2 opacity-40" />
                     Loading staff members...
                   </td>
                 </tr>
@@ -458,14 +477,14 @@ export default function Permissions() {
                                 title="Edit staff member"
                                 className="w-6 h-6 rounded-md flex items-center justify-center border border-border/60 bg-muted/40 text-foreground/70 hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-150"
                               >
-                                <Edit className="w-3 h-3" />
+                                <Edit color="currentColor" size="14" />
                               </button>
                               <button
                                 onClick={() => setDeleteTarget(user)}
                                 title="Remove staff member"
                                 className="w-6 h-6 rounded-md flex items-center justify-center border border-border/60 bg-muted/40 text-foreground/70 hover:text-destructive hover:border-destructive/40 hover:bg-destructive/10 transition-all duration-150"
                               >
-                                <Trash2 className="w-3 h-3" />
+                                <Trash color="currentColor" size="14" />
                               </button>
                             </div>
                           )}
@@ -501,11 +520,9 @@ export default function Permissions() {
                                     : "bg-transparent border-2 border-border/40 text-transparent hover:border-primary/50 hover:scale-105 cursor-pointer"
                                 )}
                               >
-                                {active && (
-                                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                  </svg>
-                                )}
+                                  {active && (
+                                    <Check color="currentColor" size="14" variant="Bold" />
+                                  )}
                               </button>
                             </td>
                           );
@@ -540,12 +557,12 @@ export default function Permissions() {
                           <div className="h-3.5 flex items-center">
                             {status === "saving" && (
                               <span className="flex items-center gap-1 text-[9px] text-muted-foreground/60">
-                                <Loader2 className="w-2.5 h-2.5 animate-spin" /> Saving
+                                <Loader2 color="currentColor" size="10" className="animate-spin" /> Saving
                               </span>
                             )}
                             {status === "saved" && (
                               <span className="flex items-center gap-1 text-[9px] text-green-500">
-                                <CheckCircle2 className="w-2.5 h-2.5" /> Saved
+                                <CheckCircle2 color="currentColor" size="12" variant="Bold" /> Saved
                               </span>
                             )}
                             {status === "error" && (
@@ -593,7 +610,7 @@ export default function Permissions() {
             {/* ── Basic fields ── */}
             <section className="space-y-4">
               <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                <UserIcon className="w-4 h-4 text-primary" />
+                <UserIcon color="currentColor" size="16" className="text-primary" />
                 <span className="text-sm font-semibold tracking-wide">Basic Details</span>
               </div>
 
@@ -622,7 +639,7 @@ export default function Permissions() {
                         onClick={() => setShowPassword((v) => !v)}
                         className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        {showPassword ? <EyeOff color="currentColor" size="16" /> : <Eye color="currentColor" size="16" />}
                       </button>
                     </div>
                   </div>
@@ -653,7 +670,7 @@ export default function Permissions() {
         <DialogContent className="max-w-sm">
           <DialogHeader className="items-center text-center pb-2">
             <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-3">
-              <AlertTriangle className="w-8 h-8 text-destructive" />
+              <RefreshCw color="currentColor" size="32" className="text-destructive animate-spin" />
             </div>
             <DialogTitle>Remove Staff Member</DialogTitle>
             <DialogDescription>
@@ -705,7 +722,7 @@ function PermissionCardGrid({
       {/* Section header */}
       <div className="flex items-center justify-between pb-2 border-b border-border/60">
         <div className="flex items-center gap-2">
-          <Shield className="w-4 h-4 text-primary" />
+          <Shield color="currentColor" size="16" className="text-primary" />
           <span className="text-sm font-semibold tracking-wide">Page Access</span>
         </div>
         <div className="flex items-center gap-3">
@@ -745,7 +762,7 @@ function PermissionCardGrid({
               {/* Group label row */}
               <div className="flex items-center justify-between mb-2.5">
                 <div className="flex items-center gap-1.5">
-                  <GroupIcon className="w-3.5 h-3.5 text-muted-foreground/70" />
+                  <GroupIcon color="currentColor" size="14" className="text-muted-foreground/70" />
                   <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                     {group.group}
                   </span>
@@ -792,7 +809,7 @@ function PermissionCardGrid({
                           ? "bg-primary text-primary-foreground shadow-md shadow-primary/25"
                           : "bg-muted/60 text-muted-foreground group-hover/card:bg-muted"
                       )}>
-                        <Icon className="w-4 h-4" />
+                        <Icon color="currentColor" size="18" variant={active ? "Bold" : "Linear"} />
                       </div>
 
                       {/* Label */}

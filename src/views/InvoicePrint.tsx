@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Printer, X } from "lucide-react";
+import { Printer, Add as X } from "iconsax-react";
 import { cartsAPI } from "@/lib/api";
 import { Cart } from "@/store/slices/cartsSlice";
 import logo from "@/assets/Sahel Jeddah Logo 2.png";
@@ -327,13 +327,13 @@ export default function InvoicePrint({ id }: { id: string }) {
           onClick={() => window.print()}
           style={{ display: "inline-flex", alignItems: "center", gap: "6px", padding: "8px 20px", background: "#0f172a", color: "#fff", border: "none", borderRadius: "6px", fontFamily: "sans-serif", fontSize: "14px", cursor: "pointer" }}
         >
-          <Printer size={15} /> Print
+          <Printer color="currentColor" size="15" /> Print
         </button>
         <button
           onClick={() => window.history.back()}
           style={{ display: "inline-flex", alignItems: "center", gap: "6px", padding: "8px 16px", background: "#fff", color: "#374151", border: "1px solid #d1d5db", borderRadius: "6px", fontFamily: "sans-serif", fontSize: "14px", cursor: "pointer" }}
         >
-          <X size={14} /> Back
+          <X color="currentColor" size="14" className="rotate-45" /> Back
         </button>
       </div>
 

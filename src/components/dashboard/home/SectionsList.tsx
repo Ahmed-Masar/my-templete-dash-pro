@@ -4,13 +4,13 @@ import { useState, useRef } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import {
-    ChevronUp,
-    ChevronDown,
-    GripVertical,
-    Plus,
-    LayoutList,
-    Pencil,
-} from "lucide-react";
+    ArrowUp2 as ChevronUp,
+    ArrowDown2 as ChevronDown,
+    HambergerMenu as GripVertical,
+    Add as Plus,
+    Task as LayoutList,
+    Edit2 as Pencil,
+} from "iconsax-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
     toggleSection,
@@ -140,7 +140,7 @@ function SectionRow({
             )}
         >
             {/* Drag handle */}
-            <GripVertical className="h-4 w-4 text-muted-foreground/25 group-hover:text-muted-foreground/60 shrink-0 cursor-grab active:cursor-grabbing transition-colors" />
+            <GripVertical color="currentColor" size="16" className="text-muted-foreground/25 group-hover:text-muted-foreground/60 shrink-0 cursor-grab active:cursor-grabbing transition-colors" />
 
             {/* Up / order / Down */}
             <div className="flex flex-col items-center shrink-0 gap-0">
@@ -150,7 +150,7 @@ function SectionRow({
                     disabled={isFirst}
                     onClick={() => dispatch(moveSection({ key: sectionKey, direction: 'up' }))}
                 >
-                    <ChevronUp className="h-2.5 w-2.5" />
+                    <ChevronUp color="currentColor" size="10" />
                 </Button>
                 <span className="text-[9px] font-mono text-muted-foreground/40 tabular-nums leading-none">
                     {String(section.order).padStart(2, '0')}
@@ -161,7 +161,7 @@ function SectionRow({
                     disabled={isLast}
                     onClick={() => dispatch(moveSection({ key: sectionKey, direction: 'down' }))}
                 >
-                    <ChevronDown className="h-2.5 w-2.5" />
+                    <ChevronDown color="currentColor" size="10" />
                 </Button>
             </div>
 
@@ -185,8 +185,8 @@ function SectionRow({
                             className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-semibold border border-border bg-muted/60 text-muted-foreground shadow-sm transition-all duration-100 cursor-pointer hover:bg-muted hover:text-foreground hover:border-foreground/30 active:scale-95 active:shadow-none"
                             onClick={(e) => { e.stopPropagation(); onEditAdSection(sectionKey); }}>
                             {hasContent
-                                ? <><LayoutList className="h-3 w-3" />{contentCount} ad{contentCount !== 1 ? 's' : ''}<Pencil className="h-2.5 w-2.5 ml-0.5 opacity-60" /></>
-                                : <><Plus className="h-3 w-3" />Add ads</>}
+                                ? <><LayoutList color="currentColor" size="12" />{contentCount} ad{contentCount !== 1 ? 's' : ''}<Pencil color="currentColor" size="10" className="ml-0.5 opacity-60" /></>
+                                : <><Plus color="currentColor" size="12" />Add ads</>}
                         </button>
                     )}
                     {isCat && onEditCategories && (
@@ -194,8 +194,8 @@ function SectionRow({
                             className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-semibold border border-border bg-muted/60 text-muted-foreground shadow-sm transition-all duration-100 cursor-pointer hover:bg-muted hover:text-foreground hover:border-foreground/30 active:scale-95 active:shadow-none"
                             onClick={(e) => { e.stopPropagation(); onEditCategories(); }}>
                             {hasContent
-                                ? <><LayoutList className="h-3 w-3" />{contentCount} categor{contentCount !== 1 ? 'ies' : 'y'}<Pencil className="h-2.5 w-2.5 ml-0.5 opacity-60" /></>
-                                : <><Plus className="h-3 w-3" />Add categories</>}
+                                ? <><LayoutList color="currentColor" size="12" />{contentCount} categor{contentCount !== 1 ? 'ies' : 'y'}<Pencil color="currentColor" size="10" className="ml-0.5 opacity-60" /></>
+                                : <><Plus color="currentColor" size="12" />Add categories</>}
                         </button>
                     )}
                     {isLogo && onEditLogos && (
@@ -203,8 +203,8 @@ function SectionRow({
                             className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-semibold border border-border bg-muted/60 text-muted-foreground shadow-sm transition-all duration-100 cursor-pointer hover:bg-muted hover:text-foreground hover:border-foreground/30 active:scale-95 active:shadow-none"
                             onClick={(e) => { e.stopPropagation(); onEditLogos(); }}>
                             {hasContent
-                                ? <><LayoutList className="h-3 w-3" />{contentCount} logo{contentCount !== 1 ? 's' : ''}<Pencil className="h-2.5 w-2.5 ml-0.5 opacity-60" /></>
-                                : <><Plus className="h-3 w-3" />Add logos</>}
+                                ? <><LayoutList color="currentColor" size="12" />{contentCount} logo{contentCount !== 1 ? 's' : ''}<Pencil color="currentColor" size="10" className="ml-0.5 opacity-60" /></>
+                                : <><Plus color="currentColor" size="12" />Add logos</>}
                         </button>
                     )}
                     {isProduct && onEditProductSection && (
@@ -212,8 +212,8 @@ function SectionRow({
                             className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-semibold border border-border bg-muted/60 text-muted-foreground shadow-sm transition-all duration-100 cursor-pointer hover:bg-muted hover:text-foreground hover:border-foreground/30 active:scale-95 active:shadow-none"
                             onClick={(e) => { e.stopPropagation(); onEditProductSection(sectionKey as ProductSectionKey); }}>
                             {hasContent
-                                ? <><LayoutList className="h-3 w-3" />{contentCount} product{contentCount !== 1 ? 's' : ''}<Pencil className="h-2.5 w-2.5 ml-0.5 opacity-60" /></>
-                                : <><Plus className="h-3 w-3" />Add products</>}
+                                ? <><LayoutList color="currentColor" size="12" />{contentCount} product{contentCount !== 1 ? 's' : ''}<Pencil color="currentColor" size="10" className="ml-0.5 opacity-60" /></>
+                                : <><Plus color="currentColor" size="12" />Add products</>}
                         </button>
                     )}
                 </div>

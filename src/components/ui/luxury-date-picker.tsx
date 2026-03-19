@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, CalendarDays, X, ChevronsUpDown } from "lucide-react";
+import { ArrowLeft2 as ChevronLeft, ArrowRight2 as ChevronRight, Calendar, Add as X, ArrowSwapVertical as ChevronsUpDown } from "iconsax-react";
 import { DayPicker } from "react-day-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
@@ -103,7 +103,7 @@ export function LuxuryDatePicker({
           className={cn(navBtn, "absolute left-0")}
           onClick={() => setDisplayMonth(new Date(dm.getFullYear(), dm.getMonth() - 1, 1))}
         >
-          <ChevronLeft className="h-3.5 w-3.5" />
+          <ChevronLeft color="currentColor" size="14" />
         </button>
 
         {/* Clickable Month + Year → flips to year grid */}
@@ -120,7 +120,7 @@ export function LuxuryDatePicker({
         >
           <span>{dm.toLocaleDateString("en-US", { month: "long" })}</span>
           <span className="text-muted-foreground tabular-nums">{dm.getFullYear()}</span>
-          <ChevronsUpDown className="h-3 w-3 text-muted-foreground/60" />
+          <ChevronsUpDown color="currentColor" size="12" className="text-muted-foreground/60" />
         </button>
 
         {/* Next month */}
@@ -128,7 +128,7 @@ export function LuxuryDatePicker({
           className={cn(navBtn, "absolute right-0")}
           onClick={() => setDisplayMonth(new Date(dm.getFullYear(), dm.getMonth() + 1, 1))}
         >
-          <ChevronRight className="h-3.5 w-3.5" />
+          <ChevronRight color="currentColor" size="14" />
         </button>
       </div>
     ),
@@ -157,9 +157,11 @@ export function LuxuryDatePicker({
             className,
           )}
         >
-          <CalendarDays
+          <Calendar
+            color="currentColor"
+            size="14"
             className={cn(
-              "h-3.5 w-3.5 shrink-0 transition-colors duration-200",
+              "shrink-0 transition-colors duration-200",
               formatted ? "text-foreground/60" : "text-muted-foreground",
               "group-hover:text-foreground/80",
             )}
@@ -178,12 +180,14 @@ export function LuxuryDatePicker({
               onClick={handleClear}
               className="shrink-0 opacity-40 hover:opacity-100 text-foreground transition-opacity cursor-pointer"
             >
-              <X className="h-3 w-3" />
+              <X color="currentColor" size="12" className="rotate-45" />
             </span>
           ) : (
             <ChevronRight
+              color="currentColor"
+              size="12"
               className={cn(
-                "h-3 w-3 shrink-0 text-muted-foreground/50 transition-transform duration-200",
+                "shrink-0 text-muted-foreground/50 transition-transform duration-200",
                 open && "rotate-90",
               )}
             />
@@ -210,7 +214,7 @@ export function LuxuryDatePicker({
                 className={cn(navBtn, "absolute left-0")}
                 onClick={() => setYearPageStart((p) => p - YEARS_PER_PAGE)}
               >
-                <ChevronLeft className="h-3.5 w-3.5" />
+                <ChevronLeft color="currentColor" size="14" />
               </button>
               <span className="text-[13px] font-semibold tracking-tight text-foreground select-none">
                 {yearPageStart} – {yearPageStart + YEARS_PER_PAGE - 1}
@@ -219,7 +223,7 @@ export function LuxuryDatePicker({
                 className={cn(navBtn, "absolute right-0")}
                 onClick={() => setYearPageStart((p) => p + YEARS_PER_PAGE)}
               >
-                <ChevronRight className="h-3.5 w-3.5" />
+                <ChevronRight color="currentColor" size="14" />
               </button>
             </div>
 

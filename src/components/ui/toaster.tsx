@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CheckCircle2, XCircle, AlertTriangle, Info } from "lucide-react";
+import { TickCircle as CheckCircle2, CloseCircle as XCircle, Danger as AlertTriangle, InfoCircle as Info } from "iconsax-react";
 
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -81,7 +81,7 @@ export function Toaster() {
 
               {/* Icon badge */}
               <div className={cn("shrink-0 rounded-lg p-2", ICON_BADGE[v])}>
-                <Icon className="h-4 w-4" />
+                <Icon color="currentColor" size="16" />
               </div>
 
               {/* Content */}

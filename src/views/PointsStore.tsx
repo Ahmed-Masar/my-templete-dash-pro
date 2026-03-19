@@ -12,7 +12,17 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import { Gift, Plus, Edit, Trash2, Search, CheckCircle2, XCircle, ChevronDown } from "lucide-react";
+import { 
+    Gift, 
+    Add as Plus, 
+    Edit2 as Edit, 
+    Trash, 
+    SearchNormal1 as Search, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    ArrowDown2 as ChevronDown,
+    TickCircle as CheckCircle
+} from "iconsax-react";
 import { formatNumber } from "@/lib/currency";
 import { formatDate } from "@/lib/formatters";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -32,7 +42,7 @@ import { LocalizedInput, LangValue, toLang, emptyLang, fromLang } from "@/compon
 
 function t(val: any): string { return fromLang(val); }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle } from "lucide-react";
+
 
 const PointsStore: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -333,7 +343,7 @@ const PointsStore: React.FC = () => {
 
                     {activeTab === 'items' && (
                         <Button onClick={handleAdd} className="bg-primary hover:bg-primary/90">
-                            <Plus className="w-4 h-4 mr-2" /> Add Reward
+                            <Plus color="currentColor" size="16" className="mr-2" /> Add Reward
                         </Button>
                     )}
                 </div>
@@ -341,7 +351,7 @@ const PointsStore: React.FC = () => {
                 <TabsContent value="items" className="space-y-4">
                     <div className="flex items-center space-x-2">
                         <div className="relative flex-1 max-w-sm">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                            <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                             <Input
                                 placeholder="Search items..."
                                 value={searchTerm}
@@ -388,7 +398,7 @@ const PointsStore: React.FC = () => {
                                                     />
                                                 ) : (
                                                     <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                                                        <Gift className="w-5 h-5 text-muted-foreground" />
+                                                        <Gift color="currentColor" size="20" className="text-muted-foreground" />
                                                     </div>
                                                 )}
                                             </TableCell>
@@ -407,11 +417,11 @@ const PointsStore: React.FC = () => {
                                                                 : 'border-orange-400/40 text-orange-600 bg-orange-50/60 hover:bg-orange-100/80 dark:bg-orange-900/20 dark:text-orange-400'
                                                             }`}>
                                                             {item.status === 'active'
-                                                                ? <CheckCircle2 className="w-3 h-3" />
-                                                                : <XCircle className="w-3 h-3" />
+                                                                ? <CheckCircle2 color="currentColor" size="12" />
+                                                                : <XCircle color="currentColor" size="12" />
                                                             }
                                                             {item.status === 'active' ? "Active" : "Inactive"}
-                                                            <ChevronDown className="w-3 h-3 opacity-60" />
+                                                            <ChevronDown color="currentColor" size="12" className="opacity-60" />
                                                         </button>
                                                     </DropdownMenuTrigger>
                                                     <DropdownMenuContent align="center" className="w-48 shadow-xl">
@@ -421,7 +431,7 @@ const PointsStore: React.FC = () => {
                                                             onClick={() => handleToggleItemStatus(item, true)}
                                                             className={`flex items-center gap-2 cursor-pointer ${item.status === 'active' ? 'bg-green-50/60 text-green-700 font-semibold' : ''}`}
                                                         >
-                                                            <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                            <CheckCircle2 color="currentColor" size="16" className="text-green-500" />
                                                             <span>Active</span>
                                                             {item.status === 'active' && <span className="ml-auto text-[10px] text-green-500">✓ Current</span>}
                                                         </DropdownMenuItem>
@@ -429,7 +439,7 @@ const PointsStore: React.FC = () => {
                                                             onClick={() => handleToggleItemStatus(item, false)}
                                                             className={`flex items-center gap-2 cursor-pointer ${item.status !== 'active' ? 'bg-orange-50/60 text-orange-700 font-semibold' : ''}`}
                                                         >
-                                                            <XCircle className="w-4 h-4 text-orange-500" />
+                                                            <XCircle color="currentColor" size="16" className="text-orange-500" />
                                                             <span>Inactive</span>
                                                             {item.status !== 'active' && <span className="ml-auto text-[10px] text-orange-500">✓ Current</span>}
                                                         </DropdownMenuItem>
@@ -440,10 +450,10 @@ const PointsStore: React.FC = () => {
                                             <TableCell className="text-right">
                                                 <div className="flex items-center justify-end space-x-2">
                                                     <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); handleEdit(item); }}>
-                                                        <Edit className="w-4 h-4" />
+                                                        <Edit color="currentColor" size="16" />
                                                     </Button>
                                                     <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); handleDelete(item._id); }} className="hover:bg-destructive hover:text-destructive-foreground">
-                                                        <Trash2 className="w-4 h-4" />
+                                                        <Trash color="currentColor" size="16" />
                                                     </Button>
                                                 </div>
                                             </TableCell>
@@ -528,12 +538,12 @@ const PointsStore: React.FC = () => {
                                             <TableCell className="text-right">
                                                 {!purchase.used && (
                                                     <Button size="sm" variant="outline" className="text-green-600 hover:text-green-700 hover:bg-green-50 border-green-200" onClick={() => handleMarkAsUsed(purchase._id)}>
-                                                        <CheckCircle className="w-4 h-4 mr-1" /> Mark Used
+                                                        <CheckCircle color="currentColor" size="16" className="mr-1" /> Mark Used
                                                     </Button>
                                                 )}
                                                 {purchase.used && (
                                                     <div className="flex items-center justify-end text-green-600 text-sm font-medium">
-                                                        <CheckCircle className="w-4 h-4 mr-1" /> Redeemed
+                                                        <CheckCircle color="currentColor" size="16" className="mr-1" /> Redeemed
                                                     </div>
                                                 )}
                                             </TableCell>

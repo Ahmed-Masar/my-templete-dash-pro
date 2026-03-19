@@ -27,12 +27,20 @@ import {
 } from "@/components/ui/form-panel";
 import { NotificationPhonePreview } from "@/components/dashboard/notifications/NotificationPhonePreview";
 import { UserPicker, UserPickerUser } from "@/components/ui/user-picker";
-import {
-    Bell, Plus, Trash2, Send,
-    CheckCircle2, XCircle,
-    Users, User, UserCheck,
-    Search, Eye, Loader2,
-} from "lucide-react";
+import { 
+    Notification as Bell, 
+    Add as Plus, 
+    Trash, 
+    Send2 as Send, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    People as Users, 
+    User, 
+    UserTick as UserCheck, 
+    SearchNormal1 as Search, 
+    Eye, 
+    Refresh as Loader2 
+} from "iconsax-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { formatDateTime } from "@/lib/formatters";
@@ -185,7 +193,7 @@ function NotificationForm({ onSuccess, onCancel }: NotificationFormProps) {
             {/* Content */}
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <Bell className="w-4 h-4 text-primary" />
+                    <Bell color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Content</span>
                 </div>
                 {/* Title (AR) */}
@@ -253,7 +261,7 @@ function NotificationForm({ onSuccess, onCancel }: NotificationFormProps) {
             {/* Target Audience */}
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <Users className="w-4 h-4 text-primary" />
+                    <Users color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Target Audience</span>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
@@ -273,7 +281,7 @@ function NotificationForm({ onSuccess, onCancel }: NotificationFormProps) {
                                     : "border-border hover:bg-muted/40"
                             )}
                         >
-                            <opt.icon className={cn("h-4 w-4", targetType === opt.value ? "text-primary" : "text-muted-foreground")} />
+                            <opt.icon color="currentColor" size="16" className={cn(targetType === opt.value ? "text-primary" : "text-muted-foreground")} />
                             <span className={cn("text-xs font-semibold", targetType === opt.value ? "text-primary" : "text-foreground")}>
                                 {opt.label}
                             </span>
@@ -305,7 +313,7 @@ function NotificationForm({ onSuccess, onCancel }: NotificationFormProps) {
                                 onClick={loadUsers}
                                 disabled={usersLoading}
                             >
-                                {usersLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Refresh"}
+                                {usersLoading ? <Loader2 color="currentColor" size="16" className="animate-spin" /> : "Refresh"}
                             </Button>
                         </div>
                         <UserPicker
@@ -327,8 +335,8 @@ function NotificationForm({ onSuccess, onCancel }: NotificationFormProps) {
                 </Button>
                 <Button type="submit" disabled={sending} className="min-w-[140px] bg-primary hover:bg-primary/90 shadow-md">
                     {sending
-                        ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending...</>
-                        : <><Send className="h-4 w-4 mr-2" /> Send Notification</>
+                        ? <><Loader2 color="currentColor" size="16" className="animate-spin mr-2" /> Sending...</>
+                        : <><Send color="currentColor" size="16" className="mr-2" /> Send Notification</>
                     }
                 </Button>
             </div>
@@ -391,7 +399,7 @@ export function Notifications() {
                 <h1 className="text-3xl font-bold">Notifications</h1>
                 <div className="flex items-center space-x-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Search..."
                             value={search}
@@ -400,7 +408,7 @@ export function Notifications() {
                         />
                     </div>
                     <Button onClick={() => setPanelOpen(true)} className="bg-primary">
-                        <Plus className="w-4 h-4 mr-2" />
+                        <Plus color="currentColor" size="16" className="mr-2" />
                         Send Notification
                     </Button>
                 </div>
@@ -422,7 +430,7 @@ export function Notifications() {
                         {loading ? (
                             <TableRow>
                                 <TableCell colSpan={5} className="h-32 text-center">
-                                    <Loader2 className="h-5 w-5 animate-spin mx-auto text-muted-foreground" />
+                                    <Loader2 color="currentColor" size="20" className="animate-spin mx-auto text-muted-foreground" />
                                 </TableCell>
                             </TableRow>
                         ) : filtered.length === 0 ? (
@@ -452,7 +460,7 @@ export function Notifications() {
                                     </TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-1.5">
-                                            <TargetIcon className="h-3.5 w-3.5 text-muted-foreground" />
+                                            <TargetIcon color="currentColor" size="14" className="text-muted-foreground" />
                                             <span className="text-sm">{target.label}</span>
                                         </div>
                                     </TableCell>
@@ -462,7 +470,7 @@ export function Notifications() {
                                     <TableCell className="text-right" onClick={e => e.stopPropagation()}>
                                         <div className="flex justify-end gap-2">
                                             <Button variant="outline" size="sm" onClick={() => { setSelected(n); setPreviewOpen(true); }}>
-                                                <Eye className="w-4 h-4" />
+                                                <Eye color="currentColor" size="16" />
                                             </Button>
                                             <Button
                                                 variant="outline"
@@ -470,7 +478,7 @@ export function Notifications() {
                                                 onClick={() => { setSelected(n); setDeleteOpen(true); }}
                                                 className="hover:bg-destructive hover:text-destructive-foreground"
                                             >
-                                                <Trash2 className="w-4 h-4" />
+                                                <Trash color="currentColor" size="16" />
                                             </Button>
                                         </div>
                                     </TableCell>
@@ -504,7 +512,7 @@ export function Notifications() {
                 <DialogContent className="max-w-md">
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-2">
-                            <Bell className="h-4 w-4" />
+                            <Bell color="currentColor" size="16" />
                             {selected?.title}
                         </DialogTitle>
                     </DialogHeader>

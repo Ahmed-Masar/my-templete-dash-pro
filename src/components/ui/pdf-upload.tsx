@@ -3,15 +3,15 @@
 import React, { useCallback, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-  Upload,
-  X,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-  FileText,
-  ExternalLink,
-  RefreshCw,
-} from "lucide-react";
+  DocumentUpload as Upload,
+  Add as X,
+  TickCircle as CheckCircle2,
+  Danger as AlertCircle,
+  Refresh as Loader2,
+  DocumentText as FileText,
+  Export as ExternalLink,
+  Refresh as RefreshCw,
+} from "iconsax-react";
 import { uploadsAPI } from "@/lib/api";
 
 type UploadStatus = "uploading" | "success" | "error";
@@ -190,9 +190,9 @@ export function PdfUpload({
               )}
             >
               {isDragging ? (
-                <FileText className="w-6 h-6" />
+                <FileText color="currentColor" size="24" />
               ) : (
-                <Upload className="w-6 h-6 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                <Upload color="currentColor" size="24" className="transition-transform duration-300 group-hover:-translate-y-0.5" />
               )}
             </div>
 
@@ -240,11 +240,11 @@ export function PdfUpload({
             )}
           >
             {status === "uploading" ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 color="currentColor" size="20" className="animate-spin" />
             ) : status === "error" ? (
-              <AlertCircle className="w-5 h-5" />
+              <AlertCircle color="currentColor" size="20" />
             ) : (
-              <FileText className="w-5 h-5" />
+              <FileText color="currentColor" size="20" />
             )}
           </div>
 
@@ -263,9 +263,9 @@ export function PdfUpload({
                 onClick={(e) => e.stopPropagation()}
                 className="flex items-center gap-1 text-xs text-emerald-600 hover:text-emerald-700 mt-0.5 transition-colors"
               >
-                <CheckCircle2 className="w-3 h-3" />
+                <CheckCircle2 color="currentColor" size="12" />
                 Uploaded — View PDF
-                <ExternalLink className="w-2.5 h-2.5 ml-0.5" />
+                <ExternalLink color="currentColor" size="10" className="ml-0.5" />
               </a>
             )}
             {status === "error" && (
@@ -284,7 +284,7 @@ export function PdfUpload({
                   "hover:bg-destructive hover:text-white transition-colors duration-200"
                 )}
               >
-                <RefreshCw className="w-3 h-3" />
+                <RefreshCw color="currentColor" size="12" />
                 Retry
               </button>
             )}
@@ -298,7 +298,7 @@ export function PdfUpload({
                   "hover:bg-destructive hover:text-white hover:border-destructive/70 transition-all duration-200"
                 )}
               >
-                <X className="w-3.5 h-3.5" />
+                <X color="currentColor" size="14" className="rotate-45" />
               </button>
             )}
           </div>

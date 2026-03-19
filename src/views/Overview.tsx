@@ -2,26 +2,26 @@
 
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import {
-  TrendingUp,
-  ShoppingCart,
-  BarChart2,
-  DollarSign,
-  Box,
-  Store,
-  Grid,
-  Tag,
-  Star,
-  Users,
-  Briefcase,
-  Wrench,
-  UserCog,
-  ShoppingBag,
-  CircleDollarSign,
-  Wallet,
-  Award,
-  MessageSquare,
-} from "lucide-react";
+import { 
+  TrendUp as TrendingUp, 
+  ShoppingCart, 
+  Chart as BarChart2, 
+  Money as DollarSign, 
+  Box, 
+  Shop as Store, 
+  Grid1 as Grid, 
+  Tag, 
+  Star, 
+  People as Users, 
+  Briefcase, 
+  Setting4 as Wrench, 
+  UserSearch as UserCog, 
+  ShoppingBag, 
+  MoneyChange as CircleDollarSign, 
+  Wallet, 
+  Award, 
+  Message as MessageSquare 
+} from "iconsax-react";
 import { apiHelpers } from "@/lib/axios";
 import { ApiResponse } from "@/lib/api";
 import { formatIQD } from "@/lib/currency";
@@ -192,7 +192,7 @@ function RankBadge({ rank }: { rank: number }) {
 function StarRating({ rating }: { rating: number }) {
   return (
     <span className="flex items-center gap-1">
-      <Star className="h-3 w-3 text-warning fill-current shrink-0" />
+      <Star color="currentColor" size="12" className="text-warning fill-current shrink-0" />
       <span className="text-[11px] text-muted-foreground tabular-nums">
         {(rating || 0).toFixed(1)}
       </span>
@@ -317,7 +317,7 @@ export function Overview() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-3 text-center">
         <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-          <BarChart2 className="h-4.5 w-4.5 text-muted-foreground" />
+          <BarChart2 color="currentColor" size="18" className="text-muted-foreground" />
         </div>
         <p className="text-sm text-muted-foreground max-w-xs">
           {error ?? "No data available."}
@@ -467,7 +467,7 @@ export function Overview() {
                 Total Revenue
               </span>
               <div className="w-7 h-7 rounded-md bg-primary-foreground/8 flex items-center justify-center">
-                <TrendingUp className="h-3.5 w-3.5 text-primary-foreground/50" />
+                <TrendingUp color="currentColor" size="14" className="text-primary-foreground/50" />
               </div>
             </div>
             <div className="relative">
@@ -488,7 +488,7 @@ export function Overview() {
                 Gross Profit
               </span>
               <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center">
-                <DollarSign className="h-3.5 w-3.5 text-muted-foreground" />
+                <DollarSign color="currentColor" size="14" className="text-muted-foreground" />
               </div>
             </div>
             <div>
@@ -513,7 +513,7 @@ export function Overview() {
                 Total Orders
               </span>
               <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center">
-                <ShoppingCart className="h-3.5 w-3.5 text-muted-foreground" />
+                <ShoppingCart color="currentColor" size="14" className="text-muted-foreground" />
               </div>
             </div>
             <div>
@@ -533,7 +533,7 @@ export function Overview() {
                 Avg Order Value
               </span>
               <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center">
-                <BarChart2 className="h-3.5 w-3.5 text-muted-foreground" />
+                <BarChart2 color="currentColor" size="14" className="text-muted-foreground" />
               </div>
             </div>
             <div>
@@ -574,7 +574,7 @@ export function Overview() {
           ].map(({ label, value, icon: Icon }) => (
             <div key={label} className="bg-card px-5 py-4 flex flex-col gap-2.5">
               <div className="flex items-center gap-1.5">
-                <Icon className="h-3 w-3 text-muted-foreground/50 shrink-0" />
+                <Icon color="currentColor" size="12" className="text-muted-foreground/50 shrink-0" />
                 <span className="text-[10px] font-medium tracking-[0.12em] uppercase text-muted-foreground/60">
                   {label}
                 </span>
@@ -593,7 +593,7 @@ export function Overview() {
           <div className={CARD}>
             <div className="px-5 pt-5 pb-4 border-b border-border/30 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Users className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                <Users color="currentColor" size="14" className="text-muted-foreground shrink-0" />
                 <span className="text-sm font-semibold text-foreground">
                   User Distribution
                 </span>
@@ -633,7 +633,7 @@ export function Overview() {
           <div className={CARD}>
             <div className="px-5 pt-5 pb-4 border-b border-border/30 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <ShoppingCart className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                <ShoppingCart color="currentColor" size="14" className="text-muted-foreground shrink-0" />
                 <span className="text-sm font-semibold text-foreground">
                   Cart Pipeline
                 </span>
@@ -799,7 +799,7 @@ export function Overview() {
           {/* Points Issued */}
           <div className={CARD}>
             <div className="px-5 pt-5 pb-4 border-b border-border/30 flex items-center gap-2">
-              <CircleDollarSign className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+              <CircleDollarSign color="currentColor" size="14" className="text-muted-foreground shrink-0" />
               <span className="text-sm font-semibold text-foreground">
                 Points Issued
               </span>
@@ -858,7 +858,7 @@ export function Overview() {
           {/* Points in Wallets */}
           <div className={CARD}>
             <div className="px-5 pt-5 pb-4 border-b border-border/30 flex items-center gap-2">
-              <Wallet className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+              <Wallet color="currentColor" size="14" className="text-muted-foreground shrink-0" />
               <span className="text-sm font-semibold text-foreground">
                 Points in Wallets
               </span>
@@ -930,7 +930,7 @@ export function Overview() {
           <div className={cn(CARD, "mb-4")}>
           {/* Table header */}
           <div className="px-5 py-3.5 border-b border-border/30 flex items-center gap-2.5 bg-muted/20">
-            <Award className="h-3.5 w-3.5 text-warning shrink-0" />
+            <Award color="currentColor" size="14" className="text-warning shrink-0" />
             <span className="text-sm font-semibold text-foreground">
               Top 10 Products by Sales
             </span>
@@ -1041,7 +1041,7 @@ export function Overview() {
           {/* By Product Count */}
           <div className={CARD}>
             <div className="px-5 py-3.5 border-b border-border/30 flex items-center gap-2 bg-muted/20">
-              <Box className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+              <Box color="currentColor" size="14" className="text-muted-foreground shrink-0" />
               <span className="text-sm font-semibold text-foreground">
                 Top Stores by Products
               </span>
@@ -1090,7 +1090,7 @@ export function Overview() {
           {/* By Revenue */}
           <div className={CARD}>
             <div className="px-5 py-3.5 border-b border-border/30 flex items-center gap-2 bg-muted/20">
-              <TrendingUp className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+               <TrendingUp color="currentColor" size="14" className="text-muted-foreground shrink-0" />
               <span className="text-sm font-semibold text-foreground">
                 Top Stores by Revenue
               </span>

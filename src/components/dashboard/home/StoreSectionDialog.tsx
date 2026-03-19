@@ -6,7 +6,7 @@ import { fetchStores, assignHomeStores, Store } from "@/store/slices/storesSlice
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GripVertical, X, Plus, Search, Loader2, Store as StoreIcon } from "lucide-react";
+import { HambergerMenu as GripVertical, Add as X, Add as Plus, SearchNormal1 as Search, Refresh as Loader2, Shop as StoreIcon } from "iconsax-react";
 import { toast } from "sonner";
 import { fromLang } from "@/components/ui/localized-input";
 
@@ -152,7 +152,7 @@ export function StoreSectionDialog({ open, onOpenChange }: StoreSectionDialogPro
 
                         {sectionItems.length === 0 ? (
                             <div className="rounded-xl border border-dashed border-border bg-muted/20 py-10 flex flex-col items-center justify-center gap-2">
-                                <StoreIcon className="h-6 w-6 text-muted-foreground/40" />
+                                <StoreIcon color="currentColor" size="24" className="text-muted-foreground/40" />
                                 <span className="text-xs text-muted-foreground">No brands assigned. Search below to add.</span>
                             </div>
                         ) : (
@@ -173,7 +173,7 @@ export function StoreSectionDialog({ open, onOpenChange }: StoreSectionDialogPro
                                                 : "border-border/60 hover:border-border",
                                         ].join(" ")}
                                     >
-                                        <GripVertical className="h-4 w-4 text-muted-foreground/40 cursor-grab active:cursor-grabbing shrink-0" />
+                                        <GripVertical color="currentColor" size="16" className="text-muted-foreground/40 cursor-grab active:cursor-grabbing shrink-0" />
                                         <span className="text-[10px] font-mono font-bold text-muted-foreground w-5 text-center shrink-0">
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
@@ -191,7 +191,7 @@ export function StoreSectionDialog({ open, onOpenChange }: StoreSectionDialogPro
                                             {store.image ? (
                                                 <img src={store.image} className="w-full h-full object-contain p-1" alt="" />
                                             ) : (
-                                                <StoreIcon className="h-3.5 w-3.5 text-muted-foreground/40" />
+                                                <StoreIcon color="currentColor" size="14" className="text-muted-foreground/40" />
                                             )}
                                         </div>
                                             <div className="flex-1 min-w-0">
@@ -207,7 +207,7 @@ export function StoreSectionDialog({ open, onOpenChange }: StoreSectionDialogPro
                                             onClick={() => handleRemove(store._id)}
                                             className="h-6 w-6 rounded-md flex items-center justify-center text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 transition-colors shrink-0"
                                         >
-                                            <X className="h-3.5 w-3.5" />
+                                            <X color="currentColor" size="14" className="rotate-45" />
                                         </button>
                                     </div>
                                 ))}
@@ -221,7 +221,7 @@ export function StoreSectionDialog({ open, onOpenChange }: StoreSectionDialogPro
                     <div className="space-y-3">
                         <span className="text-sm font-semibold">Add brands</span>
                         <div className="relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                            <Search color="currentColor" size="14" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                             <Input
                                 placeholder="Search brands..."
                                 value={searchTerm}
@@ -255,11 +255,11 @@ export function StoreSectionDialog({ open, onOpenChange }: StoreSectionDialogPro
                                                 {store.image ? (
                                                     <img src={store.image} className="w-full h-full object-contain p-0.5" alt="" />
                                                 ) : (
-                                                    <StoreIcon className="h-3 w-3 text-muted-foreground/40" />
+                                                    <StoreIcon color="currentColor" size="12" className="text-muted-foreground/40" />
                                                 )}
                                             </div>
                                             <span className="flex-1 text-sm truncate">{t(store.title)}</span>
-                                            <Plus className="h-3.5 w-3.5 text-primary shrink-0" />
+                                            <Plus color="currentColor" size="14" className="text-primary shrink-0" />
                                         </button>
                                     ))
                                 )}
@@ -273,7 +273,7 @@ export function StoreSectionDialog({ open, onOpenChange }: StoreSectionDialogPro
                         Cancel
                     </Button>
                     <Button onClick={handleSave} disabled={saving} className="gap-2">
-                        {saving && <Loader2 className="h-4 w-4 animate-spin" />}
+                        {saving && <Loader2 color="currentColor" size="16" className="animate-spin" />}
                         {saving ? "Saving..." : "Save Section"}
                     </Button>
                 </SheetFooter>

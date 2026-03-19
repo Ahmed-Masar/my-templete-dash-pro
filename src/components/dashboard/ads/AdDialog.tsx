@@ -36,7 +36,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
-import { Loader2, GripVertical, Check, ChevronsUpDown } from "lucide-react";
+import { Refresh as Loader2, HambergerMenu as GripVertical, TickCircle as Check, ArrowSwapVertical as ChevronsUpDown } from "iconsax-react";
 import { ColorPicker } from "@/components/ui/color-picker";
 import { ImageUpload } from "@/components/ui/image-upload";
 import { SECTION_LABELS } from "@/components/dashboard/home/SectionsList";
@@ -779,7 +779,7 @@ export function AdDialog({ open, onOpenChange, adToEdit, defaultAdType }: AdDial
                                                                     : "bg-background border-border/60"
                                                         }`}
                                                 >
-                                                    <GripVertical className="h-4 w-4 text-muted-foreground/40 shrink-0 cursor-grab active:cursor-grabbing" />
+                                                    <GripVertical color="currentColor" size="16" className="text-muted-foreground/40 shrink-0 cursor-grab active:cursor-grabbing" />
                                                     <span className="text-[10px] font-mono text-muted-foreground w-5 text-center shrink-0">
                                                         {String(index + 1).padStart(2, "0")}
                                                     </span>
@@ -812,7 +812,7 @@ export function AdDialog({ open, onOpenChange, adToEdit, defaultAdType }: AdDial
                                 Cancel
                             </Button>
                             <Button type="submit" disabled={submitting} className="min-w-[120px]">
-                                {submitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+                                {submitting && <Loader2 color="currentColor" size="16" className="animate-spin mr-2" />}
                                 {adToEdit ? "Save Changes" : "Create Ad"}
                             </Button>
                         </SheetFooter>

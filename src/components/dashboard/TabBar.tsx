@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { X, Plus } from 'lucide-react';
+import { Add } from 'iconsax-react';
 import { cn } from '@/lib/utils';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { closeTab, setActiveTab, openTab, type Tab } from '@/store/slices/tabsSlice';
@@ -126,7 +126,7 @@ export function TabBar() {
                   : 'bg-foreground/6 text-foreground/60 border border-border hover:bg-foreground/10 hover:text-foreground hover:border-border-strong',
               )}
             >
-              <Icon className="h-3 w-3 shrink-0 opacity-80" />
+              <Icon color="currentColor" size="12" className="shrink-0 opacity-80" />
 
               <span className="flex-1 text-left truncate leading-none">{tab.title}</span>
 
@@ -141,7 +141,7 @@ export function TabBar() {
                     : 'opacity-40 hover:opacity-100 hover:bg-foreground/10',
                 )}
               >
-                <X className="h-2.5 w-2.5" />
+                <Add color="currentColor" size="10" className="rotate-45" />
               </span>
             </button>
           );
@@ -159,7 +159,7 @@ export function TabBar() {
               newTabOpen && 'bg-foreground/8 text-foreground',
             )}
           >
-            <Plus className="h-3.5 w-3.5" />
+            <Add color="currentColor" size="14" />
           </button>
         </PopoverTrigger>
 
@@ -194,7 +194,7 @@ export function TabBar() {
                       : 'text-foreground hover:bg-muted cursor-pointer',
                   )}
                 >
-                  <Icon className="h-3.5 w-3.5 shrink-0 opacity-70" />
+                  <Icon color="currentColor" size="14" className="shrink-0 opacity-70" />
                   <span className="flex-1 truncate">{meta.title}</span>
                   {isAlreadyOpen && (
                     <span className="text-[10px] text-muted-foreground/40 shrink-0 font-medium">

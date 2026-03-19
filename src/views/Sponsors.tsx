@@ -10,7 +10,14 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import { Plus, Edit, Trash2, Search, ExternalLink, Image as ImageIcon } from "lucide-react";
+import { 
+    Add as Plus, 
+    Edit2 as Edit, 
+    Trash, 
+    SearchNormal1 as Search, 
+    ExportCurve as ExternalLink, 
+    Image as ImageIcon 
+} from "iconsax-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchSponsors, createSponsor, updateSponsor, deleteSponsor, Sponsor } from "@/store/slices/sponsorsSlice";
@@ -181,7 +188,7 @@ const Sponsors: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Search sponsors..."
                             value={searchTerm}
@@ -193,7 +200,7 @@ const Sponsors: React.FC = () => {
                         onClick={handleAdd}
                         className="transition-all duration-200 hover:shadow-lg hover:scale-105 bg-primary hover:bg-primary/90"
                     >
-                        <Plus className="w-4 h-4 mr-2" />
+                        <Plus color="currentColor" size="16" className="mr-2" />
                         <span className="font-medium">Add New</span>
                     </Button>
                 </div>
@@ -236,7 +243,7 @@ const Sponsors: React.FC = () => {
                                                 />
                                             ) : (
                                                 <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                                                    <ImageIcon className="w-5 h-5 text-muted-foreground" />
+                                                    <ImageIcon color="currentColor" size="20" className="text-muted-foreground" />
                                                 </div>
                                             )}
                                         </TableCell>
@@ -250,7 +257,7 @@ const Sponsors: React.FC = () => {
                                                     className="flex items-center hover:underline hover:text-primary gap-1"
                                                     onClick={(e) => e.stopPropagation()}
                                                 >
-                                                    {sponsor.link} <ExternalLink className="w-3 h-3" />
+                                                    {sponsor.link} <ExternalLink color="currentColor" size="12" />
                                                 </a>
                                             ) : 'N/A'}
                                         </TableCell>
@@ -266,7 +273,7 @@ const Sponsors: React.FC = () => {
                                                     }}
                                                     className="hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:shadow-md hover:scale-105"
                                                 >
-                                                    <Edit className="w-4 h-4" />
+                                                    <Edit color="currentColor" size="16" />
                                                 </Button>
                                                 <Button
                                                     variant="outline"
@@ -277,7 +284,7 @@ const Sponsors: React.FC = () => {
                                                     }}
                                                     className="hover:bg-destructive hover:text-destructive-foreground transition-all duration-200 hover:shadow-md hover:scale-105"
                                                 >
-                                                    <Trash2 className="w-4 h-4" />
+                                                    <Trash color="currentColor" size="16" />
                                                 </Button>
                                             </div>
                                         </TableCell>

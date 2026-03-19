@@ -11,10 +11,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import {
-    Plus, Edit, Trash2, Search, MapPin, AlertTriangle, Users as UsersIcon,
-    ChevronDown, CheckCircle2, XCircle, Clock,
-} from "lucide-react";
+import { 
+    Add as Plus, 
+    Edit2 as Edit, 
+    Trash, 
+    SearchNormal1 as Search, 
+    Location as MapPin, 
+    Danger as AlertTriangle, 
+    People as UsersIcon,
+    ArrowDown2 as ChevronDown, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    Timer as Clock 
+} from "iconsax-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchUsers, createUser, updateUser, deleteUser, User } from "@/store/slices/usersSlice";
@@ -239,7 +248,7 @@ export default function Users() {
         <div className="space-y-6 mt-2">
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <UsersIcon className="w-4 h-4 text-primary" />
+                    <UsersIcon color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Basic Details</span>
                 </div>
 
@@ -325,7 +334,7 @@ export default function Users() {
 
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <MapPin className="w-4 h-4 text-primary" />
+                    <MapPin color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Location Assignment <span className="text-destructive">*</span></span>
                 </div>
                 <p className="text-xs text-muted-foreground mb-2">Click on the map to pin the user's location.</p>
@@ -362,7 +371,7 @@ export default function Users() {
                 </div>
                 <div className="flex items-center space-x-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Search by name or phone..."
                             value={searchTerm}
@@ -383,7 +392,7 @@ export default function Users() {
                         </SelectContent>
                     </Select>
                     <Button onClick={handleAdd} className="bg-primary hover:bg-primary/90">
-                        <Plus className="w-4 h-4 mr-2" />
+                        <Plus color="currentColor" size="16" className="mr-2" />
                         <span className="font-medium">Add User</span>
                     </Button>
                 </div>
@@ -431,11 +440,11 @@ export default function Users() {
                                                             : 'border-orange-400/40 text-orange-600 bg-orange-50/60 hover:bg-orange-100/80 dark:bg-orange-900/20 dark:text-orange-400'
                                                         }`}>
                                                         {user.isApproved
-                                                            ? <CheckCircle2 className="w-3 h-3" />
-                                                            : <Clock className="w-3 h-3" />
+                                                            ? <CheckCircle2 color="currentColor" size="12" />
+                                                            : <Clock color="currentColor" size="12" />
                                                         }
                                                         {user.isApproved ? "Approved" : "Pending"}
-                                                        <ChevronDown className="w-3 h-3 opacity-60" />
+                                                        <ChevronDown color="currentColor" size="12" className="opacity-60" />
                                                     </button>
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent align="center" className="w-48 shadow-xl">
@@ -445,7 +454,7 @@ export default function Users() {
                                                         onClick={(e) => { e.stopPropagation(); handleToggleApproval(user, true); }}
                                                         className={`flex items-center gap-2 cursor-pointer ${user.isApproved ? 'bg-green-50/60 text-green-700 font-semibold' : ''}`}
                                                     >
-                                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                        <CheckCircle2 color="currentColor" size="16" className="text-green-500" />
                                                         <span>Approve</span>
                                                         {user.isApproved && <span className="ml-auto text-[10px] text-green-500">✓ Active</span>}
                                                     </DropdownMenuItem>
@@ -453,7 +462,7 @@ export default function Users() {
                                                         onClick={(e) => { e.stopPropagation(); handleToggleApproval(user, false); }}
                                                         className={`flex items-center gap-2 cursor-pointer ${!user.isApproved ? 'bg-orange-50/60 text-orange-700 font-semibold' : ''}`}
                                                     >
-                                                        <XCircle className="w-4 h-4 text-orange-500" />
+                                                        <XCircle color="currentColor" size="16" className="text-orange-500" />
                                                         <span>Suspend</span>
                                                         {!user.isApproved && <span className="ml-auto text-[10px] text-orange-500">✓ Active</span>}
                                                     </DropdownMenuItem>
@@ -463,10 +472,10 @@ export default function Users() {
                                         <TableCell className="text-right">
                                             <div className="flex justify-end gap-2">
                                                 <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); handleEdit(user); }}>
-                                                    <Edit className="w-4 h-4" />
+                                                    <Edit color="currentColor" size="16" />
                                                 </Button>
                                                 <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); handleDelete(user._id); }} className="hover:bg-destructive hover:text-destructive-foreground">
-                                                    <Trash2 className="w-4 h-4" />
+                                                    <Trash color="currentColor" size="16" />
                                                 </Button>
                                             </div>
                                         </TableCell>
@@ -519,7 +528,7 @@ export default function Users() {
                 <DialogContent className="max-w-sm">
                     <DialogHeader className="items-center text-center pb-2">
                         <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-3">
-                            <AlertTriangle className="w-8 h-8 text-destructive" />
+                            <AlertTriangle color="currentColor" size="32" className="text-destructive" />
                         </div>
                         <DialogTitle>Delete User</DialogTitle>
                         <DialogDescription>

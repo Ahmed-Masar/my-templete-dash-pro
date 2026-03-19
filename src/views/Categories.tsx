@@ -8,7 +8,18 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, Trash2, Search, ImageIcon, Layers, Tag, X, ChevronDown, Save } from "lucide-react";
+import { 
+  Add as Plus, 
+  Edit2 as Edit, 
+  Trash, 
+  SearchNormal1 as Search, 
+  Image as ImageIcon, 
+  Layer as Layers, 
+  Tag, 
+  Add as X, 
+  ArrowDown2 as ChevronDown, 
+  Save2 as Save 
+} from "iconsax-react";
 import { FormPanel, FormPanelContent, FormPanelHeader, FormPanelTitle, FormPanelDescription } from "@/components/ui/form-panel";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchCategories, fetchAllMainCategories, createCategory, updateCategory, deleteCategory, Category } from "@/store/slices/categoriesSlice";
@@ -131,7 +142,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                             : 'border-border hover:border-muted-foreground/40 text-muted-foreground hover:bg-muted/30'
                             }`}
                     >
-                        <Layers className="w-5 h-5" />
+                        <Layers color="currentColor" size="20" />
                         <span className="text-xs font-semibold">Main</span>
                         <span className="text-[10px] opacity-60 leading-none">Parent level</span>
                     </button>
@@ -143,7 +154,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                             : 'border-border hover:border-muted-foreground/40 text-muted-foreground hover:bg-muted/30'
                             }`}
                     >
-                        <Tag className="w-5 h-5" />
+                        <Tag color="currentColor" size="20" />
                         <span className="text-xs font-semibold">Sub</span>
                         <span className="text-[10px] opacity-60 leading-none">Child level</span>
                     </button>
@@ -168,7 +179,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                                         className="p-1 rounded-md text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
                                         onClick={() => setForm(prev => ({ ...prev, parentCategory: null }))}
                                     >
-                                        <X className="w-3.5 h-3.5" />
+                                        <X color="currentColor" size="14" className="rotate-45" />
                                     </button>
                                 </div>
                             );
@@ -213,7 +224,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
 
                     {availableSubCategories.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-8 border-2 border-dashed rounded-xl text-center gap-2">
-                            <Tag className="w-8 h-8 text-muted-foreground/40" />
+                            <Tag color="currentColor" size="32" className="text-muted-foreground/40" />
                             <p className="text-sm text-muted-foreground">No sub-categories yet</p>
                             <button
                                 type="button"
@@ -240,7 +251,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                                         >
                                             {sub.image && <img src={sub.image} className="w-4 h-4 rounded object-cover" />}
                                             <span>{sub.title}</span>
-                                            {isSelected && <X className="w-3 h-3 opacity-70" />}
+                                            {isSelected && <X color="currentColor" size="12" className="opacity-70 rotate-45" />}
                                         </button>
                                     );
                                 })}
@@ -429,7 +440,7 @@ const Categories: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Search categories..."
                             value={searchTerm}
@@ -438,7 +449,7 @@ const Categories: React.FC = () => {
                         />
                     </div>
                     <Button onClick={handleAdd} className="transition-all duration-200 hover:shadow-lg bg-primary">
-                        <Plus className="w-4 h-4 mr-2" />
+                        <Plus color="currentColor" size="16" className="mr-2" />
                         <span>Add New</span>
                     </Button>
                 </div>
@@ -452,7 +463,7 @@ const Categories: React.FC = () => {
                                 <TableHead className="w-10 text-center">
                                     {/* Compact actions column header as icon only */}
                                     <span className="sr-only">Actions</span>
-                                    <Save className="w-4 h-4 inline-block" />
+                                    <Save color="currentColor" size="16" className="inline-block" />
                                 </TableHead>
                                 <TableHead className="w-[80px]">Image</TableHead>
                                 <TableHead>Title</TableHead>
@@ -480,7 +491,7 @@ const Categories: React.FC = () => {
                                                 className="hover:text-primary"
                                                 onClick={() => handleEdit(category)}
                                             >
-                                                <Save className="w-4 h-4" />
+                                                <Save color="currentColor" size="16" />
                                             </Button>
                                         </TableCell>
                                         <TableCell>
@@ -488,7 +499,7 @@ const Categories: React.FC = () => {
                                                 <img src={category.image} alt={t(category.title)} className="w-10 h-10 rounded-lg object-cover" />
                                             ) : (
                                                 <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                                                    <ImageIcon className="w-5 h-5 text-muted-foreground" />
+                                                    <ImageIcon color="currentColor" size="20" className="text-muted-foreground" />
                                                 </div>
                                             )}
                                         </TableCell>
@@ -511,7 +522,7 @@ const Categories: React.FC = () => {
                                                 <Popover open={subcategoriesPopoverOpen === category._id} onOpenChange={(open) => setSubcategoriesPopoverOpen(open ? category._id : null)}>
                                                     <PopoverTrigger asChild>
                                                         <button type="button" className="flex items-center text-xs text-muted-foreground font-medium hover:text-primary cursor-pointer transition-colors text-left">
-                                                            <Layers className="w-3.5 h-3.5 mr-1.5 text-primary/60" />
+                                                            <Layers color="currentColor" size="14" className="mr-1.5 text-primary/60" />
                                                             {category.subCategories?.length || 0} Sub-categories
                                                         </button>
                                                     </PopoverTrigger>

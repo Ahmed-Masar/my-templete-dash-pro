@@ -9,7 +9,15 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import { Tag as TagIcon, Plus, Edit, Trash2, Search, AlertTriangle, Palette } from "lucide-react";
+import { 
+  Tag as TagIcon, 
+  Add as Plus, 
+  Edit2 as Edit, 
+  Trash, 
+  SearchNormal1 as Search, 
+  Danger as AlertTriangle, 
+  Colorfilter as Palette 
+} from "iconsax-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchTags, createTag, updateTag, deleteTag, Tag } from "@/store/slices/tagsSlice";
@@ -145,14 +153,14 @@ const Tags: React.FC = () => {
                         textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                     }}
                 >
-                    <TagIcon className="w-3.5 h-3.5" />
+                    <TagIcon color="currentColor" size="14" />
                     <span>{tagForm.title.ar || "Tag Name"}</span>
                 </div>
             </div>
 
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <TagIcon className="w-4 h-4 text-primary" />
+                    <TagIcon color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Tag Information</span>
                 </div>
 
@@ -171,7 +179,7 @@ const Tags: React.FC = () => {
 
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <Palette className="w-4 h-4 text-primary" />
+                    <Palette color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Tag Color</span>
                 </div>
 
@@ -225,7 +233,7 @@ const Tags: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Search tags..."
                             value={searchTerm}
@@ -237,7 +245,7 @@ const Tags: React.FC = () => {
                         onClick={handleAdd}
                         className="transition-all duration-200 hover:shadow-lg hover:scale-105 bg-primary hover:bg-primary/90"
                     >
-                        <Plus className="w-4 h-4 mr-2" />
+                        <Plus color="currentColor" size="16" className="mr-2" />
                         <span className="font-medium">Add New</span>
                     </Button>
                 </div>
@@ -271,7 +279,7 @@ const Tags: React.FC = () => {
                                     >
                                         <TableCell className="font-medium">
                                             <div className="flex items-center gap-2">
-                                                <TagIcon className="w-4 h-4 text-muted-foreground" />
+                                                <TagIcon color="currentColor" size="16" className="text-muted-foreground" />
                                                 {t(tag.title)}
                                             </div>
                                         </TableCell>
@@ -292,7 +300,7 @@ const Tags: React.FC = () => {
                                                     onClick={(e) => { e.stopPropagation(); handleEdit(tag); }}
                                                     className="hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:shadow-md hover:scale-105"
                                                 >
-                                                    <Edit className="w-4 h-4" />
+                                                    <Edit color="currentColor" size="16" />
                                                 </Button>
                                                 <Button
                                                     variant="outline"
@@ -300,7 +308,7 @@ const Tags: React.FC = () => {
                                                     onClick={(e) => { e.stopPropagation(); handleDelete(tag._id); }}
                                                     className="hover:bg-destructive hover:text-destructive-foreground transition-all duration-200 hover:shadow-md hover:scale-105"
                                                 >
-                                                    <Trash2 className="w-4 h-4" />
+                                                    <Trash color="currentColor" size="16" />
                                                 </Button>
                                             </div>
                                         </TableCell>
@@ -352,7 +360,7 @@ const Tags: React.FC = () => {
                 <DialogContent className="max-w-sm">
                     <DialogHeader className="items-center text-center pb-2">
                         <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-3">
-                            <AlertTriangle className="w-8 h-8 text-destructive" />
+                            <AlertTriangle color="currentColor" size="32" className="text-destructive" />
                         </div>
                         <DialogTitle className="text-xl">Delete Tag?</DialogTitle>
                         <DialogDescription className="text-center pt-1">
@@ -372,7 +380,7 @@ const Tags: React.FC = () => {
                             onClick={confirmDelete}
                             className="w-full sm:w-auto shadow-md"
                         >
-                            <Trash2 className="w-4 h-4 mr-2" />
+                            <Trash color="currentColor" size="16" className="mr-2" />
                             Delete Tag
                         </Button>
                     </DialogFooter>

@@ -7,10 +7,18 @@ import { AdDialog } from "@/components/dashboard/ads/AdDialog";
 import { AdSectionDialog } from "@/components/dashboard/ads/AdSectionDialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-    Plus, Pencil, Trash2, Megaphone, Loader2,
-    CheckCircle2, XCircle, ChevronDown, ChevronRight, LayoutList,
-} from "lucide-react";
+import { 
+    Add as Plus, 
+    Edit2 as Pencil, 
+    Trash, 
+    Speaker as Megaphone, 
+    Refresh as Loader2, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    ArrowDown2 as ChevronDown, 
+    ArrowRight2 as ChevronRight, 
+    FormatSquare as LayoutList 
+} from "iconsax-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -127,7 +135,7 @@ export function Ads() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <Megaphone className="h-5 w-5 text-primary" />
+                    <Megaphone color="currentColor" size="20" className="text-primary" />
                     <div>
                         <h1 className="text-lg font-bold">Advertisements</h1>
                         <p className="text-xs text-muted-foreground">
@@ -136,7 +144,7 @@ export function Ads() {
                     </div>
                 </div>
                 <Button onClick={handleAdd} className="gap-2">
-                    <Plus className="h-4 w-4" />
+                    <Plus color="currentColor" size="16" />
                     Add Advertisement
                 </Button>
             </div>
@@ -144,11 +152,11 @@ export function Ads() {
             {/* Body */}
             {loading ? (
                 <div className="flex items-center justify-center py-20">
-                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                    <Loader2 color="currentColor" size="32" className="animate-spin text-primary" />
                 </div>
             ) : ads.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-20 gap-3 text-muted-foreground">
-                    <Megaphone className="h-12 w-12 opacity-20" />
+                    <Megaphone color="currentColor" size="48" className="opacity-20" />
                     <span className="text-sm">No advertisements yet</span>
                     <Button variant="outline" size="sm" onClick={handleAdd}>Create first ad</Button>
                 </div>
@@ -168,8 +176,8 @@ export function Ads() {
                                     onClick={() => toggleSection(adType)}
                                 >
                                     {isCollapsed
-                                        ? <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
-                                        : <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
+                                        ? <ChevronRight color="currentColor" size="16" className="text-muted-foreground shrink-0" />
+                                        : <ChevronDown color="currentColor" size="16" className="text-muted-foreground shrink-0" />
                                     }
                                     <span className="font-semibold text-sm flex-1 truncate">{label}</span>
                                     <Badge variant="secondary" className="text-xs shrink-0">
@@ -181,7 +189,7 @@ export function Ads() {
                                         className="gap-1.5 h-7 text-xs shrink-0"
                                         onClick={(e) => { e.stopPropagation(); handleManageOrder(adType); }}
                                     >
-                                        <LayoutList className="h-3.5 w-3.5" />
+                                        <LayoutList color="currentColor" size="14" />
                                         Manage Order
                                     </Button>
                                 </div>
@@ -220,11 +228,11 @@ export function Ads() {
                                                                     }`}
                                                                 >
                                                                     {ad.active
-                                                                        ? <CheckCircle2 className="w-3 h-3" />
-                                                                        : <XCircle className="w-3 h-3" />
+                                                                        ? <CheckCircle2 color="currentColor" size="12" />
+                                                                        : <XCircle color="currentColor" size="12" />
                                                                     }
-                                                                    {ad.active ? "Active" : "Inactive"}
-                                                                    <ChevronDown className="w-3 h-3 opacity-60" />
+                                                                {ad.active ? "Active" : "Inactive"}
+                                                                <ChevronDown color="currentColor" size="12" className="opacity-60" />
                                                                 </button>
                                                             </DropdownMenuTrigger>
                                                             <DropdownMenuContent align="center" className="w-48 shadow-xl">
@@ -234,7 +242,7 @@ export function Ads() {
                                                                     onClick={() => handleToggleStatus(ad, true)}
                                                                     className={`flex items-center gap-2 cursor-pointer ${ad.active ? "bg-green-50/60 text-green-700 font-semibold" : ""}`}
                                                                 >
-                                                                    <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                                    <CheckCircle2 color="currentColor" size="16" className="text-green-500" />
                                                                     <span>Active</span>
                                                                     {ad.active && <span className="ml-auto text-[10px] text-green-500">✓ Current</span>}
                                                                 </DropdownMenuItem>
@@ -242,7 +250,7 @@ export function Ads() {
                                                                     onClick={() => handleToggleStatus(ad, false)}
                                                                     className={`flex items-center gap-2 cursor-pointer ${!ad.active ? "bg-orange-50/60 text-orange-700 font-semibold" : ""}`}
                                                                 >
-                                                                    <XCircle className="w-4 h-4 text-orange-500" />
+                                                                    <XCircle color="currentColor" size="16" className="text-orange-500" />
                                                                     <span>Inactive</span>
                                                                     {!ad.active && <span className="ml-auto text-[10px] text-orange-500">✓ Current</span>}
                                                                 </DropdownMenuItem>
@@ -252,7 +260,7 @@ export function Ads() {
                                                     <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                                                         <div className="flex items-center justify-end gap-1">
                                                             <Button variant="ghost" size="icon" onClick={() => handleEdit(ad)}>
-                                                                <Pencil className="h-4 w-4" />
+                                                                <Pencil color="currentColor" size="16" />
                                                             </Button>
                                                             <Button
                                                                 variant="ghost"
@@ -260,7 +268,7 @@ export function Ads() {
                                                                 className="text-destructive hover:text-destructive"
                                                                 onClick={() => handleDeleteClick(ad)}
                                                             >
-                                                                <Trash2 className="h-4 w-4" />
+                                                                <Trash color="currentColor" size="16" />
                                                             </Button>
                                                         </div>
                                                     </td>
@@ -303,7 +311,7 @@ export function Ads() {
                             disabled={deleting}
                             className="bg-destructive hover:bg-destructive/90"
                         >
-                            {deleting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Delete"}
+                            {deleting ? <Loader2 color="currentColor" size="16" className="animate-spin" /> : "Delete"}
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>

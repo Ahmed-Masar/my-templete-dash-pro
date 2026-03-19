@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SECTION_LABELS } from "@/components/dashboard/home/SectionsList";
-import { GripVertical, X, Plus, Search, Loader2, ShoppingBag } from "lucide-react";
+import { HambergerMenu as GripVertical, Add as X, Add as Plus, SearchNormal1 as Search, Refresh as Loader2, ShoppingBag } from "iconsax-react";
 import { toast } from "sonner";
 
 function t(val: any): string {
@@ -119,7 +119,7 @@ export function ProductSectionDialog({ open, onOpenChange, sectionKey }: Product
 
                         {sectionProducts.length === 0 ? (
                             <div className="rounded-xl border border-dashed border-border bg-muted/20 py-10 flex flex-col items-center justify-center gap-2">
-                                <ShoppingBag className="h-6 w-6 text-muted-foreground/40" />
+                                <ShoppingBag color="currentColor" size="24" className="text-muted-foreground/40" />
                                 <span className="text-xs text-muted-foreground">No products assigned. Search below to add.</span>
                             </div>
                         ) : (
@@ -142,7 +142,7 @@ export function ProductSectionDialog({ open, onOpenChange, sectionKey }: Product
                                                     : "border-border/60 hover:border-border",
                                             ].join(" ")}
                                         >
-                                            <GripVertical className="h-4 w-4 text-muted-foreground/40 cursor-grab active:cursor-grabbing shrink-0" />
+                                            <GripVertical color="currentColor" size="16" className="text-muted-foreground/40 cursor-grab active:cursor-grabbing shrink-0" />
                                             <span className="text-[10px] font-mono font-bold text-muted-foreground w-5 text-center shrink-0">
                                                 {String(index + 1).padStart(2, "0")}
                                             </span>
@@ -150,7 +150,7 @@ export function ProductSectionDialog({ open, onOpenChange, sectionKey }: Product
                                                 <img src={thumb} className="w-8 h-8 rounded-lg object-cover shrink-0" alt="" />
                                             ) : (
                                                 <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center shrink-0">
-                                                    <ShoppingBag className="h-4 w-4 text-muted-foreground/40" />
+                                                    <ShoppingBag color="currentColor" size="16" className="text-muted-foreground/40" />
                                                 </div>
                                             )}
                                             <span className="flex-1 text-sm font-medium truncate">{t(product.name)}</span>
@@ -159,7 +159,7 @@ export function ProductSectionDialog({ open, onOpenChange, sectionKey }: Product
                                                 onClick={() => handleRemoveProduct(product._id)}
                                                 className="h-6 w-6 rounded-md flex items-center justify-center text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 transition-colors shrink-0"
                                             >
-                                                <X className="h-3.5 w-3.5" />
+                                                <X color="currentColor" size="14" className="rotate-45" />
                                             </button>
                                         </div>
                                     );
@@ -173,7 +173,7 @@ export function ProductSectionDialog({ open, onOpenChange, sectionKey }: Product
                     <div className="space-y-3">
                         <span className="text-sm font-semibold">Add products</span>
                         <div className="relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                            <Search color="currentColor" size="14" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                             <Input
                                 placeholder="Search products..."
                                 value={searchTerm}
@@ -202,7 +202,7 @@ export function ProductSectionDialog({ open, onOpenChange, sectionKey }: Product
                                                     <div className="w-7 h-7 rounded-md bg-muted shrink-0" />
                                                 )}
                                                 <span className="flex-1 text-sm truncate">{t(product.name)}</span>
-                                                <Plus className="h-3.5 w-3.5 text-primary shrink-0" />
+                                                <Plus color="currentColor" size="14" className="text-primary shrink-0" />
                                             </button>
                                         );
                                     })
@@ -217,7 +217,7 @@ export function ProductSectionDialog({ open, onOpenChange, sectionKey }: Product
                         Cancel
                     </Button>
                     <Button onClick={handleSave} disabled={saving} className="gap-2">
-                        {saving && <Loader2 className="h-4 w-4 animate-spin" />}
+                        {saving && <Loader2 color="currentColor" size="16" className="animate-spin" />}
                         {saving ? "Saving..." : "Save Section"}
                     </Button>
                 </SheetFooter>

@@ -21,17 +21,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LuxuryDatePicker } from "@/components/ui/luxury-date-picker";
-import {
-    Save,
-    Loader2,
-    Home as HomeIcon,
-    Smartphone,
-    LayoutList,
-    CheckCircle2,
-    Settings2,
-    Plus,
-    X,
-} from "lucide-react";
+import { 
+    Save2 as Save, 
+    Refresh as Loader2, 
+    Home2 as HomeIcon, 
+    Mobile as Smartphone, 
+    FormatSquare as LayoutList, 
+    TickCircle as CheckCircle2, 
+    Setting2 as Settings2, 
+    Add as Plus, 
+} from "iconsax-react";
 
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -151,7 +150,7 @@ export function Home() {
             <div className="shrink-0 flex items-center justify-between px-6 h-16 border-b bg-background">
                 <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-lg bg-foreground flex items-center justify-center">
-                        <HomeIcon className="h-4.5 w-4.5 text-background" style={{ width: '18px', height: '18px' }} />
+                        <HomeIcon color="currentColor" size="18" className="text-background" />
                     </div>
                     <div>
                         <h1 className="text-base font-bold leading-tight">Home Screen</h1>
@@ -171,7 +170,7 @@ export function Home() {
                     )}
                     {!isDirty && !loading && !saving && (
                         <span className="text-xs text-muted-foreground flex items-center gap-1.5">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                            <CheckCircle2 color="currentColor" size="14" className="text-emerald-500" />
                             Saved
                         </span>
                     )}
@@ -183,8 +182,8 @@ export function Home() {
                         className={cn("gap-1.5 h-8 px-3 transition-all", isDirty && !saving && "ring-1 ring-foreground/20")}
                     >
                         {saving
-                            ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                            : <Save className="h-3.5 w-3.5" />
+                            ? <Loader2 color="currentColor" size="14" className="animate-spin" />
+                            : <Save color="currentColor" size="14" />
                         }
                         {saving ? "Saving..." : "Save"}
                     </Button>
@@ -195,7 +194,7 @@ export function Home() {
             {loading ? (
                 <div className="flex-1 flex items-center justify-center">
                     <div className="flex flex-col items-center gap-3 text-center">
-                        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                        <Loader2 color="currentColor" size="32" className="animate-spin text-muted-foreground" />
                         <p className="text-sm text-muted-foreground">Loading home settings...</p>
                     </div>
                 </div>
@@ -216,7 +215,7 @@ export function Home() {
                                         : 'border-transparent text-muted-foreground hover:text-foreground',
                                 )}
                             >
-                                <LayoutList className="h-3.5 w-3.5" />
+                                <LayoutList color="currentColor" size="14" />
                                 Sections
                                 <span className="tabular-nums text-[10px] font-bold opacity-60">{activeCount}/{ALL_SECTIONS.length}</span>
                             </button>
@@ -229,7 +228,7 @@ export function Home() {
                                         : 'border-transparent text-muted-foreground hover:text-foreground',
                                 )}
                             >
-                                <Settings2 className="h-3.5 w-3.5" />
+                                <Settings2 color="currentColor" size="14" />
                                 Settings
                             </button>
                         </div>
@@ -300,7 +299,7 @@ export function Home() {
                                                             onClick={() => removeContact(i)}
                                                             className="shrink-0 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all"
                                                         >
-                                                            <X className="h-3 w-3" />
+                                                            <Plus color="currentColor" size="12" className="rotate-45" />
                                                         </button>
                                                     </div>
                                                 ))}
@@ -317,7 +316,7 @@ export function Home() {
                                                 className="text-xs h-8"
                                             />
                                             <Button size="icon" variant="outline" className="h-8 w-8 shrink-0" onClick={addContact}>
-                                                <Plus className="h-3.5 w-3.5" />
+                                                <Plus color="currentColor" size="14" />
                                             </Button>
                                         </div>
                                     </div>
@@ -338,8 +337,8 @@ export function Home() {
                                         onClick={handleSettingsSave}
                                     >
                                         {settingsSaving
-                                            ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                                            : <Save className="h-3.5 w-3.5" />}
+                                            ? <Loader2 color="currentColor" size="14" className="animate-spin" />
+                                            : <Save color="currentColor" size="14" />}
                                         {settingsSaving ? 'Saving...' : 'Save Settings'}
                                     </Button>
 
@@ -354,7 +353,7 @@ export function Home() {
                         {/* Panel header */}
                         <div className="flex items-center justify-between px-5 h-11 border-b bg-background shrink-0">
                             <div className="flex items-center gap-2">
-                                <Smartphone className="h-3.5 w-3.5 text-muted-foreground" />
+                                <Smartphone color="currentColor" size="14" className="text-muted-foreground" />
                                 <span className="text-xs font-semibold">Preview</span>
                                 <span className="inline-flex items-center gap-1 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

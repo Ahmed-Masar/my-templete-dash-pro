@@ -42,7 +42,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Loader2, Check, ChevronsUpDown } from "lucide-react";
+import { Refresh as Loader2, TickSquare as Check, ArrowSwapVertical as ChevronsUpDown } from "iconsax-react";
 import { toast } from "sonner";
 
 // ─── Zod Schema ───────────────────────────────────────────────────────────────
@@ -257,7 +257,7 @@ export function WebsiteAdDialog({ open, onOpenChange, adToEdit }: WebsiteAdDialo
                                 Cancel
                             </Button>
                             <Button type="submit" disabled={submitting} className="min-w-[120px]">
-                                {submitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+                                {submitting && <Loader2 color="currentColor" size="16" className="animate-spin mr-2" />}
                                 {adToEdit ? "Save Changes" : "Create Ad"}
                             </Button>
                         </SheetFooter>
@@ -315,7 +315,7 @@ function ProductPicker({ value, onChange, products }: ProductPickerProps) {
                     <span className="truncate">
                         {selected ? getProductName(selected.name) : "Select product..."}
                     </span>
-                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    <ChevronsUpDown color="currentColor" size="16" className="ml-2 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
@@ -336,8 +336,10 @@ function ProductPicker({ value, onChange, products }: ProductPickerProps) {
                                         }}
                                     >
                                         <Check
+                                            color="currentColor"
+                                            size="16"
                                             className={cn(
-                                                "mr-2 h-4 w-4 shrink-0",
+                                                "mr-2 shrink-0",
                                                 value === product._id ? "opacity-100" : "opacity-0"
                                             )}
                                         />

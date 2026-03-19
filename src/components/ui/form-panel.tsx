@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { PanelRight, Square } from "lucide-react";
+import { SidebarRight as PanelRight, Stop as Square } from "iconsax-react";
 import { cn } from "@/lib/utils";
 import { useFormPanelMode, type PanelMode } from "@/hooks/use-form-panel-mode";
 import {
@@ -73,7 +73,7 @@ function FormPanel({ open, onOpenChange, children }: FormPanelProps) {
       className="absolute right-11 top-4 rounded-sm opacity-50 transition-opacity hover:opacity-100 focus:outline-none"
       title={mode === "sheet" ? "Switch to dialog" : "Switch to panel"}
     >
-      {mode === "sheet" ? <Square className="h-4 w-4" /> : <PanelRight className="h-4 w-4" />}
+      {mode === "sheet" ? <Square color="currentColor" size="16" /> : <PanelRight color="currentColor" size="16" />}
     </button>
   );
 

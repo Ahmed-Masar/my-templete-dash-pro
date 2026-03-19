@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Add as Plus } from "iconsax-react";
 import { cn } from "@/lib/utils";
 
 interface NumberInputProps
@@ -61,7 +61,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           onClick={handleDecrement}
           className="flex h-full items-center justify-center px-3 text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
         >
-          <Minus className="h-3.5 w-3.5" />
+          <Minus color="currentColor" size="14" />
         </button>
         <input
           ref={ref}
@@ -83,7 +83,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           onClick={handleIncrement}
           className="flex h-full items-center justify-center px-3 text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
         >
-          <Plus className="h-3.5 w-3.5" />
+          <Plus color="currentColor" size="14" />
         </button>
       </div>
     );

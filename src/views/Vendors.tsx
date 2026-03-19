@@ -8,9 +8,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import {
-    Search, CheckCircle2, XCircle, Clock, TrendingUp, AlertTriangle, Store, Loader2
-} from "lucide-react";
+import { 
+    SearchNormal1 as Search, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    Timer as Clock, 
+    TrendUp as TrendingUp, 
+    Danger as AlertTriangle, 
+    Shop as Store, 
+    Refresh as Loader2 
+} from "iconsax-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchVendors, approveVendor, rejectVendor, Vendor } from "@/store/slices/vendorsSlice";
 import { formatDate } from "@/lib/formatters";
@@ -88,7 +95,7 @@ export default function Vendors() {
                     <p className="text-muted-foreground">Manage vendor accounts and approvals.</p>
                 </div>
                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input
                         placeholder="Search by name, phone or city..."
                         value={searchTerm}
@@ -102,7 +109,7 @@ export default function Vendors() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="rounded-xl border bg-card p-4 flex items-center gap-3 shadow-sm">
                     <div className="p-2.5 rounded-lg bg-primary/10">
-                        <Store className="w-5 h-5 text-primary" />
+                        <Store color="currentColor" size="20" className="text-primary" />
                     </div>
                     <div>
                         <p className="text-sm text-muted-foreground">Total Vendors</p>
@@ -111,7 +118,7 @@ export default function Vendors() {
                 </div>
                 <div className="rounded-xl border bg-card p-4 flex items-center gap-3 shadow-sm">
                     <div className="p-2.5 rounded-lg bg-green-500/10">
-                        <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        <CheckCircle2 color="currentColor" size="20" className="text-green-500" />
                     </div>
                     <div>
                         <p className="text-sm text-muted-foreground">Approved</p>
@@ -120,7 +127,7 @@ export default function Vendors() {
                 </div>
                 <div className="rounded-xl border bg-card p-4 flex items-center gap-3 shadow-sm">
                     <div className="p-2.5 rounded-lg bg-orange-400/10">
-                        <Clock className="w-5 h-5 text-orange-400" />
+                        <Clock color="currentColor" size="20" className="text-orange-400" />
                     </div>
                     <div>
                         <p className="text-sm text-muted-foreground">Pending</p>
@@ -148,7 +155,7 @@ export default function Vendors() {
                             {loading ? (
                                 <TableRow>
                                     <TableCell colSpan={8} className="h-32 text-center">
-                                        <Loader2 className="w-6 h-6 animate-spin mx-auto text-muted-foreground" />
+                                        <Loader2 color="currentColor" size="24" className="animate-spin mx-auto text-muted-foreground" />
                                     </TableCell>
                                 </TableRow>
                             ) : filteredVendors.length === 0 ? (
@@ -169,7 +176,7 @@ export default function Vendors() {
                                                         onClick={(e) => { e.stopPropagation(); openConfirm("approve", vendor); }}
                                                         className="hover:bg-green-600 hover:text-white hover:border-green-600 border-green-500/50 text-green-600 transition-all duration-200"
                                                     >
-                                                        <CheckCircle2 className="w-4 h-4 mr-1" />
+                                                        <CheckCircle2 color="currentColor" size="16" className="mr-1" />
                                                         Approve
                                                     </Button>
                                                 ) : (
@@ -179,7 +186,7 @@ export default function Vendors() {
                                                         onClick={(e) => { e.stopPropagation(); openConfirm("reject", vendor); }}
                                                         className="hover:bg-destructive hover:text-destructive-foreground hover:border-destructive border-orange-400/50 text-orange-600 transition-all duration-200"
                                                     >
-                                                        <XCircle className="w-4 h-4 mr-1" />
+                                                        <XCircle color="currentColor" size="16" className="mr-1" />
                                                         Reject
                                                     </Button>
                                                 )}
@@ -190,19 +197,19 @@ export default function Vendors() {
                                         <TableCell>{vendor.city || "—"}</TableCell>
                                         <TableCell className="text-center">
                                             <div className="flex items-center justify-center gap-1">
-                                                <TrendingUp className="w-3.5 h-3.5 text-primary" />
+                                                <TrendingUp color="currentColor" size="14" className="text-primary" />
                                                 <span className="font-semibold">{vendor.points ?? 0}</span>
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-center">
                                             {vendor.isApproved ? (
                                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-green-500/40 text-green-600 bg-green-50/60 dark:bg-green-900/20 dark:text-green-400">
-                                                    <CheckCircle2 className="w-3 h-3" />
+                                                    <CheckCircle2 color="currentColor" size="12" />
                                                     Approved
                                                 </span>
                                             ) : (
                                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-orange-400/40 text-orange-600 bg-orange-50/60 dark:bg-orange-900/20 dark:text-orange-400">
-                                                    <Clock className="w-3 h-3" />
+                                                    <Clock color="currentColor" size="12" />
                                                     Pending
                                                 </span>
                                             )}
@@ -277,11 +284,11 @@ export default function Vendors() {
                                 <div className="ml-auto">
                                     {selectedVendor.isApproved ? (
                                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-green-500/40 text-green-600 bg-green-50/60">
-                                            <CheckCircle2 className="w-3 h-3" /> Approved
+                                            <CheckCircle2 color="currentColor" size="12" /> Approved
                                         </span>
                                     ) : (
                                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-orange-400/40 text-orange-600 bg-orange-50/60">
-                                            <Clock className="w-3 h-3" /> Pending
+                                            <Clock color="currentColor" size="12" /> Pending
                                         </span>
                                     )}
                                 </div>
@@ -320,7 +327,7 @@ export default function Vendors() {
                                 className="flex-1 bg-green-600 hover:bg-green-700 text-white"
                                 onClick={() => { openConfirm("approve", selectedVendor); setSelectedVendor(null); }}
                             >
-                                <CheckCircle2 className="w-4 h-4 mr-2" /> Approve
+                                <CheckCircle2 color="currentColor" size="16" className="mr-2" /> Approve
                             </Button>
                         ) : selectedVendor ? (
                             <Button
@@ -328,7 +335,7 @@ export default function Vendors() {
                                 className="flex-1"
                                 onClick={() => { openConfirm("reject", selectedVendor); setSelectedVendor(null); }}
                             >
-                                <XCircle className="w-4 h-4 mr-2" /> Reject
+                                <XCircle color="currentColor" size="16" className="mr-2" /> Reject
                             </Button>
                         ) : null}
                     </DialogFooter>
@@ -345,9 +352,9 @@ export default function Vendors() {
                             }`}
                         >
                             {confirmDialog.type === "approve" ? (
-                                <CheckCircle2 className="w-8 h-8 text-green-500" />
+                                <CheckCircle2 color="currentColor" size="32" className="text-green-500" />
                             ) : (
-                                <AlertTriangle className="w-8 h-8 text-destructive" />
+                                <AlertTriangle color="currentColor" size="32" className="text-destructive" />
                             )}
                         </div>
                         <DialogTitle>

@@ -16,10 +16,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { fetchProducts } from "@/store/slices/productsSlice";
-import {
-    Plus, Edit, Trash2, Search, Globe, Loader2,
-    CheckCircle2, XCircle, ChevronDown, Package,
-} from "lucide-react";
+import { 
+    Add as Plus, 
+    Edit2 as Edit, 
+    Trash, 
+    SearchNormal1 as Search, 
+    Global as Globe, 
+    Refresh as Loader2, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    ArrowDown2 as ChevronDown, 
+    Box as Package 
+} from "iconsax-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -122,7 +130,7 @@ export function WebsiteAds() {
                 </div>
                 <div className="flex items-center space-x-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Search ads..."
                             value={searchTerm}
@@ -131,7 +139,7 @@ export function WebsiteAds() {
                         />
                     </div>
                     <Button onClick={handleAdd} className="transition-all duration-200 hover:shadow-lg bg-primary">
-                        <Plus className="w-4 h-4 mr-2" />
+                        <Plus color="currentColor" size="16" className="mr-2" />
                         <span>Add New</span>
                     </Button>
                 </div>
@@ -153,7 +161,7 @@ export function WebsiteAds() {
                         {loading ? (
                             <TableRow>
                                 <TableCell colSpan={6} className="h-24 text-center">
-                                    <Loader2 className="w-5 h-5 animate-spin mx-auto text-muted-foreground" />
+                                    <Loader2 color="currentColor" size="20" className="animate-spin mx-auto text-muted-foreground" />
                                 </TableCell>
                             </TableRow>
                         ) : filteredAds.length === 0 ? (
@@ -181,7 +189,7 @@ export function WebsiteAds() {
                                             />
                                         ) : (
                                             <div className="w-14 h-10 rounded-lg bg-muted flex items-center justify-center">
-                                                <Globe className="w-5 h-5 text-muted-foreground" />
+                                                <Globe color="currentColor" size="20" className="text-muted-foreground" />
                                             </div>
                                         )}
                                     </TableCell>
@@ -193,7 +201,7 @@ export function WebsiteAds() {
                                             const product = products.find((p) => p._id === ad.productUrl);
                                             return product ? (
                                                 <span className="flex items-center gap-1.5 text-sm">
-                                                    <Package className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                                                    <Package color="currentColor" size="14" className="text-muted-foreground shrink-0" />
                                                     <span className="truncate max-w-[200px]">{t(product.name)}</span>
                                                 </span>
                                             ) : (
@@ -210,9 +218,9 @@ export function WebsiteAds() {
                                                         : "border-orange-400/40 text-orange-600 bg-orange-50/60 hover:bg-orange-100/80 dark:bg-orange-900/20 dark:text-orange-400"
                                                     }`}
                                                 >
-                                                    {ad.active ? <CheckCircle2 className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
+                                                    {ad.active ? <CheckCircle2 color="currentColor" size="12" /> : <XCircle color="currentColor" size="12" />}
                                                     {ad.active ? "Active" : "Inactive"}
-                                                    <ChevronDown className="w-3 h-3 opacity-60" />
+                                                    <ChevronDown color="currentColor" size="12" className="opacity-60" />
                                                 </button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="center" className="w-48 shadow-xl">
@@ -222,7 +230,7 @@ export function WebsiteAds() {
                                                     onClick={() => handleToggleStatus(ad, true)}
                                                     className={`flex items-center gap-2 cursor-pointer ${ad.active ? "bg-green-50/60 text-green-700 font-semibold" : ""}`}
                                                 >
-                                                    <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                    <CheckCircle2 color="currentColor" size="16" className="text-green-500" />
                                                     <span>Active</span>
                                                     {ad.active && <span className="ml-auto text-[10px] text-green-500">✓ Current</span>}
                                                 </DropdownMenuItem>
@@ -230,7 +238,7 @@ export function WebsiteAds() {
                                                     onClick={() => handleToggleStatus(ad, false)}
                                                     className={`flex items-center gap-2 cursor-pointer ${!ad.active ? "bg-orange-50/60 text-orange-700 font-semibold" : ""}`}
                                                 >
-                                                    <XCircle className="w-4 h-4 text-orange-500" />
+                                                    <XCircle color="currentColor" size="16" className="text-orange-500" />
                                                     <span>Inactive</span>
                                                     {!ad.active && <span className="ml-auto text-[10px] text-orange-500">✓ Current</span>}
                                                 </DropdownMenuItem>
@@ -245,7 +253,7 @@ export function WebsiteAds() {
                                                 onClick={() => handleEdit(ad)}
                                                 className="hover:bg-primary hover:text-primary-foreground"
                                             >
-                                                <Edit className="w-4 h-4" />
+                                                <Edit color="currentColor" size="16" />
                                             </Button>
                                             <Button
                                                 variant="outline"
@@ -253,7 +261,7 @@ export function WebsiteAds() {
                                                 onClick={() => handleDeleteClick(ad)}
                                                 className="hover:bg-destructive hover:text-white"
                                             >
-                                                <Trash2 className="w-4 h-4" />
+                                                <Trash color="currentColor" size="16" />
                                             </Button>
                                         </div>
                                     </TableCell>
@@ -309,7 +317,7 @@ export function WebsiteAds() {
                     <DialogFooter>
                         <Button variant="outline" onClick={() => setDeleteOpen(false)}>Cancel</Button>
                         <Button variant="destructive" onClick={handleDeleteConfirm} disabled={deleting}>
-                            {deleting ? <Loader2 className="w-4 h-4 animate-spin" /> : "Delete"}
+                            {deleting ? <Loader2 color="currentColor" size="16" className="animate-spin" /> : "Delete"}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

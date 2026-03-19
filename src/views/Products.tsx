@@ -9,7 +9,18 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { ShoppingBag, Plus, Edit, Trash2, Search, Layers, X, Tag, Check, ChevronDown } from "lucide-react";
+import { 
+  ShoppingBag, 
+  Add as Plus, 
+  Edit2 as Edit, 
+  Trash, 
+  SearchNormal1 as Search, 
+  Layer as Layers, 
+  Add as X, 
+  Tag, 
+  TickCircle as Check, 
+  ArrowDown2 as ChevronDown 
+} from "iconsax-react";
 import { cn } from "@/lib/utils";
 import { FormPanel, FormPanelContent, FormPanelHeader, FormPanelTitle } from "@/components/ui/form-panel";
 import { formatIQD, parseFormattedNumber } from "@/lib/currency";
@@ -205,7 +216,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
         </div>
         <div className="space-y-1.5 col-span-2">
           <div className="flex items-center gap-1.5">
-            <Tag className="w-3.5 h-3.5 text-muted-foreground" />
+            <Tag color="currentColor" size="14" className="text-muted-foreground" />
             <Label className="text-sm">Tag</Label>
           </div>
 
@@ -234,7 +245,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                     ) : (
                       <span className="text-muted-foreground">Select a tag…</span>
                     )}
-                    <ChevronDown className="w-4 h-4 text-muted-foreground ml-2 flex-shrink-0" />
+                    <ChevronDown color="currentColor" size="16" className="text-muted-foreground ml-2 flex-shrink-0" />
                   </button>
                 </PopoverTrigger>
 
@@ -244,7 +255,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                   sideOffset={4}
                 >
                   <div className="flex items-center gap-2 px-3 border-b border-border">
-                    <Search className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                    <Search color="currentColor" size="14" className="text-muted-foreground flex-shrink-0" />
                     <input
                       autoFocus
                       value={tagSearch}
@@ -254,7 +265,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                     />
                     {tagSearch && (
                       <button type="button" onClick={() => setTagSearch("")}>
-                        <X className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+                        <X color="currentColor" size="14" className="text-muted-foreground hover:text-foreground rotate-45" />
                       </button>
                     )}
                   </div>
@@ -266,7 +277,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                         onClick={() => set("tags", [])}
                         className="flex items-center w-full gap-2 px-3 py-2 rounded-md text-xs text-muted-foreground hover:bg-muted/60 transition-colors"
                       >
-                        <X className="w-3.5 h-3.5" />
+                        <X color="currentColor" size="14" className="rotate-45" />
                         Clear selection
                       </button>
                     )}
@@ -298,7 +309,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                             )}
                             <span className="flex-1 text-left">{t(tag.title)}</span>
                             {isSelected && (
-                              <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                              <Check color="currentColor" size="14" className="text-primary flex-shrink-0" />
                             )}
                           </button>
                         );
@@ -321,7 +332,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
       <div className="space-y-3 pt-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-muted-foreground" />
+            <Layers color="currentColor" size="16" className="text-muted-foreground" />
             <Label className="text-sm font-semibold">Variants</Label>
             <span className="text-xs text-muted-foreground">— Colors, Images &amp; Specs</span>
           </div>
@@ -332,7 +343,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
             className="h-8 px-3 text-xs gap-1.5"
             onClick={() => set("variants", [...form.variants, { color: "", images: [], specs: [] }])}
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus color="currentColor" size="14" />
             Add Variant
           </Button>
         </div>
@@ -356,7 +367,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                   onClick={() => set("variants", form.variants.filter((_, i) => i !== index))}
                   className="h-7 w-7 rounded-lg flex items-center justify-center text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 transition-all duration-150"
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
+                  <Trash color="currentColor" size="14" />
                 </button>
               )}
             </div>
@@ -398,7 +409,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                     }}
                     className="text-xs flex items-center gap-1 px-2 py-0.5 rounded-md border border-dashed border-muted-foreground/40 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                   >
-                    <Plus className="w-3 h-3" /> Add spec
+                    <Plus color="currentColor" size="12" /> Add spec
                   </button>
                 </div>
                 {variant.specs.length === 0 ? (
@@ -430,7 +441,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData, onSubmit, onCanc
                           }}
                           className="w-4 h-4 rounded-full flex items-center justify-center text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors flex-shrink-0"
                         >
-                          <Trash2 className="w-3 h-3" />
+                          <Trash color="currentColor" size="12" />
                         </button>
                       </div>
                     ))}
@@ -648,10 +659,10 @@ const Products: React.FC = () => {
         <h1 className="text-3xl font-bold">Products</h1>
         <div className="flex items-center space-x-2">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-9 w-64" />
           </div>
-          <Button onClick={handleAdd} className="bg-primary"><Plus className="w-4 h-4 mr-2" />Add New</Button>
+          <Button onClick={handleAdd} className="bg-primary"><Plus color="currentColor" size="16" className="mr-2" />Add New</Button>
         </div>
       </div>
 
@@ -676,14 +687,14 @@ const Products: React.FC = () => {
                 <TableCell>
                   {getProductImage(p)
                     ? <img src={getProductImage(p)} className="w-10 h-10 rounded-lg object-cover" alt="" />
-                    : <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center"><ShoppingBag className="w-5 h-5" /></div>}
+                    : <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center"><ShoppingBag color="currentColor" size="20" /></div>}
                 </TableCell>
                 <TableCell className="font-medium">{t(p.name)}</TableCell>
                 <TableCell>{formatIQD(p.price)}</TableCell>
                 <TableCell><Badge variant="outline">{getCategoryName(p)}</Badge></TableCell>
                 <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
-                  <Button variant="outline" size="sm" onClick={() => handleEdit(p)} className="mr-2"><Edit className="w-4 h-4" /></Button>
-                  <Button variant="outline" size="sm" onClick={() => handleDelete(p._id)}><Trash2 className="w-4 h-4" /></Button>
+                  <Button variant="outline" size="sm" onClick={() => handleEdit(p)} className="mr-2"><Edit color="currentColor" size="16" /></Button>
+                  <Button variant="outline" size="sm" onClick={() => handleDelete(p._id)}><Trash color="currentColor" size="16" /></Button>
                 </TableCell>
               </TableRow>
             ))}

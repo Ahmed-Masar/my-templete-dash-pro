@@ -32,27 +32,27 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import {
-  Languages,
-  Search,
-  Save,
-  SaveAll,
-  Loader2,
-  RefreshCw,
-  Grid,
-  Tag,
-  Gift,
-  Megaphone,
-  Globe,
-  Wrench,
-  Bell,
-  X,
-  Check,
-  AlertTriangle,
-  RotateCcw,
-  Trash2,
-  Store as StoreIcon,
-} from "lucide-react";
+import { 
+    LanguageSquare as Languages, 
+    SearchNormal1 as Search, 
+    Save2 as Save, 
+    TickSquare as SaveAll, 
+    Refresh as Loader2, 
+    RotateRight as RefreshCw, 
+    Category as Grid, 
+    Tag, 
+    Gift, 
+    DirectNotification as Megaphone, 
+    Global as Globe, 
+    Setting2 as Wrench, 
+    Notification as Bell, 
+    Add as X, 
+    TickCircle as Check, 
+    Danger as AlertTriangle, 
+    RotateLeft as RotateCcw, 
+    Trash, 
+    Shop as StoreIcon 
+} from "iconsax-react";
 import {
   categoriesAPI,
   tagsAPI,
@@ -578,7 +578,7 @@ const Translations: React.FC = () => {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold flex items-center gap-2">
-          <Languages className="w-7 h-7" />
+          <Languages color="currentColor" size="28" />
           Localization
         </h1>
         <p className="text-muted-foreground">
@@ -592,7 +592,7 @@ const Translations: React.FC = () => {
         <TabsList className="flex-wrap h-auto gap-1 p-1">
           {MODEL_CONFIGS.map((m) => (
             <TabsTrigger key={m.id} value={m.id} className="flex items-center gap-1.5 text-sm">
-              <m.icon className="w-3.5 h-3.5" />
+              <m.icon color="currentColor" size="14" />
               {m.label}
             </TabsTrigger>
           ))}
@@ -604,7 +604,7 @@ const Translations: React.FC = () => {
             {/* Controls row */}
             <div className="flex items-center gap-3 flex-wrap">
               <div className="relative flex-1 max-w-xs">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   placeholder="Search…"
                   value={search}
@@ -631,7 +631,7 @@ const Translations: React.FC = () => {
                 disabled={loading || isSavingAll}
                 className="h-9 w-9"
               >
-                <RefreshCw className={cn("w-4 h-4", loading && "animate-spin")} />
+                <RefreshCw color="currentColor" size="16" className={cn(loading && "animate-spin")} />
               </Button>
 
               {/* Unsaved indicator + bulk actions */}
@@ -649,7 +649,7 @@ const Translations: React.FC = () => {
                     disabled={isSavingAll}
                     className="h-8 gap-1.5 text-muted-foreground hover:text-foreground"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <Trash color="currentColor" size="14" />
                     Discard all
                   </Button>
 
@@ -660,9 +660,9 @@ const Translations: React.FC = () => {
                     className="h-8 gap-1.5 bg-primary hover:bg-primary/90 shadow-sm"
                   >
                     {isSavingAll ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <Loader2 color="currentColor" size="14" className="animate-spin" />
                     ) : (
-                      <SaveAll className="w-3.5 h-3.5" />
+                      <SaveAll color="currentColor" size="14" />
                     )}
                     {isSavingAll ? "Saving…" : "Save all"}
                   </Button>
@@ -690,7 +690,7 @@ const Translations: React.FC = () => {
                   {loading ? (
                     <TableRow>
                       <TableCell colSpan={colSpan} className="h-32 text-center">
-                        <Loader2 className="w-6 h-6 animate-spin mx-auto text-muted-foreground" />
+                        <Loader2 color="currentColor" size="24" className="animate-spin mx-auto text-muted-foreground" />
                       </TableCell>
                     </TableRow>
                   ) : rows.length === 0 ? (
@@ -739,12 +739,12 @@ const Translations: React.FC = () => {
                               <div className="flex items-center gap-1.5 min-h-[24px]">
                                 {/* Saving spinner */}
                                 {status === "saving" && (
-                                  <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                                  <Loader2 color="currentColor" size="16" className="animate-spin text-primary" />
                                 )}
 
                                 {/* Saved checkmark */}
                                 {status === "saved" && (
-                                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                                  <Check color="currentColor" size="14" className="text-emerald-600" />
                                 )}
 
                                 {/* Error state */}
@@ -756,7 +756,7 @@ const Translations: React.FC = () => {
                                     disabled={isSavingAll}
                                     className="h-7 w-7 p-0 border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground"
                                   >
-                                    <RotateCcw className="w-3.5 h-3.5" />
+                                    <RotateCcw color="currentColor" size="14" />
                                   </Button>
                                 )}
 
@@ -770,7 +770,7 @@ const Translations: React.FC = () => {
                                       disabled={isSavingAll}
                                       className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground"
                                     >
-                                      <X className="w-3.5 h-3.5" />
+                                      <X color="currentColor" size="14" className="rotate-45" />
                                     </Button>
                                     <Button
                                       size="icon"
@@ -778,7 +778,7 @@ const Translations: React.FC = () => {
                                       disabled={isSavingAll}
                                       className="h-7 w-7 p-0 bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
                                     >
-                                      <Save className="w-3.5 h-3.5" />
+                                      <Save color="currentColor" size="14" />
                                     </Button>
                                   </>
                                 )}

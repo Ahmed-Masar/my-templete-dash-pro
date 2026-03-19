@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Moon, Sun, Loader2, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
+import { Moon, Sun1 as Sun, Refresh as Loader2, Eye, EyeSlash as EyeOff, TickCircle as CheckCircle2 } from 'iconsax-react';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 import logo from '@/assets/Sahel Jeddah Logo 2.png';
@@ -130,9 +130,9 @@ export function LoginForm() {
         onClick={handleToggleTheme}
       >
         {theme === 'dark' ? (
-          <Sun className="h-5 w-5" />
+          <Sun color="currentColor" size="20" />
         ) : (
-          <Moon className="h-5 w-5" />
+          <Moon color="currentColor" size="20" />
         )}
       </Button>
 
@@ -206,9 +206,9 @@ export function LoginForm() {
                     disabled={isLoading}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
+                      <EyeOff color="currentColor" size="16" />
                     ) : (
-                      <Eye className="h-4 w-4" />
+                      <Eye color="currentColor" size="16" />
                     )}
                   </Button>
                 </div>
@@ -245,7 +245,7 @@ export function LoginForm() {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader2 color="currentColor" size="16" className="mr-2 animate-spin" />
                 ) : null}
                 {isLoading ? 'Signing In...' : 'Sign In'}
               </Button>
@@ -271,7 +271,7 @@ export function LoginForm() {
               </div>
               <div className="absolute -bottom-1 -right-1 success-check">
                 <div className="bg-green-500 rounded-full p-1.5 shadow-lg shadow-green-500/30">
-                  <CheckCircle2 className="h-6 w-6 text-white" />
+                  <CheckCircle2 color="currentColor" size="24" variant="Bold" />
                 </div>
               </div>
             </div>

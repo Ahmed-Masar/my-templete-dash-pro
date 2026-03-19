@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { TickCircle as Check, ArrowSwapVertical as ChevronsUpDown } from "iconsax-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -71,7 +71,7 @@ export function UserPicker({
           className="w-full justify-between font-normal"
         >
           <span className="truncate">{selected ? selectedLabel : placeholder}</span>
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown color="currentColor" size="16" className="ml-2 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
@@ -92,8 +92,10 @@ export function UserPicker({
                     }}
                   >
                     <Check
+                      color="currentColor"
+                      size="18"
                       className={cn(
-                        "mr-2 h-4 w-4 shrink-0",
+                        "mr-2 shrink-0",
                         value === u._id ? "opacity-100" : "opacity-0"
                       )}
                     />

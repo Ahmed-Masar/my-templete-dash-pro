@@ -18,7 +18,15 @@ import { Sidebar } from './Sidebar';
 import { TabBar } from './TabBar';
 import { DashboardFooter } from './DashboardFooter';
 import { MobileBlockScreen } from './MobileBlockScreen';
-import { User, LogOut, Moon, Sun, Maximize2, Minimize2, CircleDollarSign } from 'lucide-react';
+import { 
+  User, 
+  Logout as LogOut, 
+  Moon, 
+  Sun1 as Sun, 
+  Maximize as Maximize2, 
+  ArrowSquareLeft as Minimize2, 
+  DollarCircle as CircleDollarSign 
+} from 'iconsax-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { fetchHome, saveIsPrice } from '@/store/slices/homeSlice';
 import { cn } from '@/lib/utils';
@@ -86,7 +94,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 onClick={() => setFullWidth((p) => !p)}
                 className="hidden 2xl:inline-flex h-8 w-8 rounded-lg text-muted-foreground hover:text-foreground active:scale-90 transition-all duration-200"
               >
-                {fullWidth ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                {fullWidth 
+                  ? <Minimize2 color="currentColor" size="16" /> 
+                  : <Maximize2 color="currentColor" size="16" />
+                }
               </Button>
 
               <Tooltip>
@@ -99,7 +110,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                     className="h-8 w-8 rounded-lg active:scale-90 transition-all duration-200 text-muted-foreground hover:text-foreground"
                   >
                     <div className="relative h-4 w-4">
-                      <CircleDollarSign className="h-4 w-4" />
+                      <CircleDollarSign color="currentColor" size="16" />
                       {!homeConfig?.isPrice && (
                         <svg className="absolute inset-0 h-4 w-4" viewBox="0 0 16 16">
                           <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -118,8 +129,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 className="h-8 w-8 rounded-lg text-muted-foreground hover:text-foreground active:scale-90 transition-all duration-200"
               >
                 {theme === 'dark'
-                  ? <Sun className="h-4 w-4 animate-theme-icon" />
-                  : <Moon className="h-4 w-4 animate-theme-icon" />}
+                  ? <Sun color="currentColor" size="16" className="animate-theme-icon" />
+                  : <Moon color="currentColor" size="16" className="animate-theme-icon" />}
               </Button>
 
               <DropdownMenu>
@@ -128,7 +139,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                     variant="ghost"
                     className="h-8 w-8 rounded-full p-0 text-muted-foreground hover:text-foreground"
                   >
-                    <User className="h-4 w-4" />
+                    <User color="currentColor" size="16" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
@@ -140,7 +151,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout} className="text-destructive">
-                    <LogOut className="mr-2 h-4 w-4" />
+                    <LogOut color="currentColor" size="16" className="mr-2" />
                     Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>

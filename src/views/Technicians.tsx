@@ -8,9 +8,17 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import {
-    Search, CheckCircle2, XCircle, Clock, TrendingUp, AlertTriangle, UserCog, Loader2, Store
-} from "lucide-react";
+import { 
+    SearchNormal1 as Search, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    Timer as Clock, 
+    TrendUp as TrendingUp, 
+    Danger as AlertTriangle, 
+    UserEdit as UserCog, 
+    Refresh as Loader2, 
+    Shop as Store 
+} from "iconsax-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchTechnicians, approveTechnician, rejectTechnician, Technician } from "@/store/slices/techniciansSlice";
 import { formatDate } from "@/lib/formatters";
@@ -89,7 +97,7 @@ export default function Technicians() {
                     <p className="text-muted-foreground">Manage technician accounts and approvals.</p>
                 </div>
                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input
                         placeholder="Search by name, phone, city or vendor..."
                         value={searchTerm}
@@ -103,7 +111,7 @@ export default function Technicians() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="rounded-xl border bg-card p-4 flex items-center gap-3 shadow-sm">
                     <div className="p-2.5 rounded-lg bg-primary/10">
-                        <UserCog className="w-5 h-5 text-primary" />
+                        <UserCog color="currentColor" size="20" className="text-primary" />
                     </div>
                     <div>
                         <p className="text-sm text-muted-foreground">Total Technicians</p>
@@ -112,7 +120,7 @@ export default function Technicians() {
                 </div>
                 <div className="rounded-xl border bg-card p-4 flex items-center gap-3 shadow-sm">
                     <div className="p-2.5 rounded-lg bg-green-500/10">
-                        <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        <CheckCircle2 color="currentColor" size="20" className="text-green-500" />
                     </div>
                     <div>
                         <p className="text-sm text-muted-foreground">Approved</p>
@@ -121,7 +129,7 @@ export default function Technicians() {
                 </div>
                 <div className="rounded-xl border bg-card p-4 flex items-center gap-3 shadow-sm">
                     <div className="p-2.5 rounded-lg bg-orange-400/10">
-                        <Clock className="w-5 h-5 text-orange-400" />
+                        <Clock color="currentColor" size="20" className="text-orange-400" />
                     </div>
                     <div>
                         <p className="text-sm text-muted-foreground">Pending</p>
@@ -150,7 +158,7 @@ export default function Technicians() {
                             {loading ? (
                                 <TableRow>
                                     <TableCell colSpan={8} className="h-32 text-center">
-                                        <Loader2 className="w-6 h-6 animate-spin mx-auto text-muted-foreground" />
+                                        <Loader2 color="currentColor" size="24" className="animate-spin mx-auto text-muted-foreground" />
                                     </TableCell>
                                 </TableRow>
                             ) : filteredTechnicians.length === 0 ? (
@@ -172,7 +180,7 @@ export default function Technicians() {
                                         <TableCell>
                                             {technician.vendor ? (
                                                 <div className="flex items-center gap-1.5">
-                                                    <Store className="w-3.5 h-3.5 text-primary shrink-0" />
+                                                    <Store color="currentColor" size="14" className="text-primary shrink-0" />
                                                     <span className="font-medium text-sm">{technician.vendor.name}</span>
                                                 </div>
                                             ) : (
@@ -181,19 +189,19 @@ export default function Technicians() {
                                         </TableCell>
                                         <TableCell className="text-center">
                                             <div className="flex items-center justify-center gap-1">
-                                                <TrendingUp className="w-3.5 h-3.5 text-primary" />
+                                                <TrendingUp color="currentColor" size="14" className="text-primary" />
                                                 <span className="font-semibold">{technician.points ?? 0}</span>
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-center">
                                             {technician.isApproved ? (
                                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-green-500/40 text-green-600 bg-green-50/60 dark:bg-green-900/20 dark:text-green-400">
-                                                    <CheckCircle2 className="w-3 h-3" />
+                                                    <CheckCircle2 color="currentColor" size="12" />
                                                     Approved
                                                 </span>
                                             ) : (
                                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-orange-400/40 text-orange-600 bg-orange-50/60 dark:bg-orange-900/20 dark:text-orange-400">
-                                                    <Clock className="w-3 h-3" />
+                                                    <Clock color="currentColor" size="12" />
                                                     Pending
                                                 </span>
                                             )}
@@ -210,7 +218,7 @@ export default function Technicians() {
                                                         onClick={(e) => { e.stopPropagation(); openConfirm("approve", technician); }}
                                                         className="hover:bg-green-600 hover:text-white hover:border-green-600 border-green-500/50 text-green-600 transition-all duration-200"
                                                     >
-                                                        <CheckCircle2 className="w-4 h-4 mr-1" />
+                                                        <CheckCircle2 color="currentColor" size="16" className="mr-1" />
                                                         Approve
                                                     </Button>
                                                 ) : (
@@ -220,7 +228,7 @@ export default function Technicians() {
                                                         onClick={(e) => { e.stopPropagation(); openConfirm("reject", technician); }}
                                                         className="hover:bg-destructive hover:text-destructive-foreground hover:border-destructive border-orange-400/50 text-orange-600 transition-all duration-200"
                                                     >
-                                                        <XCircle className="w-4 h-4 mr-1" />
+                                                        <XCircle color="currentColor" size="16" className="mr-1" />
                                                         Reject
                                                     </Button>
                                                 )}
@@ -293,11 +301,11 @@ export default function Technicians() {
                                 <div className="ml-auto">
                                     {selectedTechnician.isApproved ? (
                                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-green-500/40 text-green-600 bg-green-50/60">
-                                            <CheckCircle2 className="w-3 h-3" /> Approved
+                                            <CheckCircle2 color="currentColor" size="12" /> Approved
                                         </span>
                                     ) : (
                                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-orange-400/40 text-orange-600 bg-orange-50/60">
-                                            <Clock className="w-3 h-3" /> Pending
+                                            <Clock color="currentColor" size="12" /> Pending
                                         </span>
                                     )}
                                 </div>
@@ -329,7 +337,7 @@ export default function Technicians() {
                                 {selectedTechnician.vendor ? (
                                     <div className="flex items-center gap-2 mt-1">
                                         <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                                            <Store className="w-3.5 h-3.5 text-primary" />
+                                            <Store color="currentColor" size="14" className="text-primary" />
                                         </div>
                                         <p className="font-semibold">{selectedTechnician.vendor.name}</p>
                                     </div>
@@ -348,7 +356,7 @@ export default function Technicians() {
                                 className="flex-1 bg-green-600 hover:bg-green-700 text-white"
                                 onClick={() => { openConfirm("approve", selectedTechnician); setSelectedTechnician(null); }}
                             >
-                                <CheckCircle2 className="w-4 h-4 mr-2" /> Approve
+                                <CheckCircle2 color="currentColor" size="16" className="mr-2" /> Approve
                             </Button>
                         ) : selectedTechnician ? (
                             <Button
@@ -356,7 +364,7 @@ export default function Technicians() {
                                 className="flex-1"
                                 onClick={() => { openConfirm("reject", selectedTechnician); setSelectedTechnician(null); }}
                             >
-                                <XCircle className="w-4 h-4 mr-2" /> Reject
+                                <XCircle color="currentColor" size="16" className="mr-2" /> Reject
                             </Button>
                         ) : null}
                     </DialogFooter>
@@ -373,9 +381,9 @@ export default function Technicians() {
                             }`}
                         >
                             {confirmDialog.type === "approve" ? (
-                                <CheckCircle2 className="w-8 h-8 text-green-500" />
+                                <CheckCircle2 color="currentColor" size="32" className="text-green-500" />
                             ) : (
-                                <AlertTriangle className="w-8 h-8 text-destructive" />
+                                <AlertTriangle color="currentColor" size="32" className="text-destructive" />
                             )}
                         </div>
                         <DialogTitle>

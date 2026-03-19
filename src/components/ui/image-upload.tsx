@@ -3,15 +3,15 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-  Upload,
-  X,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-  ImageIcon,
-  Plus,
-  RefreshCw,
-} from "lucide-react";
+  DocumentUpload as Upload,
+  Add as X,
+  TickCircle as CheckCircle2,
+  Danger as AlertCircle,
+  Refresh as Loader2,
+  Image as ImageIcon,
+  Add as Plus,
+  Refresh as RefreshCw,
+} from "iconsax-react";
 import { uploadsAPI } from "@/lib/api";
 
 
@@ -398,9 +398,9 @@ function DropZone({
           )}
         >
           {isDragging ? (
-            <ImageIcon className="w-7 h-7 animate-bounce" />
+            <ImageIcon color="currentColor" size="28" className="animate-bounce" />
           ) : (
-            <Upload className="w-7 h-7 transition-transform duration-300 group-hover:-translate-y-0.5" />
+            <Upload color="currentColor" size="28" className="transition-transform duration-300 group-hover:-translate-y-0.5" />
           )}
         </div>
 
@@ -485,7 +485,7 @@ function SingleImagePreview({
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-background/50 backdrop-blur-[3px]">
             <div className="relative flex items-center justify-center">
               <div className="absolute w-12 h-12 rounded-full border-2 border-primary/20" />
-              <Loader2 className="w-7 h-7 text-primary animate-spin" />
+              <Loader2 color="currentColor" size="28" className="animate-spin" />
             </div>
             <p className="text-sm font-medium text-foreground">Uploading…</p>
             <div className="absolute bottom-0 left-0 right-0 h-0.5 overflow-hidden bg-border/40">
@@ -496,7 +496,7 @@ function SingleImagePreview({
 
         {image.status === "error" && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-destructive/10 backdrop-blur-[2px]">
-            <AlertCircle className="w-8 h-8 text-destructive" />
+            <AlertCircle color="currentColor" size="32" className="text-destructive" />
             <p className="text-sm font-semibold text-destructive">Upload Failed</p>
           </div>
         )}
@@ -506,12 +506,12 @@ function SingleImagePreview({
         <div className="flex items-center justify-between px-4 py-2.5 bg-muted/40 border-t border-border/50">
           {image.status === "success" ? (
             <span className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+              <CheckCircle2 color="currentColor" size="14" />
               Uploaded
             </span>
           ) : (
             <span className="flex items-center gap-1.5 text-xs text-destructive font-medium">
-              <AlertCircle className="w-3.5 h-3.5" />
+              <AlertCircle color="currentColor" size="14" />
               Failed
             </span>
           )}
@@ -527,7 +527,7 @@ function SingleImagePreview({
                   "hover:bg-destructive hover:text-white transition-colors duration-200"
                 )}
               >
-                <RefreshCw className="w-3 h-3" />
+                <RefreshCw color="currentColor" size="12" />
                 Retry
               </button>
             ) : (
@@ -540,7 +540,7 @@ function SingleImagePreview({
                   "hover:border-primary/50 hover:text-primary transition-colors duration-200"
                 )}
               >
-                <RefreshCw className="w-3 h-3" />
+                <RefreshCw color="currentColor" size="12" />
                 Change
               </button>
             )}
@@ -553,7 +553,7 @@ function SingleImagePreview({
                 "hover:bg-destructive hover:text-white hover:border-destructive/70 transition-colors duration-200"
               )}
             >
-              <X className="w-3 h-3" />
+              <X color="currentColor" size="12" className="rotate-45" />
               Remove
             </button>
           </div>
@@ -619,7 +619,7 @@ function ImageGrid({
             "transition-all duration-200 group"
           )}
         >
-          <Plus className="w-5 h-5 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-90" />
+          <Plus color="currentColor" size="20" className="transition-transform duration-200 group-hover:scale-110 group-hover:rotate-90" />
           <span className="text-[10px] font-medium">Add</span>
         </button>
       )}
@@ -683,7 +683,7 @@ function Thumbnail({
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 bg-background/50 backdrop-blur-[3px]">
           <div className="relative flex items-center justify-center">
             <div className="absolute w-10 h-10 rounded-full border-2 border-primary/20" />
-            <Loader2 className="w-6 h-6 text-primary animate-spin" />
+            <Loader2 color="currentColor" size="24" className="animate-spin text-primary" />
           </div>
           {fullWidth && (
             <p className="text-xs font-medium text-foreground">Uploading…</p>
@@ -696,7 +696,7 @@ function Thumbnail({
 
       {image.status === "error" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-destructive/15 backdrop-blur-[2px] p-2">
-          <AlertCircle className="w-5 h-5 text-destructive" />
+          <AlertCircle color="currentColor" size="20" className="text-destructive" />
           <p className="text-[10px] text-destructive font-semibold leading-none">
             Failed
           </p>
@@ -708,7 +708,7 @@ function Thumbnail({
             }}
             className="flex items-center gap-1 text-[10px] text-destructive/80 hover:text-destructive transition-colors"
           >
-            <RefreshCw className="w-2.5 h-2.5" />
+            <RefreshCw color="currentColor" size="10" />
             <span>Retry</span>
           </button>
         </div>
@@ -731,7 +731,7 @@ function Thumbnail({
             "transition-all duration-200"
           )}
         >
-          <X className="w-3 h-3" />
+          <X color="currentColor" size="12" className="rotate-45" />
         </button>
       )}
 
@@ -745,7 +745,7 @@ function Thumbnail({
             "transition-all duration-200"
           )}
         >
-          <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />
+          <CheckCircle2 color="currentColor" size="10" className="text-emerald-400" />
           {fullWidth && (
             <span className="text-[10px] text-white font-medium">Uploaded</span>
           )}

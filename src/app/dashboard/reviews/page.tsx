@@ -2,10 +2,19 @@
 
 import { useState, useEffect } from "react";
 import {
-    Trash2, Search, Star,
-    ShieldCheck, Clock, ChevronDown, CheckCircle2,
-    ShoppingBag, AlertTriangle, Eye, PanelRight, AppWindow,
-} from "lucide-react";
+    Trash as Trash2,
+    SearchNormal1 as Search,
+    Star,
+    ShieldTick as ShieldCheck,
+    Clock,
+    ArrowDown2 as ChevronDown,
+    TickCircle as CheckCircle2,
+    ShoppingBag,
+    Danger as AlertTriangle,
+    Eye,
+    SidebarRight as PanelRight,
+    Maximize4 as AppWindow,
+} from "iconsax-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -35,7 +44,7 @@ function StarDisplay({ rating, size = "sm" }: { rating: number; size?: "sm" | "l
     return (
         <div className="flex items-center gap-0.5">
             {Array.from({ length: 5 }, (_, i) => (
-                <Star key={i} className={`${cls} ${i < rating ? "fill-amber-400 text-amber-400" : "fill-muted text-muted-foreground/20"}`} />
+                <Star key={i} color="currentColor" size={size === "lg" ? "20" : "14"} variant={i < rating ? "Bold" : "Outline"} className={i < rating ? "text-amber-400" : "text-muted-foreground/20"} />
             ))}
         </div>
     );
@@ -97,7 +106,7 @@ export default function ReviewsPage() {
                     <p className="text-muted-foreground">Manage and moderate customer reviews.</p>
                 </div>
                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input
                         placeholder="Search reviews..."
                         value={searchTerm}
@@ -144,7 +153,7 @@ export default function ReviewsPage() {
                                                     <p className="font-medium text-sm">{review.user?.name || "Unknown"}</p>
                                                     {review.isBought && (
                                                         <span className="flex items-center gap-1 text-[10px] text-blue-600 font-medium">
-                                                            <ShoppingBag className="w-2.5 h-2.5" /> Verified
+                                                            <ShoppingBag color="currentColor" size="10" /> Verified
                                                         </span>
                                                     )}
                                                 </div>
@@ -173,10 +182,10 @@ export default function ReviewsPage() {
                                                             : "border-orange-400/40 text-orange-600 bg-orange-50/60 hover:bg-orange-100/80 dark:bg-orange-900/20 dark:text-orange-400"
                                                         }`}>
                                                         {review.isApproved
-                                                            ? <CheckCircle2 className="w-3 h-3" />
-                                                            : <Clock className="w-3 h-3" />}
+                                                            ? <CheckCircle2 color="currentColor" size="12" />
+                                                            : <Clock color="currentColor" size="12" />}
                                                         {review.isApproved ? "Approved" : "Pending"}
-                                                        <ChevronDown className="w-3 h-3 opacity-60" />
+                                                        <ChevronDown color="currentColor" size="12" className="opacity-60" />
                                                     </button>
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent align="center" className="w-48 shadow-xl">
@@ -186,12 +195,12 @@ export default function ReviewsPage() {
                                                         onClick={(e) => { e.stopPropagation(); if (!review.isApproved) handleApprove(review._id); }}
                                                         className={`flex items-center gap-2 cursor-pointer ${review.isApproved ? "bg-green-50/60 text-green-700 font-semibold pointer-events-none" : ""}`}
                                                     >
-                                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                        <CheckCircle2 color="currentColor" size="16" className="text-green-500" />
                                                         <span>Approve</span>
                                                         {review.isApproved && <span className="ml-auto text-[10px] text-green-500">✓ Active</span>}
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem className="flex items-center gap-2 pointer-events-none opacity-50">
-                                                        <Clock className="w-4 h-4 text-orange-500" />
+                                                        <Clock color="currentColor" size="16" className="text-orange-500" />
                                                         <span>Pending</span>
                                                         {!review.isApproved && <span className="ml-auto text-[10px] text-orange-500">✓ Active</span>}
                                                     </DropdownMenuItem>
@@ -208,22 +217,22 @@ export default function ReviewsPage() {
                                         <TableCell className="text-right">
                                             <div className="flex justify-end gap-2">
                                                 {!review.isApproved && (
-                                                    <Button
-                                                        variant="outline"
-                                                        size="sm"
-                                                        onClick={(e) => { e.stopPropagation(); handleApprove(review._id); }}
-                                                        className="hover:bg-green-600 hover:text-white hover:border-green-600 border-green-500/50 text-green-600 transition-all duration-200"
-                                                    >
-                                                        <CheckCircle2 className="w-4 h-4 mr-1" />
-                                                        Approve
-                                                    </Button>
+                                                <Button
+                                                    variant="outline"
+                                                    size="sm"
+                                                    onClick={(e) => { e.stopPropagation(); handleApprove(review._id); }}
+                                                    className="hover:bg-green-600 hover:text-white hover:border-green-600 border-green-500/50 text-green-600 transition-all duration-200"
+                                                >
+                                                    <CheckCircle2 color="currentColor" size="16" className="mr-1" />
+                                                    Approve
+                                                </Button>
                                                 )}
                                                 <Button
                                                     variant="outline"
                                                     size="sm"
                                                     onClick={(e) => { e.stopPropagation(); setSelectedReview(review); }}
                                                 >
-                                                    <Eye className="w-4 h-4" />
+                                                    <Eye color="currentColor" size="16" />
                                                 </Button>
                                                 <Button
                                                     variant="outline"
@@ -231,7 +240,7 @@ export default function ReviewsPage() {
                                                     onClick={(e) => { e.stopPropagation(); setDeleteId(review._id); }}
                                                     className="hover:bg-destructive hover:text-destructive-foreground"
                                                 >
-                                                    <Trash2 className="w-4 h-4" />
+                                                    <Trash2 color="currentColor" size="16" />
                                                 </Button>
                                             </div>
                                         </TableCell>
@@ -270,7 +279,7 @@ export default function ReviewsPage() {
                                 <p className="font-semibold">{selectedReview.user?.name || "Unknown"}</p>
                                 {selectedReview.isBought ? (
                                     <span className="inline-flex items-center gap-1 text-xs text-blue-600 font-medium bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full mt-1">
-                                        <ShoppingBag className="w-3 h-3" /> Verified Purchase
+                                        <ShoppingBag color="currentColor" size="12" /> Verified Purchase
                                     </span>
                                 ) : (
                                     <span className="text-xs text-muted-foreground">Unverified purchase</span>
@@ -296,13 +305,13 @@ export default function ReviewsPage() {
                                         ? "border-green-500/40 text-green-600 bg-green-50/60"
                                         : "border-orange-400/40 text-orange-600 bg-orange-50/60"
                                     }`}>
-                                    {selectedReview.isApproved ? <CheckCircle2 className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
+                                    {selectedReview.isApproved ? <CheckCircle2 color="currentColor" size="12" /> : <Clock color="currentColor" size="12" />}
                                     {selectedReview.isApproved ? "Approved" : "Pending"}
                                 </span>
                                 {!selectedReview.isApproved && (
                                     <Button size="sm" variant="outline" className="h-7 text-xs border-green-500/40 text-green-600 hover:bg-green-50"
                                         onClick={() => handleApprove(selectedReview._id)}>
-                                        <ShieldCheck className="w-3 h-3 mr-1" /> Approve
+                                        <ShieldCheck color="currentColor" size="12" className="mr-1" /> Approve
                                     </Button>
                                 )}
                             </div>
@@ -354,8 +363,8 @@ export default function ReviewsPage() {
                         className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                     >
                         {viewMode === "dialog"
-                            ? <PanelRight className="w-4 h-4" />
-                            : <AppWindow className="w-4 h-4" />
+                            ? <PanelRight color="currentColor" size="16" />
+                            : <AppWindow color="currentColor" size="16" />
                         }
                     </button>
                 );
@@ -366,7 +375,7 @@ export default function ReviewsPage() {
                         <Button variant="outline" className="flex-1" onClick={() => setSelectedReview(null)}>Close</Button>
                         <Button variant="destructive" className="flex-1"
                             onClick={() => { setDeleteId(selectedReview._id); setSelectedReview(null); }}>
-                            <Trash2 className="w-4 h-4 mr-2" /> Delete
+                            <Trash2 color="currentColor" size="16" className="mr-2" /> Delete
                         </Button>
                     </>
                 );
@@ -428,7 +437,7 @@ export default function ReviewsPage() {
                 <DialogContent className="max-w-sm">
                     <DialogHeader className="items-center text-center pb-2">
                         <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-3">
-                            <AlertTriangle className="w-8 h-8 text-destructive" />
+                            <AlertTriangle color="currentColor" size="32" className="text-destructive" />
                         </div>
                         <DialogTitle>Delete Review</DialogTitle>
                         <DialogDescription>

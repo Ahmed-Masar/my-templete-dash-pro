@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Home, ArrowLeft } from "lucide-react";
+import { Home2 as Home, ArrowLeft2 as ArrowLeft } from "iconsax-react";
 
 export default function NotFound() {
   const pathname = usePathname();
@@ -31,7 +31,7 @@ export default function NotFound() {
           <div className="space-y-2">
             <Link href="/">
               <Button className="w-full interactive">
-                <Home className="mr-2 h-4 w-4" />
+                <Home color="currentColor" size="16" className="mr-2" />
                 Go to Home
               </Button>
             </Link>
@@ -40,7 +40,7 @@ export default function NotFound() {
               onClick={() => window.history.back()}
               className="w-full interactive"
             >
-              <ArrowLeft className="mr-2 h-4 w-4" />
+              <ArrowLeft color="currentColor" size="16" className="mr-2" />
               Go Back
             </Button>
           </div>

@@ -1,28 +1,27 @@
 import {
-  LayoutDashboard,
-  Home,
-  Smartphone,
-  Globe,
-  Wrench,
-  Grid,
-  Tags,
-  Building2,
+  Element3 as LayoutDashboard,
+  Home2 as Home,
+  Mobile as Smartphone,
+  Global as Globe,
+  Setting5 as Wrench,
+  Grid2 as Grid,
+  Tag as Tags,
+  Buildings2 as Building2,
   Award,
   Gift,
   ShoppingCart,
-  Bell,
+  Notification as Bell,
   User,
   Briefcase,
-  MessageSquare,
-  Languages,
-  UserCog,
-  Shield,
-  type LucideIcon,
-} from 'lucide-react';
+  Messages1 as MessageSquare,
+  Translate as Languages,
+  UserOctagon as UserCog,
+  SecuritySafe as Shield,
+} from 'iconsax-react';
 
 interface TabMeta {
   title: string;
-  icon: LucideIcon;
+  icon: React.ElementType;
 }
 
 export const PATH_META: Record<string, TabMeta> = {
@@ -46,7 +45,7 @@ export const PATH_META: Record<string, TabMeta> = {
   '/dashboard/permissions':   { title: 'Permissions',   icon: Shield },
 };
 
-export function getTabIcon(path: string): LucideIcon {
+export function getTabIcon(path: string): React.ElementType {
   return PATH_META[path]?.icon ?? LayoutDashboard;
 }
 

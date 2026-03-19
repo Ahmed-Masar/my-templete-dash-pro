@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { GripVertical, Pencil, Trash2, Plus, Loader2 } from "lucide-react";
+import { HambergerMenu as GripVertical, Edit2 as Pencil, Trash as Trash2, Add as Plus, Refresh as Loader2 } from "iconsax-react";
 import { toast } from "sonner";
 import { fromLang } from "@/components/ui/localized-input";
 
@@ -162,7 +162,7 @@ export function AdSectionDialog({ open, onOpenChange, adType }: AdSectionDialogP
                                             : "bg-background border-border/60 hover:border-border"
                                         }`}
                                 >
-                                    <GripVertical className="h-4 w-4 text-muted-foreground/40 shrink-0 cursor-grab active:cursor-grabbing" />
+                                    <GripVertical color="currentColor" size="16" className="text-muted-foreground/40 shrink-0 cursor-grab active:cursor-grabbing" />
 
                                     <span className="text-[10px] font-mono font-bold text-muted-foreground w-5 shrink-0 text-center">
                                         {String(index + 1).padStart(2, "0")}
@@ -188,7 +188,7 @@ export function AdSectionDialog({ open, onOpenChange, adType }: AdSectionDialogP
                                         onClick={() => handleEdit(ad)}
                                         title="Edit ad"
                                     >
-                                        <Pencil className="h-3.5 w-3.5" />
+                                        <Pencil color="currentColor" size="14" />
                                     </Button>
 
                                     <Button
@@ -198,7 +198,7 @@ export function AdSectionDialog({ open, onOpenChange, adType }: AdSectionDialogP
                                         onClick={() => handleDelete(ad)}
                                         title="Delete ad"
                                     >
-                                        <Trash2 className="h-3.5 w-3.5" />
+                                        <Trash2 color="currentColor" size="14" />
                                     </Button>
                                 </div>
                             ))
@@ -207,7 +207,7 @@ export function AdSectionDialog({ open, onOpenChange, adType }: AdSectionDialogP
 
                     <SheetFooter className="px-6 py-4 border-t shrink-0 flex flex-row items-center gap-2 justify-between">
                         <Button onClick={handleAddNew} variant="outline" className="gap-1.5">
-                            <Plus className="h-4 w-4" />
+                            <Plus color="currentColor" size="16" />
                             Add Ad
                         </Button>
                         <div className="flex gap-2">
@@ -216,7 +216,7 @@ export function AdSectionDialog({ open, onOpenChange, adType }: AdSectionDialogP
                             </Button>
                             {isDirty && (
                                 <Button onClick={handleSaveOrder} disabled={saving} className="gap-2">
-                                    {saving && <Loader2 className="h-4 w-4 animate-spin" />}
+                                    {saving && <Loader2 color="currentColor" size="16" className="animate-spin" />}
                                     Save Order
                                 </Button>
                             )}

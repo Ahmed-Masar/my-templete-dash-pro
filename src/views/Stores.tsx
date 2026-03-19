@@ -10,11 +10,28 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import {
-    Store as StoreIcon, Plus, Edit, Trash2, Search, MapPin, Globe,
-    Facebook, Instagram, Twitter, Youtube, MessageCircle, Send, Music2,
-    MessageSquare, X as XIcon, AlertTriangle, CheckCircle2, XCircle, ChevronDown
-} from "lucide-react";
+import { 
+    Shop as StoreIcon, 
+    Add as Plus, 
+    Edit2 as Edit, 
+    Trash, 
+    SearchNormal1 as Search, 
+    Location as MapPin, 
+    Global as Globe,
+    Facebook, 
+    Instagram, 
+    Youtube, 
+    DirectSend as Send,
+    Messages1 as MessageSquare, 
+    Add as XIcon, 
+    Danger as AlertTriangle, 
+    TickCircle as CheckCircle2, 
+    CloseCircle as XCircle, 
+    ArrowDown2 as ChevronDown,
+    Link as LinkIcon,
+    Music,
+    Whatsapp
+} from "iconsax-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchStores, createStore, updateStore, deleteStore, Store } from "@/store/slices/storesSlice";
 import { ImageUpload } from "@/components/ui/image-upload";
@@ -33,11 +50,11 @@ import { LocalizedInput, LangValue, toLang, emptyLang, fromLang } from "@/compon
 const SOCIAL_PLATFORMS = [
     { key: "facebook", label: "Facebook", Icon: Facebook, placeholder: "https://facebook.com/..." },
     { key: "instgram", label: "Instagram", Icon: Instagram, placeholder: "https://instagram.com/..." },
-    { key: "tiktok", label: "TikTok", Icon: Music2, placeholder: "https://tiktok.com/@..." },
+    { key: "tiktok", label: "TikTok", Icon: Music, placeholder: "https://tiktok.com/@..." },
     { key: "youtube", label: "YouTube", Icon: Youtube, placeholder: "https://youtube.com/..." },
-    { key: "whatsapp", label: "WhatsApp", Icon: MessageCircle, placeholder: "e.g. +966xxxxxxxx" },
+    { key: "whatsapp", label: "WhatsApp", Icon: Whatsapp, placeholder: "e.g. +966xxxxxxxx" },
     { key: "telegram", label: "Telegram", Icon: Send, placeholder: "https://t.me/..." },
-    { key: "x", label: "X", Icon: Twitter, placeholder: "https://x.com/..." },
+    { key: "x", label: "X", Icon: LinkIcon, placeholder: "https://x.com/..." },
     { key: "messagener", label: "Messenger", Icon: MessageSquare, placeholder: "https://m.me/..." },
     { key: "map", label: "Maps", Icon: MapPin, placeholder: "https://maps.google.com/..." },
 ] as const;
@@ -278,7 +295,7 @@ const Stores: React.FC = () => {
 
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <StoreIcon className="w-4 h-4 text-primary" />
+                    <StoreIcon color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Basic Information</span>
                 </div>
 
@@ -336,7 +353,7 @@ const Stores: React.FC = () => {
 
             <section className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-border/60">
-                    <Globe className="w-4 h-4 text-primary" />
+                    <Globe color="currentColor" size="16" className="text-primary" />
                     <span className="text-sm font-semibold tracking-wide">Social Links</span>
                     <span className="text-xs text-muted-foreground ml-auto">Click an icon to add a link</span>
                 </div>
@@ -364,7 +381,7 @@ const Stores: React.FC = () => {
                                     className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 ${isActive ? "bg-primary shadow-sm" : "bg-muted"
                                         }`}
                                 >
-                                    <Icon className={`w-4 h-4 ${isActive ? "text-primary-foreground" : "text-muted-foreground"}`} />
+                                    <Icon color={isActive ? "white" : "currentColor"} size="16" />
                                 </div>
                                 <span className="truncate w-full text-center leading-tight">{label}</span>
                             </button>
@@ -383,7 +400,7 @@ const Stores: React.FC = () => {
                             >
                                 <div className="flex items-center gap-2 px-2 py-1.5 rounded-xl border border-border/60 bg-card/60 shadow-sm backdrop-blur-sm">
                                     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-primary shadow-sm">
-                                        <Icon className="w-4 h-4 text-primary-foreground" />
+                                        <Icon color="white" size="16" />
                                     </div>
 
                                     <Input
@@ -402,7 +419,7 @@ const Stores: React.FC = () => {
                                         className="w-6 h-6 rounded-md flex items-center justify-center text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors flex-shrink-0"
                                         title={`Remove ${label}`}
                                     >
-                                        <XIcon className="w-3.5 h-3.5" />
+                                        <XIcon color="currentColor" size="14" className="rotate-45" />
                                     </button>
                                 </div>
                             </div>
@@ -443,7 +460,7 @@ const Stores: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search color="currentColor" size="16" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Search stores..."
                             value={searchTerm}
@@ -455,7 +472,7 @@ const Stores: React.FC = () => {
                         onClick={handleAdd}
                         className="transition-all duration-200 hover:shadow-lg hover:scale-105 bg-primary hover:bg-primary/90"
                     >
-                        <Plus className="w-4 h-4 mr-2" />
+                        <Plus color="currentColor" size="16" className="mr-2" />
                         <span className="font-medium">Add New</span>
                     </Button>
                 </div>
@@ -498,7 +515,7 @@ const Stores: React.FC = () => {
                                                 />
                                             ) : (
                                                 <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                                                    <StoreIcon className="w-5 h-5 text-muted-foreground" />
+                                                    <StoreIcon color="currentColor" size="20" className="text-muted-foreground" />
                                                 </div>
                                             )}
                                         </TableCell>
@@ -515,11 +532,11 @@ const Stores: React.FC = () => {
                                                             : 'border-orange-400/40 text-orange-600 bg-orange-50/60 hover:bg-orange-100/80 dark:bg-orange-900/20 dark:text-orange-400'
                                                         }`}>
                                                         {store.isActive !== false
-                                                            ? <CheckCircle2 className="w-3 h-3" />
-                                                            : <XCircle className="w-3 h-3" />
+                                                            ? <CheckCircle2 color="currentColor" size="12" />
+                                                            : <XCircle color="currentColor" size="12" />
                                                         }
                                                         {store.isActive !== false ? "Active" : "Inactive"}
-                                                        <ChevronDown className="w-3 h-3 opacity-60" />
+                                                        <ChevronDown color="currentColor" size="12" className="opacity-60" />
                                                     </button>
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent align="center" className="w-48 shadow-xl">
@@ -529,7 +546,7 @@ const Stores: React.FC = () => {
                                                         onClick={() => handleToggleStatus(store, true)}
                                                         className={`flex items-center gap-2 cursor-pointer ${store.isActive !== false ? 'bg-green-50/60 text-green-700 font-semibold' : ''}`}
                                                     >
-                                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                        <CheckCircle2 color="currentColor" size="16" className="text-green-500" />
                                                         <span>Active</span>
                                                         {store.isActive !== false && <span className="ml-auto text-[10px] text-green-500">✓ Current</span>}
                                                     </DropdownMenuItem>
@@ -537,7 +554,7 @@ const Stores: React.FC = () => {
                                                         onClick={() => handleToggleStatus(store, false)}
                                                         className={`flex items-center gap-2 cursor-pointer ${store.isActive === false ? 'bg-orange-50/60 text-orange-700 font-semibold' : ''}`}
                                                     >
-                                                        <XCircle className="w-4 h-4 text-orange-500" />
+                                                        <XCircle color="currentColor" size="16" className="text-orange-500" />
                                                         <span>Inactive</span>
                                                         {store.isActive === false && <span className="ml-auto text-[10px] text-orange-500">✓ Current</span>}
                                                     </DropdownMenuItem>
@@ -552,7 +569,7 @@ const Stores: React.FC = () => {
                                                     onClick={(e) => { e.stopPropagation(); handleEdit(store); }}
                                                     className="hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:shadow-md hover:scale-105"
                                                 >
-                                                    <Edit className="w-4 h-4" />
+                                                    <Edit color="currentColor" size="16" />
                                                 </Button>
                                                 <Button
                                                     variant="outline"
@@ -560,7 +577,7 @@ const Stores: React.FC = () => {
                                                     onClick={(e) => { e.stopPropagation(); handleDelete(store._id); }}
                                                     className="hover:bg-destructive hover:text-destructive-foreground transition-all duration-200 hover:shadow-md hover:scale-105"
                                                 >
-                                                    <Trash2 className="w-4 h-4" />
+                                                    <Trash color="currentColor" size="16" />
                                                 </Button>
                                             </div>
                                         </TableCell>
@@ -612,7 +629,7 @@ const Stores: React.FC = () => {
                 <DialogContent className="max-w-sm">
                     <DialogHeader className="items-center text-center pb-2">
                         <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-3">
-                            <AlertTriangle className="w-8 h-8 text-destructive" />
+                            <AlertTriangle color="currentColor" size="32" className="text-destructive" />
                         </div>
                         <DialogTitle className="text-xl">Delete Store?</DialogTitle>
                         <DialogDescription className="text-center pt-1">
@@ -632,7 +649,7 @@ const Stores: React.FC = () => {
                             onClick={confirmDelete}
                             className="w-full sm:w-auto shadow-md"
                         >
-                            <Trash2 className="w-4 h-4 mr-2" />
+                            <Trash color="currentColor" size="16" className="mr-2" />
                             Delete Store
                         </Button>
                     </DialogFooter>
