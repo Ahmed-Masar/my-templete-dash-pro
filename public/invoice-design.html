@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #2d2d2d;
+    }
+
+    .invoice {
+      background: #fff;
+      width: 760px;
+      padding: 50px 60px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 50px;
+    }
+
+    .brand .company-name {
+      font-size: 26px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.5px;
+    }
+
+    .brand .tagline {
+      font-size: 13px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .invoice-meta {
+      text-align: right;
+    }
+
+    .invoice-meta .label {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a73e8;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .invoice-meta table {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .invoice-meta td {
+      padding: 2px 0 2px 16px;
+    }
+
+    .invoice-meta td:first-child {
+      color: #888;
+      text-align: left;
+    }
+
+    .invoice-meta td:last-child {
+      font-weight: 600;
+      color: #111;
+      text-align: right;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 2px solid #1a73e8;
+      margin-bottom: 36px;
+    }
+
+    /* Parties */
+    .parties {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 44px;
+    }
+
+    .party-block h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #1a73e8;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .party-block p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .party-block .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    /* Items Table */
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+
+    .items-table thead tr {
+      background: #1a73e8;
+      color: #fff;
+    }
+
+    .items-table thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .items-table thead th:last-child,
+    .items-table tbody td:last-child {
+      text-align: right;
+    }
+
+    .items-table thead th:nth-child(2),
+    .items-table thead th:nth-child(3),
+    .items-table tbody td:nth-child(2),
+    .items-table tbody td:nth-child(3) {
+      text-align: center;
+    }
+
+    .items-table tbody tr {
+      border-bottom: 1px solid #eef0f4;
+    }
+
+    .items-table tbody tr:nth-child(even) {
+      background: #f8f9fb;
+    }
+
+    .items-table tbody td {
+      padding: 14px 16px;
+      color: #444;
+      vertical-align: top;
+    }
+
+    .items-table tbody td .item-desc {
+      font-size: 12px;
+      color: #999;
+      margin-top: 3px;
+    }
+
+    /* Totals */
+    .totals {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .totals-box {
+      width: 280px;
+    }
+
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: 7px 0;
+      color: #555;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .totals-row.discount span:last-child {
+      color: #e53935;
+    }
+
+    .totals-row.grand-total {
+      border-bottom: none;
+      border-top: 2px solid #1a73e8;
+      margin-top: 6px;
+      padding-top: 12px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    /* Payment & Notes */
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .payment-info h4,
+    .notes h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #1a73e8;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .payment-info p,
+    .notes p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .payment-info .bank-detail {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 2px;
+    }
+
+    .payment-info .bank-detail span:first-child {
+      color: #999;
+      min-width: 80px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid #eef0f4;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    /* Status badge */
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status.unpaid {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    .status.overdue {
+      background: #fce4ec;
+      color: #c62828;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .invoice { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="brand">
+        <div class="company-name">Your Company</div>
+        <div class="tagline">Design & Development Studio</div>
+      </div>
+      <div class="invoice-meta">
+        <div class="label">Invoice</div>
+        <table>
+          <tr>
+            <td>Invoice No.</td>
+            <td>#INV-2026-001</td>
+          </tr>
+          <tr>
+            <td>Issue Date</td>
+            <td>March 4, 2026</td>
+          </tr>
+          <tr>
+            <td>Due Date</td>
+            <td>March 18, 2026</td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td><span class="status unpaid">Unpaid</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Parties -->
+    <div class="parties">
+      <div class="party-block">
+        <h4>From</h4>
+        <div class="name">Your Name</div>
+        <p>
+          123 Studio Street<br>
+          City, State 00000<br>
+          hello@yourcompany.com<br>
+          +1 (555) 000-0000
+        </p>
+      </div>
+      <div class="party-block" style="text-align: right;">
+        <h4>Bill To</h4>
+        <div class="name">Client Name</div>
+        <p>
+          456 Client Avenue<br>
+          City, State 00000<br>
+          client@email.com<br>
+          +1 (555) 111-2222
+        </p>
+      </div>
+    </div>
+
+    <!-- Items Table -->
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Qty</th>
+          <th>Rate</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            UI/UX Design
+            <div class="item-desc">Wireframes, prototypes, and final designs</div>
+          </td>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:center;">$1,200.00</td>
+          <td>$1,200.00</td>
+        </tr>
+        <tr>
+          <td>
+            Web Development
+            <div class="item-desc">Frontend implementation, responsive layout</div>
+          </td>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:center;">$2,000.00</td>
+          <td>$2,000.00</td>
+        </tr>
+        <tr>
+          <td>
+            Revisions
+            <div class="item-desc">Up to 3 rounds of revisions</div>
+          </td>
+          <td style="text-align:center;">3</td>
+          <td style="text-align:center;">$150.00</td>
+          <td>$450.00</td>
+        </tr>
+        <tr>
+          <td>
+            Hosting Setup
+            <div class="item-desc">Domain configuration and deployment</div>
+          </td>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:center;">$200.00</td>
+          <td>$200.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Totals -->
+    <div class="totals">
+      <div class="totals-box">
+        <div class="totals-row">
+          <span>Subtotal</span>
+          <span>$3,850.00</span>
+        </div>
+        <div class="totals-row discount">
+          <span>Discount (10%)</span>
+          <span>-$385.00</span>
+        </div>
+        <div class="totals-row">
+          <span>Tax (8%)</span>
+          <span>$277.20</span>
+        </div>
+        <div class="totals-row grand-total">
+          <span>Total Due</span>
+          <span>$3,742.20</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment & Notes -->
+    <div class="bottom">
+      <div class="payment-info">
+        <h4>Payment Details</h4>
+        <div class="bank-detail"><span>Bank</span><span>First National Bank</span></div>
+        <div class="bank-detail"><span>Account</span><span>0000-1111-2222</span></div>
+        <div class="bank-detail"><span>Routing</span><span>123456789</span></div>
+        <div class="bank-detail"><span>PayPal</span><span>pay@yourcompany.com</span></div>
+      </div>
+      <div class="notes">
+        <h4>Notes</h4>
+        <p>Payment is due within 14 days of the invoice date. Late payments may incur a 2% monthly fee. Thank you for your business!</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      yourcompany.com &nbsp;·&nbsp; hello@yourcompany.com &nbsp;·&nbsp; +1 (555) 000-0000
+    </div>
+
+  </div>
+</body>
+</html>

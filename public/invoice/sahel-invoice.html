@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sahel Jeddah - Sales Order</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      background: #e5e7eb;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .page-wrap {
+      background: #e5e7eb;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .page {
+      position: relative;
+      width: 595px;
+      height: 842px;
+      background: #ffffff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    .cell {
+      height: 23px;
+      border: 1px solid #CCD5D5;
+      font-size: 9px;
+      color: #000;
+      text-align: center;
+      padding: 0 4px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="page">
+
+      <div style="position:absolute;width:80px;height:80px;left:506px;top:9px;border-radius:50%;overflow:hidden;border:1.5px solid #ccc;">
+        <img src="/invoice/Sahel Jeddah Logo 2.png" alt="Sahel Jeddah" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+
+      <div style="position:absolute;left:14px;top:30px;width:117px;height:26px;font-weight:700;font-size:22.84px;line-height:26px;color:#000;">
+        Sales Order
+      </div>
+
+      <div style="position:absolute;left:154px;top:25px;width:60px;height:59px;border:1px solid #CCD5D5;display:flex;align-items:center;justify-content:center;">
+        <img src="/invoice/Screenshot 2026-03-03 at 4.25.44 PM 3.png" alt="QR" style="width:51px;height:51px;object-fit:cover;" />
+      </div>
+
+      <div style="position:absolute;left:243px;top:30px;width:254px;height:21px;font-weight:700;font-size:18.58px;line-height:21px;color:#EC1C23;text-align:center;direction:rtl;">
+        ســـــــاحل جــــــدة للتجارة العامة المحدودة
+      </div>
+      <div style="position:absolute;left:243px;top:55px;width:256px;height:17px;font-weight:700;font-size:15.07px;line-height:17px;color:#000;text-align:center;">
+        Sahel Jeddah for General Trading LLC
+      </div>
+
+
+      <div style="position:absolute;left:8px;top:66px;width:144px;height:19px;border:1px solid #D0D7D8;">
+        <span style="position:absolute;right:4px;top:4px;font-weight:700;font-size:10px;direction:rtl;">رقم الطلب :</span>
+      </div>
+      <div style="position:absolute;left:8px;top:84px;width:144px;height:19px;border:1px solid #D0D7D8;">
+        <span style="position:absolute;right:4px;top:4px;font-weight:700;font-size:10px;direction:rtl;">التاريخ :</span>
+      </div>
+      <div style="position:absolute;left:8px;top:102px;width:144px;height:19px;border:1px solid #D0D7D8;">
+        <span style="position:absolute;right:4px;top:4px;font-weight:700;font-size:10px;direction:rtl;">الوقت :</span>
+      </div>
+      <div style="position:absolute;left:8px;top:120px;width:144px;height:19px;border:1px solid #D0D7D8;">
+        <span style="position:absolute;right:4px;top:4px;font-weight:700;font-size:10px;direction:rtl;">فاتورة العرض:</span>
+      </div>
+      <div style="position:absolute;left:8px;top:138px;width:144px;height:19px;border:1px solid #D0D7D8;"></div>
+
+      <span style="position:absolute;left:543px;top:103px;font-weight:700;font-size:10px;direction:rtl;">فاتورة الى:</span>
+      <span style="position:absolute;left:310px;top:103px;font-weight:700;font-size:10px;">Bill to:</span>
+
+      <span style="position:absolute;left:282px;top:103px;font-weight:700;font-size:10px;direction:rtl;">الهاتف:</span>
+      <span style="position:absolute;left:156px;top:103px;font-weight:700;font-size:10px;">Phone:</span>
+
+      <span style="position:absolute;left:553px;top:123px;font-weight:700;font-size:10px;direction:rtl;">العنوان:</span>
+      <span style="position:absolute;left:156px;top:123px;font-weight:700;font-size:10px;">Address:</span>
+
+      <div style="position:absolute;left:343px;top:113px;width:197px;border-top:1px solid #CCD5D5;"></div>
+      <div style="position:absolute;left:189px;top:113px;width:90px;border-top:1px solid #CCD5D5;"></div>
+      <div style="position:absolute;left:198px;top:132px;width:353px;border-top:1px solid #CCD5D5;"></div>
+
+      <div style="position:absolute;left:387px;top:138px;width:193px;height:19px;display:flex;">
+        <div style="flex:1;border:1px solid #D0D7D8;border-right:none;"></div>
+        <div style="width:33px;border:1px solid #D0D7D8;display:flex;align-items:center;justify-content:flex-end;padding-right:3px;">
+          <span style="font-weight:700;font-size:10px;direction:rtl;">الفرع:</span>
+        </div>
+        <span style="position:absolute;left:4px;top:4px;font-weight:700;font-size:10px;">Branch:</span>
+      </div>
+
+      <div style="position:absolute;left:156px;top:138px;width:228px;height:19px;display:flex;">
+        <div style="flex:1;border:1px solid #D0D7D8;border-right:none;"></div>
+        <div style="width:60px;border:1px solid #D0D7D8;display:flex;align-items:center;justify-content:flex-end;padding-right:3px;">
+          <span style="font-weight:700;font-size:10px;direction:rtl;white-space:nowrap;">مندوب المبيعات:</span>
+        </div>
+        <span style="position:absolute;left:4px;top:4px;font-weight:700;font-size:10px;">Sales person:</span>
+      </div>
+
+      <div style="position:absolute;left:8px;top:163px;width:572px;">
+        <table style="width:100%;border-collapse:collapse;table-layout:fixed;font-size:9px;color:#000;">
+          <colgroup>
+            <col style="width:104px;" />
+            <col style="width:82px;" />
+            <col style="width:66px;" />
+            <col style="width:66px;" />
+            <col style="width:223px;" />
+            <col style="width:31px;" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th style="background:#CCD5D5;font-weight:700;font-size:10px;height:23px;text-align:center;border:1px solid #CCD5D5;direction:rtl;">الاجمالي د.ع</th>
+              <th style="background:#CCD5D5;font-weight:700;font-size:10px;height:23px;text-align:center;border:1px solid #CCD5D5;direction:rtl;">سعر الوحدة د.ع</th>
+              <th style="background:#CCD5D5;font-weight:700;font-size:10px;height:23px;text-align:center;border:1px solid #CCD5D5;direction:rtl;">الكمية</th>
+              <th style="background:#CCD5D5;font-weight:700;font-size:10px;height:23px;text-align:center;border:1px solid #CCD5D5;direction:rtl;">التعئبه</th>
+              <th style="background:#CCD5D5;font-weight:700;font-size:10px;height:23px;text-align:center;border:1px solid #CCD5D5;direction:rtl;">التفاصيل</th>
+              <th style="background:#CCD5D5;font-weight:700;font-size:10px;height:23px;text-align:center;border:1px solid #CCD5D5;">#</th>
+            </tr>
+          </thead>
+          <tbody>
+    
+            <tr>
+              <td class="cell"></td>
+              <td class="cell"></td>
+              <td class="cell"></td>
+              <td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">1</td>
+            </tr>
+
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">2</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">3</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">4</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">5</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">6</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">7</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">8</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">9</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">10</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">11</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">12</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">13</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">14</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">15</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">16</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">17</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">18</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">19</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">20</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">21</td>
+            </tr>
+            <tr>
+              <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+              <td class="cell" style="text-align:right;padding-right:6px;"></td>
+              <td class="cell" style="font-weight:700;">22</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="position:absolute;left:8px;top:707px;width:190px;">
+        <div style="display:flex;width:190px;height:19px;margin-top:0;">
+          <div style="width:87px;border:1px solid #D0D7D8;"></div>
+          <div style="flex:1;border:1px solid #D0D7D8;border-left:none;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;">
+            <span style="font-weight:700;font-size:10.45px;direction:rtl;">اجمالي الفاتورة د.ع</span>
+          </div>
+        </div>
+        <div style="display:flex;width:190px;height:19px;margin-top:-1px;">
+          <div style="width:87px;border:1px solid #D0D7D8;"></div>
+          <div style="flex:1;border:1px solid #D0D7D8;border-left:none;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;">
+            <span style="font-weight:700;font-size:10.45px;direction:rtl;">الرصيد المدفوع د.ع</span>
+          </div>
+        </div>
+        <div style="display:flex;width:190px;height:19px;margin-top:-1px;">
+          <div style="width:87px;border:1px solid #D0D7D8;"></div>
+          <div style="flex:1;border:1px solid #D0D7D8;border-left:none;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;">
+            <span style="font-weight:700;font-size:10.45px;direction:rtl;">الرصيد الحالي د.ع</span>
+          </div>
+        </div>
+        <div style="display:flex;width:190px;height:19px;margin-top:-1px;">
+          <div style="width:87px;border:1px solid #D0D7D8;"></div>
+          <div style="flex:1;border:1px solid #D0D7D8;border-left:none;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;">
+            <span style="font-weight:700;font-size:10.45px;direction:rtl;color:#FF0000;">الرصيد السابق د.ع</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:204px;top:707px;width:299px;height:73px;border:1px solid #D0D7D8;">
+        <div style="background:#D9D9D9;height:15px;display:flex;align-items:center;padding-left:10px;">
+          <span style="font-weight:700;font-size:11.44px;">Bank Account Details:</span>
+        </div>
+        <div style="padding:3px 10px;">
+          <div style="display:flex;align-items:center;height:19px;">
+            <span style="font-weight:700;font-size:10px;width:65px;">Bank Name</span>
+            <span style="font-weight:700;font-size:8.75px;">Iraq Bank</span>
+          </div>
+          <div style="display:flex;align-items:center;height:19px;">
+            <span style="font-weight:700;font-size:10px;width:65px;">IBAN</span>
+            <span style="font-weight:700;font-size:8.75px;">1111111111111111111111</span>
+          </div>
+          <div style="display:flex;align-items:center;height:19px;">
+            <span style="font-weight:700;font-size:10px;width:65px;">Swift Code</span>
+            <span style="font-weight:700;font-size:8.75px;">NNNNNNNNNN</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:511px;top:707px;width:70px;height:73px;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;">
+        <img src="/invoice/Screenshot 2026-03-03 at 4.25.44 PM 3.png" alt="QR" style="width:60px;height:60px;object-fit:cover;" />
+      </div>
+
+      <div style="position:absolute;left:12px;top:783px;width:191px;height:21px;font-weight:700;font-size:18.45px;line-height:21px;color:#000;">
+        Thank you for business!
+      </div>
+
+      <div style="position:absolute;left:214px;top:783px;">
+        <div style="font-weight:700;font-size:8.75px;color:#000;">Branch Addresss</div>
+        <div style="font-size:8.75px;color:#000;white-space:nowrap;">
+          Mob: +964 781 4000 099 , Email: info@saheljeddah.com
+        </div>
+        <div style="font-size:8.75px;color:#000;white-space:nowrap;">
+          Al Fanar Building, Baghdad, Camp sarah, riyad district
+        </div>
+        <div style="font-size:8.75px;color:#000;white-space:nowrap;">
+          Near Dayed Mamoul Complex
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

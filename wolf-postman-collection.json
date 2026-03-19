@@ -1,0 +1,651 @@
+{
+  "info": {
+    "name": "Wolf — Gym Equipment Management API",
+    "_postman_id": "wolf-api-collection-v1",
+    "description": "Complete API collection for Wolf Gym Equipment & Warehouse Management System.\n\nSetup:\n1. Set 'base_url' variable to your server URL\n2. Run 'Login' request first to auto-set tokens\n3. All other requests use the token automatically",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8080/api/v1" },
+    { "key": "access_token", "value": "" },
+    { "key": "refresh_token", "value": "" },
+    { "key": "branch_id", "value": "" },
+    { "key": "warehouse_id", "value": "" },
+    { "key": "category_id", "value": "" },
+    { "key": "product_id", "value": "" },
+    { "key": "item_id", "value": "" },
+    { "key": "transfer_id", "value": "" },
+    { "key": "maintenance_id", "value": "" },
+    { "key": "supplier_id", "value": "" },
+    { "key": "po_id", "value": "" },
+    { "key": "user_id", "value": "" },
+    { "key": "role_id", "value": "" },
+    { "key": "disposal_id", "value": "" },
+    { "key": "tag_id", "value": "" },
+    { "key": "alert_rule_id", "value": "" },
+    { "key": "notification_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "01. Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.success && json.data) {",
+                  "    pm.collectionVariables.set('access_token', json.data.access_token);",
+                  "    pm.collectionVariables.set('refresh_token', json.data.refresh_token);",
+                  "    console.log('Tokens saved successfully');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "url": "{{base_url}}/auth/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@wolf.com\",\n  \"password\": \"Changeme1!\"\n}"
+            },
+            "description": "Login with email and password. Returns access + refresh tokens.\n\nThe test script automatically saves tokens to collection variables.\n\nDefault admin: admin@wolf.com / Changeme1!"
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.success && json.data) {",
+                  "    pm.collectionVariables.set('access_token', json.data.access_token);",
+                  "    pm.collectionVariables.set('refresh_token', json.data.refresh_token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "url": "{{base_url}}/auth/refresh",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh_token\": \"{{refresh_token}}\"\n}"
+            },
+            "description": "Refresh the access token using the refresh token. Returns new token pair (rotation)."
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/auth/logout",
+            "description": "Invalidates the refresh token server-side."
+          }
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/auth/me",
+            "description": "Get current logged-in user profile, role, and permissions."
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/auth/me",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Ahmed Admin\",\n  \"phone\": \"+964770123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/auth/change-password",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"old_password\": \"Changeme1!\",\n  \"new_password\": \"NewPass123!\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Branches",
+      "item": [
+        {
+          "name": "List Branches",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/branches?page=1&per_page=20&sort_by=created_at&sort_dir=desc", "host": ["{{base_url}}"], "path": ["branches"], "query": [{ "key": "page", "value": "1" }, { "key": "per_page", "value": "20" }, { "key": "sort_by", "value": "created_at" }, { "key": "sort_dir", "value": "desc" }] }
+          }
+        },
+        {
+          "name": "Get Branch",
+          "request": { "method": "GET", "url": "{{base_url}}/branches/{{branch_id}}" }
+        },
+        {
+          "name": "Create Branch",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('branch_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/branches",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Wolf Gym Baghdad\",\n  \"code\": \"BG01\",\n  \"address\": \"Al-Karrada Street, Baghdad\",\n  \"city\": \"Baghdad\",\n  \"phone\": \"+964770000001\",\n  \"email\": \"baghdad@wolf.gym\",\n  \"manager_id\": \"{{user_id}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Branch",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/branches/{{branch_id}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Wolf Gym Baghdad Central\",\n  \"status\": \"active\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Branch",
+          "request": { "method": "DELETE", "url": "{{base_url}}/branches/{{branch_id}}" }
+        },
+        {
+          "name": "Get Branch Stats",
+          "request": { "method": "GET", "url": "{{base_url}}/branches/{{branch_id}}/stats" }
+        }
+      ]
+    },
+    {
+      "name": "03. Warehouses",
+      "item": [
+        {
+          "name": "List Warehouses",
+          "request": { "method": "GET", "url": { "raw": "{{base_url}}/warehouses?branch_id={{branch_id}}", "host": ["{{base_url}}"], "path": ["warehouses"], "query": [{ "key": "branch_id", "value": "{{branch_id}}" }] } }
+        },
+        {
+          "name": "Get Warehouse",
+          "request": { "method": "GET", "url": "{{base_url}}/warehouses/{{warehouse_id}}" }
+        },
+        {
+          "name": "Create Warehouse",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('warehouse_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/warehouses",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Main Equipment Storage\",\n  \"code\": \"WH-BG01-MAIN\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"type\": \"main\",\n  \"location_description\": \"Ground floor, back area\",\n  \"capacity_notes\": \"Can hold up to 500 items\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Warehouse",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/warehouses/{{warehouse_id}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"active\",\n  \"capacity_notes\": \"Expanded to 750 items\"\n}" }
+          }
+        },
+        {
+          "name": "Delete Warehouse",
+          "request": { "method": "DELETE", "url": "{{base_url}}/warehouses/{{warehouse_id}}" }
+        },
+        {
+          "name": "List Items in Warehouse",
+          "request": { "method": "GET", "url": "{{base_url}}/warehouses/{{warehouse_id}}/items" }
+        },
+        {
+          "name": "Get Warehouse Stats",
+          "request": { "method": "GET", "url": "{{base_url}}/warehouses/{{warehouse_id}}/stats" }
+        }
+      ]
+    },
+    {
+      "name": "04. Categories",
+      "item": [
+        { "name": "List Categories", "request": { "method": "GET", "url": "{{base_url}}/categories" } },
+        { "name": "Get Category", "request": { "method": "GET", "url": "{{base_url}}/categories/{{category_id}}" } },
+        {
+          "name": "Create Category",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('category_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/categories",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Free Weights\",\n  \"slug\": \"free-weights\",\n  \"description\": \"Dumbbells, barbells, kettlebells, weight plates\",\n  \"icon\": \"dumbbell\",\n  \"sort_order\": 1\n}" }
+          }
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT", "url": "{{base_url}}/categories/{{category_id}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Free Weights & Plates\",\n  \"sort_order\": 1\n}" }
+          }
+        },
+        { "name": "Delete Category", "request": { "method": "DELETE", "url": "{{base_url}}/categories/{{category_id}}" } }
+      ]
+    },
+    {
+      "name": "05. Products",
+      "item": [
+        { "name": "List Products", "request": { "method": "GET", "url": { "raw": "{{base_url}}/products?page=1&per_page=20&category_id={{category_id}}", "host": ["{{base_url}}"], "path": ["products"], "query": [{ "key": "page", "value": "1" }, { "key": "per_page", "value": "20" }, { "key": "category_id", "value": "{{category_id}}" }] } } },
+        { "name": "Get Product", "request": { "method": "GET", "url": "{{base_url}}/products/{{product_id}}" } },
+        {
+          "name": "Create Product",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('product_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/products",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Adjustable Dumbbell 20kg\",\n  \"sku\": \"DM-ADJ-20KG\",\n  \"category_id\": \"{{category_id}}\",\n  \"brand\": \"IronGrip\",\n  \"model\": \"Pro Series 20\",\n  \"description\": \"Professional adjustable dumbbell with rubber coating\",\n  \"specifications\": {\n    \"weight\": \"20kg\",\n    \"dimensions\": \"35x15x15cm\",\n    \"material\": \"Cast iron with rubber coating\",\n    \"color\": \"Black\"\n  },\n  \"default_warranty_months\": 24,\n  \"expected_lifespan_years\": 10,\n  \"purchase_price\": {\n    \"amount\": 150.00,\n    \"currency\": \"USD\"\n  },\n  \"has_bom\": true,\n  \"tags\": [\"free-weights\", \"adjustable\"]\n}" }
+          }
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT", "url": "{{base_url}}/products/{{product_id}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"description\": \"Updated description\",\n  \"purchase_price\": { \"amount\": 160.00, \"currency\": \"USD\" }\n}" }
+          }
+        },
+        { "name": "Delete Product", "request": { "method": "DELETE", "url": "{{base_url}}/products/{{product_id}}" } },
+        { "name": "List Product Items", "request": { "method": "GET", "url": "{{base_url}}/products/{{product_id}}/items" } }
+      ]
+    },
+    {
+      "name": "06. Items",
+      "item": [
+        { "name": "List Items", "request": { "method": "GET", "url": { "raw": "{{base_url}}/items?page=1&per_page=20&status=available&branch_id={{branch_id}}", "host": ["{{base_url}}"], "path": ["items"], "query": [{ "key": "page", "value": "1" }, { "key": "per_page", "value": "20" }, { "key": "status", "value": "available" }, { "key": "branch_id", "value": "{{branch_id}}" }] } } },
+        { "name": "Get Item", "request": { "method": "GET", "url": "{{base_url}}/items/{{item_id}}" } },
+        {
+          "name": "Create Item",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('item_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/items",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"product_id\": \"{{product_id}}\",\n  \"warehouse_id\": \"{{warehouse_id}}\",\n  \"serial_number\": \"IG-2026-00142\",\n  \"zone\": \"Zone A - Free Weights\",\n  \"condition\": \"new\",\n  \"notes\": \"Purchased for new branch opening\",\n  \"purchase_info\": {\n    \"supplier_id\": \"{{supplier_id}}\",\n    \"purchase_date\": \"2026-03-19T00:00:00Z\",\n    \"purchase_price\": 150.00,\n    \"currency\": \"USD\",\n    \"warranty_months\": 24,\n    \"invoice_number\": \"INV-2026-001\"\n  },\n  \"depreciation\": {\n    \"method\": \"straight_line\",\n    \"useful_life_years\": 10,\n    \"salvage_value\": 15.00,\n    \"currency\": \"USD\"\n  }\n}" }
+          }
+        },
+        {
+          "name": "Update Item",
+          "request": {
+            "method": "PUT", "url": "{{base_url}}/items/{{item_id}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"condition\": \"good\",\n  \"zone\": \"Zone B - Cardio\",\n  \"notes\": \"Moved to cardio area\"\n}" }
+          }
+        },
+        { "name": "Delete Item", "request": { "method": "DELETE", "url": "{{base_url}}/items/{{item_id}}" } },
+        { "name": "Lookup by Barcode", "request": { "method": "GET", "url": "{{base_url}}/items/barcode/WLF-BG01-DM20-00001" } },
+        { "name": "Lookup by QR Code", "request": { "method": "GET", "url": "{{base_url}}/items/qr/WLF-BG01-DM20-00001" } },
+        {
+          "name": "Check Out Item",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/items/{{item_id}}/check-out",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"checked_to\": \"Zone B - Cardio Area\",\n  \"reason\": \"Moved for morning class\",\n  \"expected_return\": \"2026-03-20T18:00:00Z\"\n}" }
+          }
+        },
+        {
+          "name": "Check In Item",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/items/{{item_id}}/check-in",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"condition\": \"good\",\n  \"notes\": \"Returned in good condition\"\n}" }
+          }
+        },
+        { "name": "Get Item History", "request": { "method": "GET", "url": "{{base_url}}/items/{{item_id}}/history" } },
+        { "name": "Get Item Components", "request": { "method": "GET", "url": "{{base_url}}/items/{{item_id}}/components" } },
+        {
+          "name": "Add Tags to Item",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/items/{{item_id}}/tags",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"tags\": [\"VIP\", \"premium\"]\n}" }
+          }
+        },
+        { "name": "Remove Tag from Item", "request": { "method": "DELETE", "url": "{{base_url}}/items/{{item_id}}/tags/VIP" } },
+        { "name": "Get Maintenance Prediction", "request": { "method": "GET", "url": "{{base_url}}/items/{{item_id}}/maintenance-prediction" } }
+      ]
+    },
+    {
+      "name": "07. BOM",
+      "item": [
+        { "name": "Get BOM", "request": { "method": "GET", "url": "{{base_url}}/bom/{{product_id}}" } },
+        {
+          "name": "Create BOM",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/bom",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"product_id\": \"{{product_id}}\",\n  \"components\": [\n    {\n      \"component_product_id\": \"STEEL_BAR_PRODUCT_ID\",\n      \"name\": \"Steel Bar\",\n      \"quantity\": 1,\n      \"is_replaceable\": true,\n      \"is_critical\": true,\n      \"notes\": \"Main handle bar\"\n    },\n    {\n      \"component_product_id\": \"BOLT_SET_PRODUCT_ID\",\n      \"name\": \"Locking Bolts\",\n      \"quantity\": 2,\n      \"is_replaceable\": true,\n      \"is_critical\": false,\n      \"notes\": \"Weight plate locking mechanism\"\n    }\n  ]\n}" }
+          }
+        },
+        {
+          "name": "Update BOM",
+          "request": {
+            "method": "PUT", "url": "{{base_url}}/bom/{{product_id}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"components\": [\n    {\n      \"component_product_id\": \"STEEL_BAR_PRODUCT_ID\",\n      \"name\": \"Steel Bar V2\",\n      \"quantity\": 1,\n      \"is_replaceable\": true,\n      \"is_critical\": true\n    }\n  ]\n}" }
+          }
+        },
+        { "name": "Delete BOM", "request": { "method": "DELETE", "url": "{{base_url}}/bom/{{product_id}}" } }
+      ]
+    },
+    {
+      "name": "08. Transfers",
+      "item": [
+        { "name": "List Transfers", "request": { "method": "GET", "url": { "raw": "{{base_url}}/transfers?status=pending_approval&page=1", "host": ["{{base_url}}"], "path": ["transfers"], "query": [{ "key": "status", "value": "pending_approval" }, { "key": "page", "value": "1" }] } } },
+        { "name": "Get Transfer", "request": { "method": "GET", "url": "{{base_url}}/transfers/{{transfer_id}}" } },
+        {
+          "name": "Create Transfer",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('transfer_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/transfers",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"from_warehouse_id\": \"{{warehouse_id}}\",\n  \"to_warehouse_id\": \"TARGET_WAREHOUSE_ID\",\n  \"items\": [\n    { \"item_id\": \"{{item_id}}\", \"notes\": \"Needed at new branch\" }\n  ],\n  \"reason\": \"New branch equipment setup\",\n  \"priority\": \"high\"\n}" }
+          }
+        },
+        { "name": "Submit Transfer", "request": { "method": "POST", "url": "{{base_url}}/transfers/{{transfer_id}}/submit" } },
+        {
+          "name": "Approve Transfer",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/transfers/{{transfer_id}}/approve",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"comment\": \"Approved for branch setup\"\n}" }
+          }
+        },
+        {
+          "name": "Reject Transfer",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/transfers/{{transfer_id}}/reject",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"comment\": \"Not enough stock at source\"\n}" }
+          }
+        },
+        { "name": "Ship Transfer", "request": { "method": "POST", "url": "{{base_url}}/transfers/{{transfer_id}}/ship" } },
+        { "name": "Receive Transfer", "request": { "method": "POST", "url": "{{base_url}}/transfers/{{transfer_id}}/receive" } },
+        { "name": "Cancel Transfer", "request": { "method": "DELETE", "url": "{{base_url}}/transfers/{{transfer_id}}" } }
+      ]
+    },
+    {
+      "name": "09. Maintenance",
+      "item": [
+        { "name": "List Maintenance", "request": { "method": "GET", "url": { "raw": "{{base_url}}/maintenance?status=in_progress&priority=critical", "host": ["{{base_url}}"], "path": ["maintenance"], "query": [{ "key": "status", "value": "in_progress" }, { "key": "priority", "value": "critical" }] } } },
+        { "name": "Get Maintenance", "request": { "method": "GET", "url": "{{base_url}}/maintenance/{{maintenance_id}}" } },
+        {
+          "name": "Create Maintenance",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('maintenance_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/maintenance",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"item_id\": \"{{item_id}}\",\n  \"type\": \"corrective\",\n  \"priority\": \"high\",\n  \"reported_issue\": \"Unusual noise when rotating the dumbbell handle\"\n}" }
+          }
+        },
+        { "name": "Approve Maintenance", "request": { "method": "POST", "url": "{{base_url}}/maintenance/{{maintenance_id}}/approve", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"comment\": \"Proceed with repair\" }" } } },
+        { "name": "Assign Technician", "request": { "method": "POST", "url": "{{base_url}}/maintenance/{{maintenance_id}}/assign", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"technician_id\": \"TECHNICIAN_USER_ID\"\n}" } } },
+        { "name": "Start Maintenance", "request": { "method": "POST", "url": "{{base_url}}/maintenance/{{maintenance_id}}/start" } },
+        {
+          "name": "Complete Maintenance",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/maintenance/{{maintenance_id}}/complete",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"diagnosis\": \"Worn out bearing in handle mechanism\",\n  \"resolution\": \"Replaced bearing and lubricated rotation joint\",\n  \"cost\": {\n    \"parts_amount\": 25.00,\n    \"labor_amount\": 15.00,\n    \"currency\": \"USD\"\n  },\n  \"replaced_components\": [\n    {\n      \"old_item_id\": \"OLD_BEARING_ITEM_ID\",\n      \"new_item_id\": \"NEW_BEARING_ITEM_ID\",\n      \"component_name\": \"Handle Bearing\",\n      \"reason\": \"Worn out, causing noise\"\n    }\n  ]\n}" }
+          }
+        },
+        { "name": "Cancel Maintenance", "request": { "method": "POST", "url": "{{base_url}}/maintenance/{{maintenance_id}}/cancel" } },
+        { "name": "List Schedules", "request": { "method": "GET", "url": "{{base_url}}/maintenance/schedules" } },
+        {
+          "name": "Create Schedule",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/maintenance/schedules",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Quarterly Treadmill Inspection\",\n  \"product_id\": \"{{product_id}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"frequency_days\": 90,\n  \"type\": \"preventive\",\n  \"checklist\": [\"Check belt tension\", \"Lubricate deck\", \"Test emergency stop\", \"Inspect motor\"],\n  \"estimated_duration_hours\": 1.5\n}" }
+          }
+        },
+        { "name": "List Upcoming", "request": { "method": "GET", "url": "{{base_url}}/maintenance/upcoming" } }
+      ]
+    },
+    {
+      "name": "10. Suppliers & Procurement",
+      "item": [
+        { "name": "List Suppliers", "request": { "method": "GET", "url": "{{base_url}}/suppliers" } },
+        {
+          "name": "Create Supplier",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('supplier_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/suppliers",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"IronGrip Equipment Co.\",\n  \"code\": \"SUP-IG01\",\n  \"contact_person\": \"John Smith\",\n  \"email\": \"orders@irongrip.com\",\n  \"phone\": \"+1-555-0100\",\n  \"address\": \"123 Industrial Ave\",\n  \"city\": \"Chicago\",\n  \"country\": \"USA\",\n  \"specialization\": [\"free-weights\", \"barbells\"],\n  \"payment_terms\": \"Net 30\",\n  \"preferred_currency\": \"USD\"\n}" }
+          }
+        },
+        {
+          "name": "Rate Supplier",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/suppliers/{{supplier_id}}/rate",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"delivery_speed\": 4.5,\n  \"quality\": 5.0,\n  \"pricing\": 3.5,\n  \"comment\": \"Excellent quality but a bit pricey\"\n}" }
+          }
+        },
+        { "name": "List Purchase Orders", "request": { "method": "GET", "url": "{{base_url}}/purchase-orders" } },
+        {
+          "name": "Create Purchase Order",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('po_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/purchase-orders",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"supplier_id\": \"{{supplier_id}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"warehouse_id\": \"{{warehouse_id}}\",\n  \"items\": [\n    {\n      \"product_id\": \"{{product_id}}\",\n      \"quantity\": 10,\n      \"unit_price\": 150.00,\n      \"notes\": \"For new branch setup\"\n    }\n  ],\n  \"tax\": 0,\n  \"shipping\": 200.00,\n  \"currency\": \"USD\",\n  \"expected_delivery\": \"2026-04-15T00:00:00Z\",\n  \"notes\": \"Urgent order for Baghdad branch opening\"\n}" }
+          }
+        },
+        { "name": "Submit PO", "request": { "method": "POST", "url": "{{base_url}}/purchase-orders/{{po_id}}/submit" } },
+        { "name": "Approve PO", "request": { "method": "POST", "url": "{{base_url}}/purchase-orders/{{po_id}}/approve", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"comment\": \"Budget approved\" }" } } },
+        {
+          "name": "Receive PO",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/purchase-orders/{{po_id}}/receive",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"received_items\": [\n    { \"product_id\": \"{{product_id}}\", \"received_quantity\": 10, \"notes\": \"All in good condition\" }\n  ]\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "11. Users & Roles",
+      "item": [
+        { "name": "List Users", "request": { "method": "GET", "url": "{{base_url}}/users" } },
+        {
+          "name": "Create User",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('user_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/users",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"manager@wolf.gym\",\n  \"password\": \"Manager123!\",\n  \"full_name\": \"Sara Branch Manager\",\n  \"phone\": \"+964770000002\",\n  \"role_id\": \"{{role_id}}\",\n  \"branch_id\": \"{{branch_id}}\"\n}" }
+          }
+        },
+        { "name": "List Roles", "request": { "method": "GET", "url": "{{base_url}}/roles" } },
+        {
+          "name": "Create Role",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('role_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/roles",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Branch Manager\",\n  \"description\": \"Manages a single branch\",\n  \"permissions\": [\n    { \"resource\": \"items\", \"actions\": [\"create\", \"read\", \"update\"] },\n    { \"resource\": \"transfers\", \"actions\": [\"create\", \"read\", \"approve\"] },\n    { \"resource\": \"maintenance\", \"actions\": [\"create\", \"read\", \"update\", \"assign\"] },\n    { \"resource\": \"reports\", \"actions\": [\"read\", \"export\"] },\n    { \"resource\": \"users\", \"actions\": [\"read\"] },\n    { \"resource\": \"analytics\", \"actions\": [\"read\"] },\n    { \"resource\": \"notifications\", \"actions\": [\"read\", \"update\"] }\n  ]\n}" }
+          }
+        },
+        { "name": "List All Permissions", "request": { "method": "GET", "url": "{{base_url}}/permissions" } }
+      ]
+    },
+    {
+      "name": "12. Disposals",
+      "item": [
+        { "name": "List Disposals", "request": { "method": "GET", "url": "{{base_url}}/disposals" } },
+        {
+          "name": "Create Disposal",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('disposal_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/disposals",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"item_id\": \"{{item_id}}\",\n  \"reason\": \"irreparable\",\n  \"description\": \"Motor burned out, replacement cost exceeds new purchase\",\n  \"method\": \"scrapped\",\n  \"sale_value\": 50.00,\n  \"currency\": \"USD\"\n}" }
+          }
+        },
+        { "name": "Approve Disposal", "request": { "method": "POST", "url": "{{base_url}}/disposals/{{disposal_id}}/approve", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"comment\": \"Confirmed irreparable\" }" } } },
+        { "name": "Complete Disposal", "request": { "method": "POST", "url": "{{base_url}}/disposals/{{disposal_id}}/complete" } }
+      ]
+    },
+    {
+      "name": "13. Tags",
+      "item": [
+        { "name": "List Tags", "request": { "method": "GET", "url": "{{base_url}}/tags" } },
+        {
+          "name": "Create Tag",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('tag_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/tags",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"vip\",\n  \"color\": \"#FFD700\",\n  \"description\": \"VIP area equipment\"\n}" }
+          }
+        },
+        { "name": "Delete Tag", "request": { "method": "DELETE", "url": "{{base_url}}/tags/{{tag_id}}" } }
+      ]
+    },
+    {
+      "name": "14. Notifications",
+      "item": [
+        { "name": "List Notifications", "request": { "method": "GET", "url": "{{base_url}}/notifications?page=1&per_page=20" } },
+        { "name": "Unread Count", "request": { "method": "GET", "url": "{{base_url}}/notifications/unread-count" } },
+        { "name": "Mark as Read", "request": { "method": "PUT", "url": "{{base_url}}/notifications/{{notification_id}}/read" } },
+        { "name": "Mark All Read", "request": { "method": "PUT", "url": "{{base_url}}/notifications/read-all" } }
+      ]
+    },
+    {
+      "name": "15. Alert Rules",
+      "item": [
+        { "name": "List Alert Rules", "request": { "method": "GET", "url": "{{base_url}}/alert-rules" } },
+        {
+          "name": "Create Alert Rule",
+          "event": [{ "listen": "test", "script": { "exec": ["var json = pm.response.json();", "if (json.success && json.data) { pm.collectionVariables.set('alert_rule_id', json.data.id); }"] } }],
+          "request": {
+            "method": "POST", "url": "{{base_url}}/alert-rules",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Critical health equipment\",\n  \"description\": \"Alert when equipment health drops below 30\",\n  \"conditions\": {\n    \"resource_type\": \"item\",\n    \"rules\": [\n      { \"field\": \"health_score\", \"operator\": \"lt\", \"value\": 30 },\n      { \"field\": \"is_active\", \"operator\": \"eq\", \"value\": true }\n    ],\n    \"logic\": \"AND\"\n  },\n  \"action\": {\n    \"type\": \"notification\",\n    \"severity\": \"critical\",\n    \"recipients\": [\"{{user_id}}\"],\n    \"message_template\": \"Equipment {{barcode}} health score dropped below 30 (current: {{health_score}})\"\n  },\n  \"frequency\": \"daily\"\n}" }
+          }
+        },
+        { "name": "Toggle Alert Rule", "request": { "method": "POST", "url": "{{base_url}}/alert-rules/{{alert_rule_id}}/toggle" } },
+        { "name": "Test Alert Rule", "request": { "method": "POST", "url": "{{base_url}}/alert-rules/{{alert_rule_id}}/test" } }
+      ]
+    },
+    {
+      "name": "16. Audit Logs",
+      "item": [
+        { "name": "List Audit Logs", "request": { "method": "GET", "url": { "raw": "{{base_url}}/audit-logs?page=1&per_page=20&resource_type=item", "host": ["{{base_url}}"], "path": ["audit-logs"], "query": [{ "key": "page", "value": "1" }, { "key": "per_page", "value": "20" }, { "key": "resource_type", "value": "item" }] } } },
+        { "name": "Get Logs for Resource", "request": { "method": "GET", "url": "{{base_url}}/audit-logs/resource/item/{{item_id}}" } }
+      ]
+    },
+    {
+      "name": "17. Activity Feed",
+      "item": [
+        { "name": "Get Activity Feed", "request": { "method": "GET", "url": { "raw": "{{base_url}}/activity-feed?branch_id={{branch_id}}&page=1", "host": ["{{base_url}}"], "path": ["activity-feed"], "query": [{ "key": "branch_id", "value": "{{branch_id}}" }, { "key": "page", "value": "1" }] } } }
+      ]
+    },
+    {
+      "name": "18. Analytics",
+      "item": [
+        { "name": "Dashboard Overview", "request": { "method": "GET", "url": "{{base_url}}/analytics/dashboard" } },
+        { "name": "Equipment Value", "request": { "method": "GET", "url": "{{base_url}}/analytics/equipment-value" } },
+        { "name": "Maintenance Costs", "request": { "method": "GET", "url": "{{base_url}}/analytics/maintenance-costs" } },
+        { "name": "Health Overview", "request": { "method": "GET", "url": "{{base_url}}/analytics/health-overview" } },
+        { "name": "Depreciation Report", "request": { "method": "GET", "url": "{{base_url}}/analytics/depreciation-report" } },
+        { "name": "Supplier Performance", "request": { "method": "GET", "url": "{{base_url}}/analytics/supplier-performance" } },
+        { "name": "Branch Comparison", "request": { "method": "GET", "url": "{{base_url}}/analytics/branch-comparison" } },
+        { "name": "Top Failing Equipment", "request": { "method": "GET", "url": "{{base_url}}/analytics/top-failing-equipment" } },
+        { "name": "Warranty Expiring", "request": { "method": "GET", "url": "{{base_url}}/analytics/warranty-expiring" } }
+      ]
+    },
+    {
+      "name": "19. Barcodes & Export",
+      "item": [
+        { "name": "Generate Barcode", "request": { "method": "GET", "url": "{{base_url}}/barcodes/generate/{{item_id}}" } },
+        { "name": "Generate QR Code", "request": { "method": "GET", "url": "{{base_url}}/barcodes/qr/{{item_id}}" } },
+        {
+          "name": "Batch Generate Barcodes",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/barcodes/batch",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"item_ids\": [\"ITEM_ID_1\", \"ITEM_ID_2\", \"ITEM_ID_3\"]\n}" }
+          }
+        },
+        { "name": "Export Items CSV", "request": { "method": "POST", "url": "{{base_url}}/export/items", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"branch_id\": \"{{branch_id}}\",\n  \"status\": \"available\"\n}" } } },
+        { "name": "Export Maintenance CSV", "request": { "method": "POST", "url": "{{base_url}}/export/maintenance" } }
+      ]
+    },
+    {
+      "name": "20. Bulk Operations",
+      "item": [
+        {
+          "name": "Bulk Transfer Items",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/bulk/items/transfer",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"item_ids\": [\"ITEM_ID_1\", \"ITEM_ID_2\", \"ITEM_ID_3\"],\n  \"to_warehouse_id\": \"TARGET_WAREHOUSE_ID\",\n  \"reason\": \"Branch consolidation\",\n  \"priority\": \"normal\"\n}" }
+          }
+        },
+        {
+          "name": "Bulk Update Status",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/bulk/items/update-status",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"item_ids\": [\"ITEM_ID_1\", \"ITEM_ID_2\"],\n  \"status\": \"available\"\n}" }
+          }
+        },
+        {
+          "name": "Bulk Update Tags",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/bulk/items/update-tags",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"item_ids\": [\"ITEM_ID_1\", \"ITEM_ID_2\", \"ITEM_ID_3\"],\n  \"add_tags\": [\"premium\", \"VIP\"],\n  \"remove_tags\": [\"old\"]\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "21. Currency",
+      "item": [
+        { "name": "Get Exchange Rates", "request": { "method": "GET", "url": "{{base_url}}/currencies/rates" } },
+        {
+          "name": "Set Exchange Rate",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/currencies/rates",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"base_currency\": \"USD\",\n  \"target_currency\": \"IQD\",\n  \"rate\": 1460.00\n}" }
+          }
+        },
+        { "name": "Convert Currency", "request": { "method": "GET", "url": { "raw": "{{base_url}}/currencies/convert?amount=100&from_currency=USD&to_currency=IQD", "host": ["{{base_url}}"], "path": ["currencies", "convert"], "query": [{ "key": "amount", "value": "100" }, { "key": "from_currency", "value": "USD" }, { "key": "to_currency", "value": "IQD" }] } } }
+      ]
+    }
+  ]
+}

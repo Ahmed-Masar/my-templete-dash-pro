@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Company Management Design System - Monochromatic Theme */
+
+@layer base {
+  :root {
+    /* Core Monochromatic Palette */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    
+    /* Surface Colors */
+    --surface: 0 0% 98%;
+    --surface-elevated: 0 0% 100%;
+    --surface-glass: 0 0% 100%;
+    
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --card-elevated: 0 0% 100%;
+    
+    /* Interactive States */
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 0 0% 15%;
+    
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --secondary-hover: 0 0% 94%;
+    
+    /* Muted Elements */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --muted-hover: 0 0% 94%;
+    
+    /* Accent & Highlights */
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+    --accent-hover: 0 0% 94%;
+    
+    /* Status Colors */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Borders & Inputs */
+    --border: 0 0% 90%;
+    --border-strong: 0 0% 80%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 9%;
+    
+    /* Sidebar System */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 0 0% 9%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 94%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 90%;
+    
+    /* Premium Effects */
+    --shadow-soft: 0 0% 0%;
+    --shadow-medium: 0 0% 0%;
+    --shadow-strong: 0 0% 0%;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 0 0% 90%;
+    
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+  }
+
+  .dark {
+    /* Dark Mode Monochromatic Palette */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    
+    /* Surface Colors */
+    --surface: 0 0% 6%;
+    --surface-elevated: 0 0% 8%;
+    --surface-glass: 0 0% 6%;
+    
+    /* Card System */
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+    --card-elevated: 0 0% 8%;
+    
+    /* Interactive States */
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --primary-hover: 0 0% 90%;
+    
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-hover: 0 0% 12%;
+    
+    /* Muted Elements */
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
+    --muted-hover: 0 0% 12%;
+    
+    /* Accent & Highlights */
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 98%;
+    --accent-hover: 0 0% 12%;
+    
+    /* Status Colors */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 9%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Borders & Inputs */
+    --border: 0 0% 15%;
+    --border-strong: 0 0% 20%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 98%;
+    
+    /* Sidebar System */
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 9%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    
+    /* Premium Effects */
+    --shadow-soft: 0 0% 0%;
+    --shadow-medium: 0 0% 0%;
+    --shadow-strong: 0 0% 0%;
+    --glass-bg: 0 0% 6%;
+    --glass-border: 0 0% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Glass Morphism Effects */
+  .glass {
+    @apply backdrop-blur-md bg-surface-glass/80 border border-border/50;
+  }
+  
+  .glass-strong {
+    @apply backdrop-blur-lg bg-surface-glass/90 border border-border/60;
+  }
+  
+  /* Premium Card Variants */
+  .card-premium {
+    @apply bg-card-elevated shadow-premium border border-border/30 backdrop-blur-sm;
+  }
+  
+  .card-floating {
+    @apply bg-card shadow-premium-lg border border-border/20 backdrop-blur-sm;
+  }
+  
+  /* Interactive States */
+  .interactive {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .interactive:hover {
+    @apply transform -translate-y-0.5 shadow-premium-lg;
+  }
+  
+  /* Scrollbar Styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted));
+    border-radius: 3px;
+    border: none;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground));
+  }
+}
