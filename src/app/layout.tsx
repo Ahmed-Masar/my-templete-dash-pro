@@ -5,8 +5,8 @@ import { Providers } from "@/components/providers/Providers";
 
 const sfPro = localFont({
   src: [
-    { path: "../../public/fonts/SF-Pro.ttf", style: "normal" },
-    { path: "../../public/fonts/SF-Pro-Italic.ttf", style: "italic" },
+    { path: "../../public/fonts/SF-Pro.woff2", style: "normal" },
+    { path: "../../public/fonts/SF-Pro-Italic.woff2", style: "italic" },
   ],
   variable: "--font-sf-pro",
   display: "swap",
