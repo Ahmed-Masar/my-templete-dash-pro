@@ -30,11 +30,16 @@ function loadFromStorage(): TabsState {
   return { tabs: [], activeTabId: null };
 }
 
+let persistTimer: ReturnType<typeof setTimeout> | null = null;
+
 function persist(tabs: Tab[], activeTabId: string | null) {
   if (typeof window === 'undefined') return;
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ tabs, activeTabId }));
-  } catch { /* ignore storage errors */ }
+  if (persistTimer) clearTimeout(persistTimer);
+  persistTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ tabs, activeTabId }));
+    } catch { /* ignore storage errors */ }
+  }, 300);
 }
 
 const initialState: TabsState = { tabs: [], activeTabId: null };

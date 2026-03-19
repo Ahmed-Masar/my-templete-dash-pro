@@ -28,19 +28,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchUsers, createUser, updateUser, deleteUser, User } from "@/store/slices/usersSlice";
 import { Badge } from "@/components/ui/badge";
-import L from "leaflet";
-
-import "leaflet/dist/leaflet.css";
-
-const mapIcon = typeof window !== 'undefined' ? L.icon({
-    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-}) : null;
+import type L from "leaflet";
 
 const LocationMap = ({ lat, lng, onChange }: { lat: number, lng: number, onChange: (lat: number, lng: number) => void }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -50,15 +38,32 @@ const LocationMap = ({ lat, lng, onChange }: { lat: number, lng: number, onChang
     useEffect(() => {
         if (!mapRef.current || typeof window === 'undefined') return;
 
-        if (!leafletMap.current) {
+        let destroyed = false;
+
+        import('leaflet').then(async (leafletModule) => {
+            if (destroyed || !mapRef.current) return;
+            await import('leaflet/dist/leaflet.css' as string);
+            const L = leafletModule.default;
+
+            const mapIcon = L.icon({
+                iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+                iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+                shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41],
+            });
+
+            if (destroyed || leafletMap.current) return;
             const initialLat = lat || 21.4858;
             const initialLng = lng || 39.1925;
-            leafletMap.current = L.map(mapRef.current).setView([initialLat, initialLng], 12);
+            leafletMap.current = L.map(mapRef.current!).setView([initialLat, initialLng], 12);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors',
             }).addTo(leafletMap.current);
 
-            if (lat && lng && mapIcon) {
+            if (lat && lng) {
                 marker.current = L.marker([lat, lng], { icon: mapIcon }).addTo(leafletMap.current);
             }
 
@@ -67,13 +72,14 @@ const LocationMap = ({ lat, lng, onChange }: { lat: number, lng: number, onChang
                 onChange(newLat, newLng);
                 if (marker.current) {
                     marker.current.setLatLng([newLat, newLng]);
-                } else if (mapIcon) {
+                } else {
                     marker.current = L.marker([newLat, newLng], { icon: mapIcon }).addTo(leafletMap.current!);
                 }
             });
-        }
+        });
 
         return () => {
+            destroyed = true;
             if (leafletMap.current) {
                 leafletMap.current.remove();
                 leafletMap.current = null;

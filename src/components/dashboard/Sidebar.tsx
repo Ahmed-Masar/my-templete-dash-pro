@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -138,7 +138,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const user = useAppSelector((state) => state.auth.user);
 
   // Build a filtered menu based on user permissions
-  const visibleItems: MenuItem[] = MENU_ITEMS.reduce<MenuItem[]>((acc, item) => {
+  const visibleItems = useMemo<MenuItem[]>(() => MENU_ITEMS.reduce<MenuItem[]>((acc, item) => {
     if (item.type === 'main') {
       if (hasPermission(user, item.permission ?? null)) acc.push(item);
     } else {
@@ -146,7 +146,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       if (visibleSubItems.length > 0) acc.push({ ...item, items: visibleSubItems });
     }
     return acc;
-  }, []);
+  }, []), [user]);
 
   // Single set tracks which group IDs are open
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(() => {
