@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         "sf-pro": ["var(--font-sf-pro)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "sf-arabic": ["var(--font-sf-arabic)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

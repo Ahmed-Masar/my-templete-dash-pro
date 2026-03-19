@@ -172,6 +172,10 @@
     @apply bg-background text-foreground font-sf-pro;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  :lang(ar), [dir="rtl"] {
+    font-family: var(--font-sf-arabic), sans-serif;
+  }
 }
 
 ::view-transition-old(root),

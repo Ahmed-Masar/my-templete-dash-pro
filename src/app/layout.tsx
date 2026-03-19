@@ -12,6 +12,12 @@ const sfPro = localFont({
   display: "swap",
 });
 
+const sfArabic = localFont({
+  src: [{ path: "../../public/fonts/SF-Arabic.woff2", style: "normal" }],
+  variable: "--font-sf-arabic",
+  display: "swap",
+});
+
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -33,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={sfPro.variable}>
+    <html lang="en" suppressHydrationWarning className={`${sfPro.variable} ${sfArabic.variable}`}>
       <body className="font-sf-pro">
         <Providers>{children}</Providers>
       </body>
