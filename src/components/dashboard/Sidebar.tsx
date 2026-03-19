@@ -13,32 +13,32 @@ import { openTab } from '@/store/slices/tabsSlice';
 import { getTabTitle } from '@/lib/tabMeta';
 import { hasPermission } from '@/lib/permissions';
 import {
-  ChevronRight,
-  ChevronLeft,
-  Menu,
-  LayoutDashboard, 
-  Home,
-  Megaphone,
-  Smartphone,
-  Shield,
-  Globe,
+  ArrowRight2 as ChevronRight,
+  ArrowLeft2 as ChevronLeft,
+  HambergerMenu as Menu,
+  Element3 as LayoutDashboard,
+  Home2 as Home,
+  Speaker as Megaphone,
+  Mobile as Smartphone,
+  SecuritySafe as Shield,
+  Global as Globe,
   ShoppingBag,
-  Wrench,
-  Store,
-  Building2,
+  Setting5 as Wrench,
+  Shop as Store,
+  Buildings2 as Building2,
   Briefcase,
   Gift,
   ShoppingCart,
-  Users,
+  People as Users,
   User,
-  MessageSquare,
-  Tags,
-  Grid,
+  Messages1 as MessageSquare,
+  Tag as Tags,
+  Grid2 as Grid,
   Award,
-  Bell,
-  Languages,
-  UserCog,
-} from 'lucide-react';
+  Notification as Bell,
+  Translate as Languages,
+  UserOctagon as UserCog,
+} from 'iconsax-react';
 
 
 type SubItem = { label: string; path: string; icon: React.ElementType; permission?: string | null };
@@ -236,168 +236,210 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
               collapsed && 'mx-auto',
             )}
           >
-            {collapsed ? <Menu className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+            {collapsed ? <Menu color="currentColor" size="16" /> : <ChevronLeft color="currentColor" size="16" />}
           </Button>
         </div>
       </div>
 
       {/* ── Nav ── */}
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto scrollbar-luxury">
-        {visibleItems.map((section) => (
-          <div key={section.type === 'main' ? section.path : section.id} className="pb-1">
+        {visibleItems.map((section) => {
+          const SectionIcon = section.icon;
+          return (
+            <div key={section.type === 'main' ? section.path : section.id} className="pb-1">
 
-            {/* ── Main item ── */}
-            {section.type === 'main' ? (
-              collapsed ? (
-                <Tooltip delayDuration={200} open={tooltipBlocked ? false : undefined}>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      onClick={() => navigate(section.path)}
-                      className={cn(
-                        'w-full justify-center px-2 mb-1 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-                        isActive(section.path) && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-sm',
-                      )}
-                    >
-                      <section.icon className={cn('h-5 w-5', isActive(section.path) ? 'text-primary' : 'text-sidebar-foreground/70')} />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent side="right" sideOffset={10} className="font-medium">
-                    {section.label}
-                  </TooltipContent>
-                </Tooltip>
-              ) : (
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate(section.path)}
-                  className={cn(
-                    'w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground mb-1',
-                    isActive(section.path) && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-sm',
-                    overviewEntrance && section.path === '/dashboard' && 'sidebar-overview-entrance',
-                  )}
-                >
-                  <section.icon className={cn('h-5 w-5 mr-3', isActive(section.path) ? 'text-primary' : 'text-sidebar-foreground/70')} />
-                  <span className="flex-1 text-left truncate">{section.label}</span>
-                </Button>
-              )
-
-            /* ── Expandable — collapsed: Popover + Tooltip ── */
-            ) : collapsed ? (
-              <Popover
-                open={openPopover === section.id}
-                onOpenChange={(open) => setOpenPopover(open ? section.id : null)}
-              >
-                <Tooltip
-                  delayDuration={200}
-                  open={tooltipBlocked || openPopover === section.id ? false : undefined}
-                >
-                  <TooltipTrigger asChild>
-                    <PopoverTrigger asChild>
+              {/* ── Main item ── */}
+              {section.type === 'main' ? (
+                collapsed ? (
+                  <Tooltip delayDuration={200} open={tooltipBlocked ? false : undefined}>
+                    <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
+                        onClick={() => navigate(section.path)}
                         className={cn(
-                          'w-full justify-center px-2 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-                          isGroupActive(section) && 'bg-sidebar-accent/60 text-sidebar-accent-foreground',
+                          'w-full justify-center px-2 mb-1 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                          isActive(section.path) && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-sm',
                         )}
                       >
-                        <section.icon className={cn('h-5 w-5', isGroupActive(section) ? 'text-primary' : 'text-sidebar-foreground/70')} />
-                      </Button>
-                    </PopoverTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent side="right" sideOffset={10} className="font-medium">
-                    {section.label}
-                  </TooltipContent>
-                </Tooltip>
-
-                <PopoverContent side="right" align="start" className="w-48 p-1.5">
-                  <p className="text-xs font-semibold text-muted-foreground px-2 py-1.5 mb-0.5">
-                    {section.label}
-                  </p>
-                  <div className="space-y-px">
-                    {section.items.map((item) => (
-                      <Button
-                        key={item.path}
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => navigate(item.path)}
-                        className={cn(
-                          'w-full justify-start text-sm h-9',
-                          isActive(item.path) && 'bg-sidebar-accent/50 text-sidebar-accent-foreground font-medium',
+                        {SectionIcon ? (
+                          <SectionIcon
+                            variant={isActive(section.path) ? "Bold" : "Linear"}
+                            color="currentColor"
+                            size="20"
+                            className={isActive(section.path) ? 'text-primary' : 'text-sidebar-foreground/70'}
+                          />
+                        ) : (
+                          <span className="text-[10px] text-red-500">?</span>
                         )}
-                      >
-                        <item.icon className="h-3.5 w-3.5 mr-2 opacity-70" />
-                        <span className="truncate">{item.label}</span>
                       </Button>
-                    ))}
-                  </div>
-                </PopoverContent>
-              </Popover>
+                    </TooltipTrigger>
+                    <TooltipContent side="right" sideOffset={10} className="font-medium">
+                      {section.label}
+                    </TooltipContent>
+                  </Tooltip>
+                ) : (
+                  <Button
+                    variant="ghost"
+                    onClick={() => navigate(section.path)}
+                    className={cn(
+                      'w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground mb-1',
+                      isActive(section.path) && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-sm',
+                      overviewEntrance && section.path === '/dashboard' && 'sidebar-overview-entrance',
+                    )}
+                  >
+                    <SectionIcon
+                      variant={isActive(section.path) ? "Bold" : "Linear"}
+                      color="currentColor"
+                      size="20"
+                      className={cn('mr-3', isActive(section.path) ? 'text-primary' : 'text-sidebar-foreground/70')}
+                    />
+                    <span className="flex-1 text-left truncate">{section.label}</span>
+                  </Button>
+                )
 
-            /* ── Expandable — expanded sidebar ── */
-            ) : (
-              <div className="space-y-1">
-                <Button
-                  variant="ghost"
-                  className={cn(
-                    'w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-                    isGroupActive(section) && !expandedGroups.has(section.id) &&
-                      'bg-sidebar-accent/40 text-sidebar-accent-foreground',
-                  )}
-                  onClick={() => toggleGroup(section.id)}
+              /* ── Expandable — collapsed: Popover + Tooltip ── */
+              ) : collapsed ? (
+                <Popover
+                  open={openPopover === section.id}
+                  onOpenChange={(open) => setOpenPopover(open ? section.id : null)}
                 >
-                  <section.icon
-                    className={cn(
-                      'h-5 w-5 mr-3',
-                      isGroupActive(section) ? 'text-primary' : 'text-sidebar-foreground/70',
-                    )}
-                  />
-                  <span className="flex-1 text-left truncate">{section.label}</span>
-                  <ChevronRight
-                    className={cn(
-                      'h-4 w-4 opacity-50 transition-transform duration-300',
-                      expandedGroups.has(section.id) && 'rotate-90',
-                    )}
-                  />
-                </Button>
-
-                <div className={cn(
-                  'grid transition-all duration-300 ease-in-out',
-                  expandedGroups.has(section.id) ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
-                )}>
-                  <div className="overflow-hidden">
-                    <div className="ml-4 pl-3 border-l-2 border-sidebar-border space-y-1 mt-1">
-                      {section.items.map((item) => (
+                  <Tooltip
+                    delayDuration={200}
+                    open={tooltipBlocked || openPopover === section.id ? false : undefined}
+                  >
+                    <TooltipTrigger asChild>
+                      <PopoverTrigger asChild>
                         <Button
-                          key={item.path}
                           variant="ghost"
-                          size="sm"
-                          onClick={() => navigate(item.path)}
                           className={cn(
-                            'w-full justify-start text-sm text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-9 relative',
-                            isActive(item.path) &&
-                              'bg-sidebar-accent/50 text-sidebar-accent-foreground font-medium',
+                            'w-full justify-center px-2 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                            isGroupActive(section) && 'bg-sidebar-accent/60 text-sidebar-accent-foreground',
                           )}
                         >
-                          {isActive(item.path) && (
-                            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-primary rounded-full -ml-3" />
-                          )}
-                          <item.icon
-                            className={cn(
-                              'h-3.5 w-3.5 mr-2',
-                              isActive(item.path) ? 'text-primary opacity-100' : 'opacity-70',
-                            )}
+                          <SectionIcon
+                            variant={isGroupActive(section) ? "Bold" : "Linear"}
+                            color="currentColor"
+                            size="20"
+                            className={isGroupActive(section) ? 'text-primary' : 'text-sidebar-foreground/70'}
                           />
-                          <span className="truncate">{item.label}</span>
                         </Button>
-                      ))}
+                      </PopoverTrigger>
+                    </TooltipTrigger>
+                    <TooltipContent side="right" sideOffset={10} className="font-medium">
+                      {section.label}
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <PopoverContent side="right" align="start" className="w-48 p-1.5">
+                    <p className="text-xs font-semibold text-muted-foreground px-2 py-1.5 mb-0.5">
+                      {section.label}
+                    </p>
+                    <div className="space-y-px">
+                      {section.items.map((item) => {
+                        const ItemIcon = item.icon;
+                        return (
+                          <Button
+                            key={item.path}
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => navigate(item.path)}
+                            className={cn(
+                              'w-full justify-start text-sm h-9',
+                              isActive(item.path) && 'bg-sidebar-accent/50 text-sidebar-accent-foreground font-medium',
+                            )}
+                          >
+                            <ItemIcon
+                              variant={isActive(item.path) ? "Bold" : "Linear"}
+                              color="currentColor"
+                              size="18"
+                              className="mr-2 opacity-70"
+                            />
+                            <span className="truncate">{item.label}</span>
+                          </Button>
+                        );
+                      })}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+
+              /* ── Expandable — expanded sidebar ── */
+              ) : (
+                <div className="space-y-1">
+                  <Button
+                    variant="ghost"
+                    className={cn(
+                      'w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                      isGroupActive(section) && !expandedGroups.has(section.id) &&
+                        'bg-sidebar-accent/40 text-sidebar-accent-foreground',
+                    )}
+                    onClick={() => toggleGroup(section.id)}
+                  >
+                    <SectionIcon
+                      variant={isGroupActive(section) ? "Bold" : "Linear"}
+                      color="currentColor"
+                      size="20"
+                      className={cn(
+                        'mr-3',
+                        isGroupActive(section) ? 'text-primary' : 'text-sidebar-foreground/70',
+                      )}
+                    />
+                    <span className="flex-1 text-left truncate">{section.label}</span>
+                    <ChevronRight
+                      color="currentColor"
+                      size="16"
+                      className={cn(
+                        'opacity-50 transition-transform duration-300',
+                        expandedGroups.has(section.id) && 'rotate-90',
+                      )}
+                    />
+                  </Button>
+
+                  <div className={cn(
+                    'grid transition-all duration-300 ease-in-out',
+                    expandedGroups.has(section.id) ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+                  )}>
+                    <div className="overflow-hidden">
+                      <div className="ml-4 pl-3 border-l-2 border-sidebar-border space-y-1 mt-1">
+                        {section.items.map((item) => {
+                          const SubItemIcon = item.icon;
+                          return (
+                            <Button
+                              key={item.path}
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => navigate(item.path)}
+                              className={cn(
+                                'w-full justify-start text-sm text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-9 relative',
+                                isActive(item.path) &&
+                                  'bg-sidebar-accent/50 text-sidebar-accent-foreground font-medium',
+                              )}
+                            >
+                              {isActive(item.path) && (
+                                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-primary rounded-full -ml-3" />
+                              )}
+                              <SubItemIcon
+                                variant={isActive(item.path) ? "Bold" : "Linear"}
+                                color="currentColor"
+                                size="18"
+                                className={cn(
+                                  'mr-2',
+                                  isActive(item.path) ? 'text-primary opacity-100' : 'opacity-70',
+                                )}
+                              />
+                              <span className="truncate">{item.label}</span>
+                            </Button>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+            </div>
+          );
+        })}
       </nav>
+
 
     </div>
   );

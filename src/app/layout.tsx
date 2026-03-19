@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
+
+const sfPro = localFont({
+  src: [
+    { path: "../../public/fonts/SF-Pro.ttf", style: "normal" },
+    { path: "../../public/fonts/SF-Pro-Italic.ttf", style: "italic" },
+  ],
+  variable: "--font-sf-pro",
+  display: "swap",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -23,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+    <html lang="en" suppressHydrationWarning className={sfPro.variable}>
+      <body className="font-sf-pro">
         <Providers>{children}</Providers>
       </body>
     </html>
